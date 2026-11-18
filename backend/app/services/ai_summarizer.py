@@ -10,7 +10,7 @@ Features:
 
 import json
 import re
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
 from pydantic import BaseModel
 from backend.app.core.config import settings
 
