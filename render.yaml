@@ -1,0 +1,16 @@
+services:
+  # Full-Stack Web Service (FastAPI Backend + React Frontend SPA)
+  - type: web
+    name: menocare-platform
+    runtime: python
+    buildCommand: "./render-build.sh"
+    startCommand: "uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_hkEws3i9tTcM@ep-twilight-voice-a1kgbfeb-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHONPATH
+        value: .
+      - key: PYTHON_VERSION
+        value: 3.11.9
