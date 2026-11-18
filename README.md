@@ -4,6 +4,48 @@ A production-grade, scientifically grounded, and privacy-preserving platform tha
 
 ---
 
+## 🚀 Quick Deployment Guide (Render + Neon PostgreSQL)
+
+### 1. Database Configuration (Neon PostgreSQL)
+The database has been migrated from local SQLite to Neon Serverless PostgreSQL:
+```
+postgresql://neondb_owner:npg_hkEws3i9tTcM@ep-twilight-voice-a1kgbfeb-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+```
+All tables and seeded clinical cohorts (11 users, 919 assessments, 5,514 responses, 1,261 bleeding records, 6 lab reports, 7 anomaly alerts) are already migrated into Neon.
+
+### 2. Push to GitHub
+The local repository is committed and ready on branch `main`. Push it to your GitHub account:
+```bash
+# If using the menocare repository on your profile:
+git remote add origin https://github.com/itskanishkrk065/menocare.git
+git push -u origin main
+```
+*(If your repository has a different name, simply update the remote URL with `git remote set-url origin https://github.com/itskanishkrk065/<repo-name>.git` and push).*
+
+### 3. Deploy to Render
+You can deploy in **1 click** using Render Blueprint, or configure a Web Service:
+
+#### Option A: One-Click Render Blueprint (Recommended)
+1. Go to [Render Dashboard](https://dashboard.render.com/) $\rightarrow$ **Blueprints** $\rightarrow$ **New Blueprint Instance**.
+2. Connect your GitHub repository (`itskanishkrk065/menocare`).
+3. Render reads `render.yaml` automatically and configures:
+   - **Runtime**: Python 3.11
+   - **Build Command**: `./render-build.sh` (installs backend dependencies and builds frontend bundle)
+   - **Start Command**: `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`
+   - **Database**: Automatically points to your Neon PostgreSQL database.
+4. Click **Apply**!
+
+#### Option B: Manual Web Service on Render
+If you created a Web Service manually:
+- **Build Command**: `./render-build.sh`
+- **Start Command**: `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`
+- **Environment Variables**:
+  - `DATABASE_URL`: `postgresql://neondb_owner:npg_hkEws3i9tTcM@ep-twilight-voice-a1kgbfeb-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
+  - `PYTHONPATH`: `.`
+  - `SECRET_KEY`: `menopause-super-secret-production-key-2026-secure`
+
+---
+
 ## Key Features
 
 1. **Hierarchical Symptom Measurement**:
