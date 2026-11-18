@@ -22,6 +22,10 @@ import {
   User,
   Layers,
   ChevronRight,
+  Send,
+  X,
+  Stethoscope,
+  Pill,
 } from 'lucide-react';
 import { api } from '../../api/client';
 import { SymptomTrendsChart } from '../patient/SymptomTrendsChart';
@@ -80,7 +84,7 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
         api.listPatientNotes(patientId).catch(() => []),
       ]);
 
-      const matched = patientsList.find((p: any) => p.patient_id === patientId);
+      const matched = patientsList.find((p: any) => (p.patient_id || p.id) === patientId);
       setPatientDetails(matched || null);
       setChartsData(charts);
       setDiffData(diff);
@@ -158,9 +162,9 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
 
   if (isLoading) {
     return (
-      <div className="p-16 text-center text-xs text-slate-500 space-y-2">
-        <Activity className="w-8 h-8 text-teal-600 animate-pulse mx-auto" />
-        <p>Loading Patient Profile & Health Feed...</p>
+      <div className="p-20 text-center text-xs text-charcoal-muted space-y-3 font-sans">
+        <Activity className="w-8 h-8 text-sage-dark animate-pulse mx-auto" />
+        <p className="font-medium text-sm text-charcoal">Loading Comprehensive Patient Profile & Longitudinal Feed...</p>
       </div>
     );
   }
@@ -172,139 +176,143 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
   const hasCritical = patientDetails?.has_high_priority_alerts;
 
   return (
-    <div className="space-y-6">
-      {/* 1. Top Navigation & Action Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+    <div className="space-y-6 font-sans text-charcoal pb-16">
+      {/* ========================================================================= */}
+      {/* 1. TOP ACTION BAR (Screen 1 Design Header)                                */}
+      {/* ========================================================================= */}
+      <section className="bg-cream rounded-card p-4 sm:p-5 border border-outline-variant shadow-warm-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <button
           onClick={onBack}
-          className="flex items-center space-x-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition-colors"
+          className="inline-flex items-center space-x-2 text-xs font-semibold text-charcoal hover:text-sage-dark transition-colors self-start"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Patient Directory</span>
+          <ArrowLeft className="w-4 h-4 text-charcoal-muted" />
+          <span>&larr; Back to Patient Directory &amp; Dossier</span>
         </button>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2.5">
           <button
             onClick={() => setIsTelehealthLiveOpen(true)}
-            className="flex items-center space-x-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-2xs transition-all"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-sage-dark hover:bg-sage-dark/90 text-ivory rounded-xl text-xs font-semibold shadow-warm-sm transition-all"
           >
-            <Video className="w-4 h-4" />
+            <Video className="w-3.5 h-3.5" />
             <span>Launch Live Telehealth</span>
           </button>
 
           <button
             onClick={handleGenerateSummary}
             disabled={isGeneratingAi}
-            className="flex items-center space-x-1.5 px-3.5 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold shadow-2xs transition-all disabled:opacity-50"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-teal-dark hover:bg-teal-dark/90 text-ivory rounded-xl text-xs font-semibold shadow-warm-sm transition-all disabled:opacity-50"
           >
-            <Sparkles className="w-4 h-4 text-teal-200" />
+            <Sparkles className="w-3.5 h-3.5 text-teal-soft" />
             <span>{isGeneratingAi ? 'Synthesizing...' : 'AI Clinical Summary'}</span>
           </button>
 
           <button
             onClick={handleDownloadPdf}
-            className="flex items-center space-x-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow-2xs transition-all"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-charcoal hover:bg-charcoal/90 text-ivory rounded-xl text-xs font-semibold shadow-warm-sm transition-all"
           >
-            <Download className="w-4 h-4 text-slate-300" />
+            <Download className="w-3.5 h-3.5 text-oat" />
             <span>Certified PDF</span>
           </button>
         </div>
-      </div>
+      </section>
 
-      {/* 2. Hero Social-Media Profile Banner Card */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-        {/* Cover Graphic / Gradient */}
-        <div className="h-32 bg-gradient-to-r from-teal-700 via-teal-600 to-indigo-800 relative">
-          <div className="absolute right-4 top-4 flex items-center space-x-2">
-            {hasCritical ? (
-              <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-rose-500 text-white shadow-md flex items-center space-x-1 animate-pulse">
-                <ShieldAlert className="w-3.5 h-3.5" />
-                <span>Tier A Red Flag Active</span>
-              </span>
-            ) : alertsList.length > 0 ? (
-              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-400 text-amber-950 shadow-md flex items-center space-x-1">
-                <AlertTriangle className="w-3.5 h-3.5" />
-                <span>Pathology Monitored</span>
-              </span>
-            ) : (
-              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500 text-white shadow-md flex items-center space-x-1">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Benign Transition</span>
-              </span>
-            )}
-          </div>
+      {/* ========================================================================= */}
+      {/* 2. HERO PATIENT PROFILE BANNER (Screen 1 Warm Health Design)             */}
+      {/* ========================================================================= */}
+      <div className="bg-cream rounded-card border border-outline-variant shadow-warm-md overflow-hidden">
+        {/* Cover Gradient with Clinical Status Badge */}
+        <div className="h-32 bg-gradient-to-r from-[#37604F] via-[#3D6A5C] to-[#35535E] relative p-4 flex items-start justify-end">
+          {hasCritical ? (
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FFDAD6] text-[#BA1A1A] border border-[#FFB4AB] shadow-warm-sm flex items-center space-x-1.5 animate-pulse">
+              <ShieldAlert className="w-3.5 h-3.5" />
+              <span>Tier A Red Flag Active</span>
+            </span>
+          ) : alertsList.length > 0 ? (
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-sand-soft text-[#8C6D23] border border-sand shadow-warm-sm flex items-center space-x-1.5">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              <span>Pathology Monitored</span>
+            </span>
+          ) : (
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-sage-soft text-sage-dark border border-sage/40 shadow-warm-sm flex items-center space-x-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Benign Transition Protocol</span>
+            </span>
+          )}
         </div>
 
-        {/* Profile Details Bar */}
+        {/* Profile Details & Identity */}
         <div className="px-6 pb-6 pt-0 relative">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 -mt-12">
-            {/* Avatar & Identity */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 -mt-12">
+            {/* Avatar & Patient Name */}
             <div className="flex items-end space-x-4">
-              <div className="w-24 h-24 rounded-2xl bg-white p-1 shadow-xl border-2 border-white shrink-0">
-                <div className="w-full h-full rounded-xl bg-gradient-to-tr from-teal-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-black">
+              <div className="w-24 h-24 rounded-3xl bg-cream p-1.5 shadow-warm-md border-2 border-white shrink-0">
+                <div className="w-full h-full rounded-2xl bg-sage-dark flex items-center justify-center text-ivory text-2xl font-serif font-bold shadow-inner">
                   {patientName.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
                 </div>
               </div>
 
               <div className="space-y-1">
-                <div className="flex items-center space-x-2">
-                  <h2 className="text-xl font-black text-slate-900">{patientName}</h2>
-                  <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="font-serif text-2xl md:text-3xl font-bold text-charcoal tracking-tight">
+                    {patientName}
+                  </h2>
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-ivory text-charcoal border border-outline-variant font-mono">
                     Age: {patientAge}
                   </span>
-                  <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-50 text-indigo-800 border border-indigo-200">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sage-soft text-sage-dark border border-sage/40">
                     {strawStage}
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-500">
-                  Patient ID: <span className="font-mono text-slate-700">{patientId.substring(0, 8)}</span> • Linked via Practice Code
+                <p className="text-xs text-charcoal-muted">
+                  Patient ID: <span className="font-mono text-charcoal font-semibold">{patientId.substring(0, 8)}</span> • Linked via Encrypted Practice Code
                 </p>
               </div>
             </div>
 
-            {/* Quick Stats Bar (Social Metrics) */}
-            <div className="flex items-center divide-x divide-slate-200 bg-slate-50 p-2 rounded-2xl border border-slate-200 text-center self-start md:self-auto">
+            {/* Quick Vitals Metrics Strip */}
+            <div className="flex items-center divide-x divide-outline-variant bg-ivory/90 p-2.5 rounded-2xl border border-outline-variant shadow-warm-sm text-center self-start md:self-auto">
               <div className="px-3.5 py-1">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide block">Check-Ins</span>
-                <p className="text-sm font-black text-slate-900">{chartsData?.total_recorded_days || timelineEvents.filter(e => e.type === 'checkin').length}</p>
+                <span className="text-[10px] font-semibold text-charcoal-muted uppercase tracking-wide block">Check-Ins</span>
+                <p className="text-sm font-serif font-bold text-charcoal">{chartsData?.total_recorded_days || timelineEvents.filter(e => e.type === 'checkin').length}</p>
               </div>
 
               <div className="px-3.5 py-1">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide block">Adherence</span>
-                <p className="text-sm font-black text-teal-700">{chartsData?.adherence_rate_pct || 75}%</p>
+                <span className="text-[10px] font-semibold text-charcoal-muted uppercase tracking-wide block">Adherence</span>
+                <p className="text-sm font-serif font-bold text-sage-dark">{chartsData?.adherence_rate_pct || 78}%</p>
               </div>
 
               <div className="px-3.5 py-1">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide block">Alerts</span>
-                <p className={`text-sm font-black ${hasCritical ? 'text-rose-600' : alertsList.length > 0 ? 'text-amber-600' : 'text-slate-900'}`}>
+                <span className="text-[10px] font-semibold text-charcoal-muted uppercase tracking-wide block">Alerts</span>
+                <p className={`text-sm font-serif font-bold ${hasCritical ? 'text-[#BA1A1A]' : alertsList.length > 0 ? 'text-[#8C6D23]' : 'text-charcoal'}`}>
                   {alertsList.length}
                 </p>
               </div>
 
               <div className="px-3.5 py-1">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide block">Labs</span>
-                <p className="text-sm font-black text-slate-900">{Object.keys(diffData?.verified_labs_used || {}).length}</p>
+                <span className="text-[10px] font-semibold text-charcoal-muted uppercase tracking-wide block">Labs Used</span>
+                <p className="text-sm font-serif font-bold text-teal-dark">{Object.keys(diffData?.verified_labs_used || {}).length}</p>
               </div>
             </div>
           </div>
 
-          {/* Clinical Bio Tags */}
-          <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs">
-            <span className="text-slate-500 font-semibold">Clinical Baseline:</span>
-            <span className="bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-lg font-medium">
+          {/* Baseline Tags Strip */}
+          <div className="mt-4 pt-4 border-t border-outline-variant/60 flex flex-wrap items-center gap-2 text-xs">
+            <span className="text-charcoal-muted font-semibold">Clinical Baseline:</span>
+            <span className="bg-ivory text-charcoal px-2.5 py-1 rounded-lg font-medium border border-outline-variant">
               Amenorrhea: {patientDetails?.surgical_history?.amenorrhea_days ? `${patientDetails.surgical_history.amenorrhea_days} days` : 'None reported'}
             </span>
-            <span className="bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-lg font-medium">
-              Meds: {patientDetails?.current_medications?.length > 0 ? patientDetails.current_medications.join(', ') : 'No HRT'}
+            <span className="bg-ivory text-charcoal px-2.5 py-1 rounded-lg font-medium border border-outline-variant">
+              Meds: {patientDetails?.current_medications?.length > 0 ? patientDetails.current_medications.join(', ') : 'No HRT currently'}
             </span>
             {alertsList.map((a: any) => (
               <span
                 key={a.id}
-                className={`px-2.5 py-0.5 rounded-lg font-bold border ${
-                  a.severity_level === 'emergency'
-                    ? 'bg-rose-50 text-rose-700 border-rose-300'
-                    : 'bg-amber-50 text-amber-800 border-amber-300'
+                className={`px-2.5 py-1 rounded-lg font-semibold border ${
+                  a.severity_level === 'emergency' || a.severity_level === 'urgent'
+                    ? 'bg-[#FFDAD6] text-[#BA1A1A] border-[#FFB4AB]'
+                    : 'bg-sand-soft text-[#8C6D23] border-sand'
                 }`}
               >
                 {a.condition_name} ({a.confidence_score}%)
@@ -313,12 +321,12 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
           </div>
         </div>
 
-        {/* 3. Internal Profile Navigation Tabs */}
-        <div className="border-t border-slate-200 px-6 flex space-x-6 text-xs font-bold overflow-x-auto">
+        {/* 3. Secondary Sub-Navigation Tabs */}
+        <div className="border-t border-outline-variant px-6 flex space-x-6 text-xs font-semibold overflow-x-auto bg-ivory/40">
           {[
-            { id: 'feed', label: 'Health Timeline Feed', icon: MessageSquare, count: timelineEvents.length },
-            { id: 'charts', label: 'Biometrics & Charts', icon: Activity },
-            { id: 'differentials', label: 'Diagnostic Matrix', icon: ShieldAlert, count: diffData?.screenings?.length },
+            { id: 'feed', label: 'Longitudinal Timeline Feed', icon: MessageSquare, count: timelineEvents.length },
+            { id: 'charts', label: 'Biometrics & Trends', icon: Activity },
+            { id: 'differentials', label: '15-Disease Matrix', icon: ShieldAlert, count: diffData?.screenings?.length },
             { id: 'labs', label: 'Laboratory Vault', icon: FlaskConical, count: Object.keys(diffData?.verified_labs_used || {}).length },
             { id: 'hrt_advisor', label: 'HRT Advisor & Protocol', icon: Heart },
             { id: 'notes', label: 'SOAP Care Plan', icon: PenTool, count: clinicalNotes.length },
@@ -330,18 +338,18 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setActiveProfileTab(tab.id)}
-                className={`py-3.5 flex items-center space-x-1.5 border-b-2 transition-all whitespace-nowrap ${
+                className={`py-3.5 flex items-center space-x-2 border-b-2 transition-all whitespace-nowrap ${
                   isActive
-                    ? 'border-teal-600 text-teal-800'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    ? 'border-sage-dark text-sage-dark font-bold'
+                    : 'border-transparent text-charcoal-muted hover:text-charcoal'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.count !== undefined && (
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isActive ? 'bg-teal-100 text-teal-800' : 'bg-slate-100 text-slate-600'
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                      isActive ? 'bg-sage-soft text-sage-dark font-bold' : 'bg-oat text-charcoal-muted'
                     }`}
                   >
                     {tab.count}
@@ -355,15 +363,15 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
 
       {/* AI Clinical Summary Banner (if generated) */}
       {aiReport && (
-        <div className="bg-gradient-to-br from-teal-50/80 to-slate-50 rounded-2xl p-6 border border-teal-200 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-teal-200/60 pb-3">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center">
+        <div className="bg-cream rounded-card p-6 border border-teal shadow-warm-md space-y-4">
+          <div className="flex items-center justify-between border-b border-outline-variant pb-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-9 h-9 rounded-xl bg-teal-dark text-ivory flex items-center justify-center shadow-warm-sm">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900">Epistemic Clinical Summary (Google Gemini)</h3>
-                <p className="text-xs text-slate-500">
+                <h3 className="text-sm font-bold text-charcoal font-serif">Epistemic Clinical Summary (Google Gemini)</h3>
+                <p className="text-xs text-charcoal-muted">
                   {aiReport.is_fallback_template
                     ? 'Deterministic Rule-Based Clinical Synthesis'
                     : 'Validated Gemini 1.5 Medical Scribe Narrative (Zero-PII Payload)'}
@@ -371,30 +379,30 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
               </div>
             </div>
 
-            <span className="text-[10px] bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">
+            <span className="text-[10px] bg-teal-soft text-teal-dark font-bold px-2.5 py-1 rounded-full border border-teal/40">
               Anti-Hallucination Guard Verified
             </span>
           </div>
 
-          <p className="text-xs text-slate-700 leading-relaxed font-medium">
+          <p className="text-xs text-charcoal leading-relaxed font-medium">
             {aiReport.ai_summary?.executive_overview}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-            <div className="bg-white p-3.5 rounded-xl border border-slate-200">
-              <span className="text-xs font-bold text-slate-900">Primary Symptom Drivers</span>
-              <div className="space-y-2 mt-2">
+            <div className="bg-ivory/80 p-4 rounded-xl border border-outline-variant">
+              <span className="text-xs font-bold text-charcoal uppercase tracking-wider block mb-2">Primary Symptom Drivers</span>
+              <div className="space-y-2">
                 {aiReport.ai_summary?.primary_symptom_drivers?.map((d: any, idx: number) => (
-                  <div key={idx} className="text-xs text-slate-600">
-                    <span className="font-semibold text-slate-800">• {d.symptom_name} ({d.clinical_trajectory}):</span> {d.narrative}
+                  <div key={idx} className="text-xs text-charcoal-muted">
+                    <span className="font-semibold text-charcoal">• {d.symptom_name} ({d.clinical_trajectory}):</span> {d.narrative}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white p-3.5 rounded-xl border border-slate-200">
-              <span className="text-xs font-bold text-slate-900">Clinical Recommendations</span>
-              <ul className="space-y-1 mt-2 text-xs text-slate-600 list-disc list-inside">
+            <div className="bg-ivory/80 p-4 rounded-xl border border-outline-variant">
+              <span className="text-xs font-bold text-charcoal uppercase tracking-wider block mb-2">Clinical Recommendations</span>
+              <ul className="space-y-1.5 text-xs text-charcoal-muted list-disc list-inside">
                 {aiReport.ai_summary?.pertinent_clinical_recommendations?.map((rec: string, idx: number) => (
                   <li key={idx}>{rec}</li>
                 ))}
@@ -404,14 +412,14 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
         </div>
       )}
 
-      {/* 4. Tab Content Panels */}
-
-      {/* TAB 1: SOCIAL HEALTH TIMELINE FEED */}
+      {/* ========================================================================= */}
+      {/* 3. TAB 1: SOCIAL HEALTH TIMELINE FEED (Screen 1 Core Section)             */}
+      {/* ========================================================================= */}
       {activeProfileTab === 'feed' && (
-        <div className="space-y-4">
-          {/* Feed Filter Bar */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs">
-            <div className="flex flex-wrap gap-1.5">
+        <div className="space-y-5">
+          {/* Feed Filter Bar + Post Note Action */}
+          <div className="bg-cream p-4 rounded-card border border-outline-variant shadow-warm-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
+            <div className="flex flex-wrap items-center gap-1.5">
               {[
                 { id: 'all', label: `All Updates (${timelineEvents.length})` },
                 { id: 'checkin', label: `Daily Check-Ins (${timelineEvents.filter(e => e.type === 'checkin').length})` },
@@ -422,10 +430,10 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                 <button
                   key={btn.id}
                   onClick={() => setFeedFilter(btn.id)}
-                  className={`px-3 py-1.5 rounded-xl font-bold transition-all ${
+                  className={`px-3 py-1.5 rounded-full font-medium transition-all ${
                     feedFilter === btn.id
-                      ? 'bg-slate-900 text-white shadow-2xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      ? 'bg-charcoal text-ivory font-bold shadow-warm-sm'
+                      : 'bg-ivory text-charcoal hover:bg-oat border border-outline-variant'
                   }`}
                 >
                   {btn.label}
@@ -438,45 +446,59 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                 setActiveProfileTab('notes');
                 setIsAddingNote(true);
               }}
-              className="flex items-center space-x-1 text-xs font-bold text-teal-600 hover:text-teal-800"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ivory bg-sage-dark hover:bg-sage-dark/90 px-3.5 py-2 rounded-xl shadow-warm-sm transition-all self-start sm:self-auto shrink-0"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-3.5 h-3.5" />
               <span>Post Clinical Note</span>
             </button>
           </div>
 
-          {/* The Feed Cards Stream */}
-          <div className="space-y-3">
+          {/* Timeline Feed Stream */}
+          <div className="space-y-3.5">
             {filteredFeed.length === 0 ? (
-              <div className="bg-white rounded-2xl p-12 text-center text-xs text-slate-400 border border-slate-200 shadow-sm">
-                No health activity events recorded in this category.
+              <div className="bg-cream rounded-card p-12 sm:p-16 text-center flex flex-col items-center justify-center border border-outline-variant shadow-warm-sm">
+                <div className="w-14 h-14 rounded-full bg-ivory flex items-center justify-center text-charcoal-muted mb-3 border border-outline-variant">
+                  <FileText className="w-6 h-6 opacity-60" />
+                </div>
+                <h3 className="font-serif text-lg font-semibold text-charcoal mb-1">
+                  No health activity events recorded in this category.
+                </h3>
+                <p className="text-xs text-charcoal-muted max-w-sm mb-4 leading-relaxed">
+                  Patient check-in entries, bleeding calendars, and local laboratory findings will chronologically appear here once synced.
+                </p>
+                <button
+                  onClick={() => handleWindowChange(90)}
+                  className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-charcoal bg-ivory hover:bg-oat border border-outline-variant transition-colors"
+                >
+                  Expand to 90-Day History
+                </button>
               </div>
             ) : (
               filteredFeed.map((event) => {
                 if (event.type === 'alert') {
-                  const isEmerg = event.severity_level === 'emergency';
+                  const isEmerg = event.severity_level === 'emergency' || event.severity_level === 'urgent';
                   return (
                     <div
                       key={event.id}
-                      className={`p-5 rounded-2xl border shadow-sm space-y-2 ${
-                        isEmerg ? 'bg-rose-50/70 border-rose-300' : 'bg-amber-50/70 border-amber-300'
+                      className={`p-5 rounded-2xl border shadow-warm-sm space-y-2.5 ${
+                        isEmerg ? 'bg-[#FFF4F2] border-[#FFB4AB]' : 'bg-sand-soft/60 border-sand'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
                           <span
-                            className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full ${
-                              isEmerg ? 'bg-rose-200 text-rose-900' : 'bg-amber-200 text-amber-900'
+                            className={`text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full border ${
+                              isEmerg ? 'bg-[#FFDAD6] text-[#BA1A1A] border-[#FFB4AB]' : 'bg-sand-soft text-[#8C6D23] border-sand'
                             }`}
                           >
                             🚨 {event.severity_level} • {event.confidence_score}% Confidence
                           </span>
-                          <h4 className="text-xs font-bold text-slate-900">{event.title}</h4>
+                          <h4 className="text-xs font-bold text-charcoal font-serif">{event.title}</h4>
                         </div>
-                        <span className="text-[11px] text-slate-400 font-mono">{event.date}</span>
+                        <span className="text-[11px] text-charcoal-muted font-mono">{event.date}</span>
                       </div>
-                      <p className="text-xs text-slate-700 leading-relaxed font-medium">{event.description}</p>
-                      <p className="text-xs text-teal-900 font-semibold pt-1 border-t border-slate-200/60">
+                      <p className="text-xs text-charcoal leading-relaxed">{event.description}</p>
+                      <p className="text-xs text-teal-dark font-medium pt-2 border-t border-outline-variant/60">
                         <b>Recommended Workup:</b> {event.recommended_action}
                       </p>
                     </div>
@@ -488,22 +510,22 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                   return (
                     <div
                       key={event.id}
-                      className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2 hover:border-slate-300 transition-all"
+                      className="bg-cream p-5 rounded-2xl border border-outline-variant shadow-warm-sm space-y-2 hover:border-sage/50 transition-all"
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 rounded-xl bg-peach-soft text-[#B85D51] flex items-center justify-center border border-peach/50">
                             <Droplet className="w-4 h-4" />
                           </div>
                           <div>
-                            <h4 className="text-xs font-bold text-slate-900">{event.title}</h4>
-                            <span className="text-[10px] text-slate-400 font-mono">{event.date}</span>
+                            <h4 className="text-xs font-bold text-charcoal font-serif">{event.title}</h4>
+                            <span className="text-[10px] text-charcoal-muted font-mono">{event.date}</span>
                           </div>
                         </div>
 
                         <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${
-                            isHeavy ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-600'
+                          className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase border ${
+                            isHeavy ? 'bg-[#FFDAD6] text-[#BA1A1A] border-[#FFB4AB]' : 'bg-oat text-charcoal border-outline-variant'
                           }`}
                         >
                           {event.status}
@@ -511,21 +533,21 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                       </div>
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 text-xs">
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-[10px] text-slate-400 block">Duration</span>
-                          <p className="font-bold text-slate-800">{event.duration_days} day(s)</p>
+                        <div className="p-2.5 bg-ivory rounded-xl border border-outline-variant">
+                          <span className="text-[10px] text-charcoal-muted block uppercase">Duration</span>
+                          <p className="font-bold text-charcoal mt-0.5">{event.duration_days} day(s)</p>
                         </div>
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-[10px] text-slate-400 block">Clots</span>
-                          <p className="font-bold text-slate-800">{event.has_clots ? 'Yes' : 'No'}</p>
+                        <div className="p-2.5 bg-ivory rounded-xl border border-outline-variant">
+                          <span className="text-[10px] text-charcoal-muted block uppercase">Clots</span>
+                          <p className="font-bold text-charcoal mt-0.5">{event.has_clots ? 'Yes' : 'No'}</p>
                         </div>
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-[10px] text-slate-400 block">Basal Temp</span>
-                          <p className="font-bold text-slate-800">{event.basal_body_temp || '36.5'}°C</p>
+                        <div className="p-2.5 bg-ivory rounded-xl border border-outline-variant">
+                          <span className="text-[10px] text-charcoal-muted block uppercase">Basal Temp</span>
+                          <p className="font-bold text-charcoal mt-0.5">{event.basal_body_temp || '36.5'}°C</p>
                         </div>
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-[10px] text-slate-400 block">Pelvic Pain</span>
-                          <p className="font-bold text-slate-800">{event.pelvic_pain_intensity}/4</p>
+                        <div className="p-2.5 bg-ivory rounded-xl border border-outline-variant">
+                          <span className="text-[10px] text-charcoal-muted block uppercase">Pelvic Pain</span>
+                          <p className="font-bold text-charcoal mt-0.5">{event.pelvic_pain_intensity}/4</p>
                         </div>
                       </div>
                     </div>
@@ -536,28 +558,28 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                   return (
                     <div
                       key={event.id}
-                      className="bg-gradient-to-br from-indigo-50/40 to-white p-5 rounded-2xl border border-indigo-200 shadow-sm space-y-2"
+                      className="bg-ivory p-5 rounded-2xl border border-outline-variant shadow-warm-sm space-y-2.5"
                     >
-                      <div className="flex items-center justify-between border-b border-indigo-100 pb-2">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center">
+                      <div className="flex items-center justify-between border-b border-outline-variant/60 pb-2">
+                        <div className="flex items-center space-x-2.5">
+                          <div className="w-8 h-8 rounded-xl bg-sage-soft text-sage-dark flex items-center justify-center border border-sage/40">
                             <PenTool className="w-4 h-4" />
                           </div>
                           <div>
-                            <h4 className="text-xs font-bold text-slate-900">{event.title}</h4>
-                            <span className="text-[10px] text-slate-400 font-mono">{event.date}</span>
+                            <h4 className="text-xs font-bold text-charcoal font-serif">{event.title}</h4>
+                            <span className="text-[10px] text-charcoal-muted font-mono">{event.date}</span>
                           </div>
                         </div>
-                        <span className="text-[10px] font-bold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">
-                          Attending Clinician
+                        <span className="text-[10px] font-bold text-sage-dark bg-sage-soft px-2.5 py-0.5 rounded-full border border-sage/30">
+                          Attending Clinician Note
                         </span>
                       </div>
 
-                      <div className="space-y-1.5 text-xs text-slate-700 pt-1">
-                        {event.subjective && <p><b>S:</b> {event.subjective}</p>}
-                        {event.objective && <p><b>O:</b> {event.objective}</p>}
-                        {event.assessment && <p><b>A:</b> {event.assessment}</p>}
-                        {event.plan && <p><b>P:</b> {event.plan}</p>}
+                      <div className="space-y-1.5 text-xs text-charcoal pt-1">
+                        {event.subjective && <p><b>S (Subjective):</b> {event.subjective}</p>}
+                        {event.objective && <p><b>O (Objective):</b> {event.objective}</p>}
+                        {event.assessment && <p><b>A (Assessment):</b> {event.assessment}</p>}
+                        {event.plan && <p><b>P (Plan):</b> {event.plan}</p>}
                       </div>
                     </div>
                   );
@@ -567,29 +589,29 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                 return (
                   <div
                     key={event.id}
-                    className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:border-slate-300 transition-all"
+                    className="bg-cream p-5 rounded-2xl border border-outline-variant shadow-warm-sm space-y-3 hover:border-sage/50 transition-all"
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xs">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 rounded-xl bg-sage-soft text-sage-dark flex items-center justify-center font-bold text-xs border border-sage/30">
                           ✓
                         </div>
                         <div>
-                          <h4 className="text-xs font-bold text-slate-900">{event.title}</h4>
-                          <span className="text-[10px] text-slate-400 font-mono">{event.date}</span>
+                          <h4 className="text-xs font-bold text-charcoal font-serif">{event.title}</h4>
+                          <span className="text-[10px] text-charcoal-muted font-mono">{event.date}</span>
                         </div>
                       </div>
 
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                        className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase border ${
                           event.max_severity >= 3
-                            ? 'bg-rose-100 text-rose-700'
+                            ? 'bg-[#FFDAD6] text-[#BA1A1A] border-[#FFB4AB]'
                             : event.max_severity >= 2
-                            ? 'bg-amber-100 text-amber-700'
-                            : 'bg-slate-100 text-slate-600'
+                            ? 'bg-sand-soft text-[#8C6D23] border-sand'
+                            : 'bg-sage-soft text-sage-dark border-sage/30'
                         }`}
                       >
-                        Peak: {event.max_severity}/4
+                        Peak Intensity: {event.max_severity}/4
                       </span>
                     </div>
 
@@ -598,14 +620,14 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                       {event.symptoms?.map((s: any) => (
                         <span
                           key={s.code}
-                          className={`text-[11px] px-2 py-0.5 rounded-lg font-medium border ${
+                          className={`text-[11px] px-2.5 py-0.5 rounded-lg font-medium border ${
                             s.intensity >= 3
-                              ? 'bg-rose-50 text-rose-800 border-rose-200 font-bold'
+                              ? 'bg-[#FFDAD6] text-[#BA1A1A] border-[#FFB4AB] font-bold'
                               : s.intensity >= 2
-                              ? 'bg-amber-50 text-amber-800 border-amber-200 font-semibold'
+                              ? 'bg-sand-soft text-[#8C6D23] border-sand font-semibold'
                               : s.intensity >= 1
-                              ? 'bg-teal-50 text-teal-800 border-teal-200'
-                              : 'bg-slate-50 text-slate-400 border-slate-200'
+                              ? 'bg-sage-soft text-sage-dark border-sage/30'
+                              : 'bg-ivory text-charcoal-muted border-outline-variant'
                           }`}
                         >
                           {s.label}: <b>{s.intensity}</b>
@@ -613,15 +635,15 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                       ))}
                     </div>
 
-                    {/* Patient Voice Note / Journal Entry if entered */}
+                    {/* Patient Voice Note / Journal Entry */}
                     {event.patient_notes?.length > 0 && (
-                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-700 italic space-y-1">
-                        <div className="flex items-center space-x-1 text-slate-500 font-semibold not-italic text-[10px]">
-                          <MessageSquare className="w-3 h-3 text-teal-600" />
-                          <span>Patient Journal Note:</span>
+                      <div className="bg-ivory p-3.5 rounded-xl border border-outline-variant text-xs text-charcoal italic space-y-1">
+                        <div className="flex items-center space-x-1.5 text-charcoal-muted font-semibold not-italic text-[10px]">
+                          <MessageSquare className="w-3.5 h-3.5 text-sage-dark" />
+                          <span>Patient Micro-Journal Note:</span>
                         </div>
                         {event.patient_notes.map((note: string, idx: number) => (
-                          <p key={idx}>"{note}"</p>
+                          <p key={idx}>&ldquo;{note}&rdquo;</p>
                         ))}
                       </div>
                     )}
@@ -644,21 +666,21 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
 
       {/* TAB 3: DIAGNOSTIC DIFFERENTIAL MATRIX */}
       {activeProfileTab === 'differentials' && (
-        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="bg-cream rounded-card p-6 border border-outline-variant shadow-warm-md space-y-4">
+          <div className="flex items-center justify-between border-b border-outline-variant pb-3">
             <div>
-              <h3 className="text-base font-bold text-slate-900">15-Disease Clinical Differential Screening Matrix</h3>
-              <p className="text-xs text-slate-500">
+              <h3 className="text-base font-bold text-charcoal font-serif">15-Disease Clinical Differential Screening Matrix</h3>
+              <p className="text-xs text-charcoal-muted">
                 Automated screening evaluated against longitudinal observations, bleeding patterns, and verified labs
               </p>
             </div>
-            <span className="text-xs text-slate-600 font-semibold bg-slate-100 px-2.5 py-1 rounded-lg">
+            <span className="text-xs text-charcoal font-semibold bg-ivory px-3 py-1 rounded-xl border border-outline-variant">
               STRAW Stage: {diffData?.straw_stage?.replace('_', ' ').toUpperCase()}
             </span>
           </div>
 
           {diffData?.screenings?.length === 0 ? (
-            <div className="p-8 text-center text-xs text-slate-400">
+            <div className="p-8 text-center text-xs text-charcoal-muted">
               No condition patterns crossed the clinical confidence threshold (all scores &lt; 40%).
             </div>
           ) : (
@@ -672,39 +694,39 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                     key={cond.condition_code}
                     className={`p-4 rounded-xl border space-y-2 ${
                       isCritical
-                        ? 'bg-rose-50/70 border-rose-300'
+                        ? 'bg-[#FFF4F2] border-[#FFB4AB]'
                         : isHigh
-                        ? 'bg-amber-50/70 border-amber-300'
-                        : 'bg-slate-50/70 border-slate-200'
+                        ? 'bg-sand-soft/60 border-sand'
+                        : 'bg-ivory border-outline-variant'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-900">{cond.condition_name}</span>
+                      <span className="text-xs font-bold text-charcoal font-serif">{cond.condition_name}</span>
                       <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                        className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase border ${
                           isCritical
-                            ? 'bg-rose-200 text-rose-900'
+                            ? 'bg-[#FFDAD6] text-[#BA1A1A] border-[#FFB4AB]'
                             : isHigh
-                            ? 'bg-amber-200 text-amber-900'
-                            : 'bg-slate-200 text-slate-800'
+                            ? 'bg-sand-soft text-[#8C6D23] border-sand'
+                            : 'bg-oat text-charcoal border-outline-variant'
                         }`}
                       >
                         {cond.confidence_score}% Confidence
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-slate-500">{cond.category}</p>
+                    <p className="text-[11px] text-charcoal-muted">{cond.category}</p>
 
                     <div className="space-y-1 pt-1">
-                      <span className="text-[11px] font-semibold text-slate-700">Diagnostic Criteria Met:</span>
-                      <ul className="text-xs text-slate-600 list-disc list-inside">
+                      <span className="text-[11px] font-semibold text-charcoal">Diagnostic Criteria Met:</span>
+                      <ul className="text-xs text-charcoal-muted list-disc list-inside">
                         {cond.matching_criteria_met.map((crit: string, idx: number) => (
                           <li key={idx}>{crit}</li>
                         ))}
                       </ul>
                     </div>
 
-                    <p className="text-xs font-medium text-teal-800 pt-1 border-t border-slate-200/60">
+                    <p className="text-xs font-medium text-teal-dark pt-1 border-t border-outline-variant/60">
                       <b>Recommended Workup:</b> {cond.recommended_workup}
                     </p>
                   </div>
@@ -717,27 +739,27 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
 
       {/* TAB 4: BIOCHEMICAL LAB VAULT */}
       {activeProfileTab === 'labs' && (
-        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="bg-cream rounded-card p-6 border border-outline-variant shadow-warm-md space-y-4">
+          <div className="flex items-center justify-between border-b border-outline-variant pb-3">
             <div>
-              <h3 className="text-base font-bold text-slate-900">Verified Laboratory Analytes & Blood Panels</h3>
-              <p className="text-xs text-slate-500">Extracted locally from scanned patient reports via PyTesseract & pdfplumber</p>
+              <h3 className="text-base font-bold text-charcoal font-serif">Verified Laboratory Analytes & Blood Panels</h3>
+              <p className="text-xs text-charcoal-muted">Extracted locally from scanned patient reports via PyTesseract & pdfplumber</p>
             </div>
-            <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+            <span className="text-xs font-semibold text-sage-dark bg-sage-soft px-3 py-1 rounded-xl border border-sage/30">
               100% Local OCR Extraction
             </span>
           </div>
 
           {Object.keys(diffData?.verified_labs_used || {}).length === 0 ? (
-            <div className="p-8 text-center text-xs text-slate-400">
+            <div className="p-8 text-center text-xs text-charcoal-muted">
               No local laboratory reports uploaded or verified for this patient yet.
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               {Object.entries(diffData.verified_labs_used).map(([name, val]: [string, any]) => (
-                <div key={name} className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                  <span className="text-xs font-medium text-slate-500">{name}</span>
-                  <p className="text-base font-bold text-slate-900 mt-0.5">{val}</p>
+                <div key={name} className="p-3 bg-ivory rounded-xl border border-outline-variant">
+                  <span className="text-xs font-medium text-charcoal-muted">{name}</span>
+                  <p className="text-base font-bold text-charcoal mt-0.5 font-serif">{val}</p>
                 </div>
               ))}
             </div>
@@ -747,127 +769,136 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
 
       {/* TAB 5: DOCTOR SOAP NOTES & CARE PLAN */}
       {activeProfileTab === 'notes' && (
-        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="bg-cream rounded-card p-6 border border-outline-variant shadow-warm-md space-y-4">
+          <div className="flex items-center justify-between border-b border-outline-variant pb-3">
             <div>
-              <h3 className="text-base font-bold text-slate-900">Physician Clinical SOAP Records & Care Plan</h3>
-              <p className="text-xs text-slate-500">Document physician assessment, prescription, and follow-up</p>
+              <h3 className="text-base font-bold text-charcoal font-serif">Clinician Longitudinal SOAP Notes & Care Plan</h3>
+              <p className="text-xs text-charcoal-muted">Structured documentation of subjective complaints, physical exams, and management plans.</p>
             </div>
 
             <button
               onClick={() => setIsAddingNote(!isAddingNote)}
-              className="flex items-center space-x-1 px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold transition-all shadow-2xs"
+              className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-sage-dark hover:bg-sage-dark/90 text-ivory rounded-xl text-xs font-semibold shadow-warm-sm transition-all"
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>{isAddingNote ? 'Cancel Note' : 'Add New SOAP Note'}</span>
+              <span>{isAddingNote ? 'Cancel Note' : 'Draft New Note'}</span>
             </button>
           </div>
 
+          {/* Form Composer */}
           {isAddingNote && (
-            <form onSubmit={handleSaveNote} className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-              <h4 className="text-xs font-bold text-slate-900">New Clinical Consultation Note</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <form onSubmit={handleSaveNote} className="bg-ivory p-5 rounded-2xl border border-outline-variant shadow-warm-sm space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal font-serif">New SOAP Clinical Entry</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Subjective (Patient Reported History)</label>
+                  <label className="block text-[11px] font-semibold text-charcoal-muted mb-1">Subjective (S)</label>
                   <textarea
                     rows={3}
                     value={subjective}
                     onChange={(e) => setSubjective(e.target.value)}
-                    className="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                    placeholder="Patient reports hot flashes 6x/day, worsening sleep..."
+                    placeholder="Patient reports nocturnal hot flashes with insomnia..."
+                    className="w-full p-2.5 rounded-xl border border-outline-variant bg-white text-xs text-charcoal focus:outline-none focus:ring-1 focus:ring-sage-dark"
                   />
                 </div>
-
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Objective (Vitals / Exam / Labs)</label>
+                  <label className="block text-[11px] font-semibold text-charcoal-muted mb-1">Objective (O)</label>
                   <textarea
                     rows={3}
                     value={objective}
                     onChange={(e) => setObjective(e.target.value)}
-                    className="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                    placeholder="BP 120/80, FSH 38.5, TSH 1.9, Pelvic exam normal..."
+                    placeholder="Vitals: BP 118/76, HR 72. BMI 24.1. Serum E2 nadir 18 pg/mL..."
+                    className="w-full p-2.5 rounded-xl border border-outline-variant bg-white text-xs text-charcoal focus:outline-none focus:ring-1 focus:ring-sage-dark"
                   />
                 </div>
-
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Assessment (Clinical Impression)</label>
+                  <label className="block text-[11px] font-semibold text-charcoal-muted mb-1">Assessment (A)</label>
                   <textarea
                     rows={3}
                     value={assessment}
                     onChange={(e) => setAssessment(e.target.value)}
-                    className="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                    placeholder="Symptomatic late perimenopause with secondary sleep disruption..."
+                    placeholder="Late perimenopause transition with vasomotor exacerbation..."
+                    className="w-full p-2.5 rounded-xl border border-outline-variant bg-white text-xs text-charcoal focus:outline-none focus:ring-1 focus:ring-sage-dark"
                   />
                 </div>
-
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Plan (Workup / Therapy)</label>
+                  <label className="block text-[11px] font-semibold text-charcoal-muted mb-1">Plan (P)</label>
                   <textarea
                     rows={3}
                     value={plan}
                     onChange={(e) => setPlan(e.target.value)}
-                    className="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs text-slate-800 focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                    placeholder="1. Initiate transdermal estradiol + micronized progesterone. 2. Repeat CBC in 3m..."
+                    placeholder="Titrate micronized progesterone to 200mg nightly. Re-evaluate in 30 days..."
+                    className="w-full p-2.5 rounded-xl border border-outline-variant bg-white text-xs text-charcoal focus:outline-none focus:ring-1 focus:ring-sage-dark"
                   />
                 </div>
               </div>
 
               <div className="flex justify-end space-x-2 pt-2">
                 <button
+                  type="button"
+                  onClick={() => setIsAddingNote(false)}
+                  className="px-3.5 py-1.5 rounded-xl border border-outline-variant text-xs text-charcoal hover:bg-oat"
+                >
+                  Cancel
+                </button>
+                <button
                   type="submit"
                   disabled={isSavingNote}
-                  className="px-4 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-bold transition-all disabled:opacity-50"
+                  className="px-4 py-1.5 rounded-xl bg-sage-dark hover:bg-sage-dark/90 text-ivory text-xs font-semibold shadow-warm-sm disabled:opacity-50"
                 >
-                  {isSavingNote ? 'Saving Note...' : 'Save to Patient Longitudinal Chart'}
+                  {isSavingNote ? 'Saving...' : 'Commit Note to EHR'}
                 </button>
               </div>
             </form>
           )}
 
-          {clinicalNotes.length === 0 ? (
-            <div className="text-center py-8 text-xs text-slate-400">
-              No physician consultation notes saved for this patient yet.
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {clinicalNotes.map((note) => (
-                <div key={note.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-2 text-xs">
-                  <div className="flex items-center justify-between border-b border-slate-200/60 pb-1.5">
-                    <span className="font-bold text-slate-900">Physician SOAP Consultation Record</span>
-                    <span className="text-[10px] text-slate-400 font-mono">{note.created_at}</span>
+          {/* Notes List */}
+          <div className="space-y-3">
+            {clinicalNotes.length === 0 ? (
+              <div className="p-8 text-center text-xs text-charcoal-muted">
+                No formal clinician SOAP notes recorded for this patient yet.
+              </div>
+            ) : (
+              clinicalNotes.map((note) => (
+                <div key={note.id} className="p-4 bg-ivory rounded-xl border border-outline-variant text-xs space-y-2">
+                  <div className="flex items-center justify-between border-b border-outline-variant/60 pb-1.5">
+                    <span className="font-bold text-charcoal font-serif">{note.doctor_name || 'Attending Physician'}</span>
+                    <span className="text-charcoal-muted font-mono text-[11px]">{note.created_at}</span>
                   </div>
-                  {note.subjective && <p className="text-slate-700"><b className="text-slate-900">S:</b> {note.subjective}</p>}
-                  {note.objective && <p className="text-slate-700"><b className="text-slate-900">O:</b> {note.objective}</p>}
-                  {note.assessment && <p className="text-slate-700"><b className="text-slate-900">A:</b> {note.assessment}</p>}
-                  {note.plan && <p className="text-slate-700"><b className="text-slate-900">P:</b> {note.plan}</p>}
+                  {note.content ? (
+                    <p className="text-charcoal leading-relaxed">{note.content}</p>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-charcoal-muted">
+                      {note.subjective && <p><b className="text-charcoal">S:</b> {note.subjective}</p>}
+                      {note.objective && <p><b className="text-charcoal">O:</b> {note.objective}</p>}
+                      {note.assessment && <p><b className="text-charcoal">A:</b> {note.assessment}</p>}
+                      {note.plan && <p><b className="text-charcoal">P:</b> {note.plan}</p>}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          )}
+              ))
+            )}
+          </div>
         </div>
       )}
 
-      {/* HRT Protocol Advisor Tab */}
+      {/* TAB 6: HRT ADVISOR */}
       {activeProfileTab === 'hrt_advisor' && (
         <HrtProtocolAdvisor
           patient={patientDetails}
-          onApplyProtocolToSoap={(planText) => {
-            setPlan(planText);
-            setActiveProfileTab('notes');
-            setIsAddingNote(true);
-          }}
         />
       )}
 
-      {/* Direct Clinical Messaging Tab */}
+      {/* TAB 7: DIRECT MESSAGES */}
       {activeProfileTab === 'messages' && (
-        <DoctorChatHub
-          patients={patientDetails ? [patientDetails] : []}
-          defaultPatientId={patientId}
-        />
+        <div className="bg-cream rounded-card p-5 border border-outline-variant shadow-warm-md">
+          <DoctorChatHub
+            patients={[patientDetails]}
+            defaultPatientId={patientId}
+          />
+        </div>
       )}
 
-      {/* Live Telehealth Consultation Suite Simulator */}
+      {/* Telehealth Live Consultation Modal */}
       {isTelehealthLiveOpen && (
         <TelehealthConsultationRoom
           patient={patientDetails}
