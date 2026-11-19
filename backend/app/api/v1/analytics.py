@@ -159,7 +159,7 @@ async def get_differential_screenings(
         .order_by(Assessment.assessment_date.asc())
     )
     daily_records_dict = [
-        {"question_code": r.Response.question_code, "intensity": r.Response.intensity, "notes": r.Response.notes}
+        {"question_code": r.Response.question_code, "intensity": r.Response.intensity, "notes": r.Response.notes, "date": str(r.assessment_date)}
         for r in resp_res.all()
     ]
 

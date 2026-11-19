@@ -15,11 +15,12 @@ interface DoctorChatHubProps {
 }
 
 export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
-  patients,
+  patients = [],
   defaultPatientId,
 }) => {
+  const validPatients = (patients || []).filter(Boolean);
   const [selectedPatientId, setSelectedPatientId] = useState<string>(
-    defaultPatientId || (patients.length > 0 ? patients[0].patient_id : '')
+    defaultPatientId || (validPatients.length > 0 ? (validPatients[0].patient_id || validPatients[0].id || '') : '')
   );
   const [messages, setMessages] = useState<any[]>([]);
   const [inputText, setInputText] = useState('');
@@ -63,7 +64,7 @@ export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
     }
   };
 
-  const selectedPatient = patients.find((p) => p.patient_id === selectedPatientId);
+  const selectedPatient = validPatients.find((p) => (p.patient_id || p.id) === selectedPatientId);
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-12 overflow-hidden h-[600px]">
@@ -72,34 +73,37 @@ export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
         <div className="p-4 border-b border-slate-200">
           <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
             <MessageSquare className="w-4 h-4 text-teal-600" />
-            <span>Patient Threads ({patients.length})</span>
+            <span>Patient Threads ({validPatients.length})</span>
           </h4>
         </div>
 
         <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
-          {patients.map((p) => (
-            <div
-              key={p.patient_id}
-              onClick={() => setSelectedPatientId(p.patient_id)}
-              className={`p-3.5 cursor-pointer transition-all flex items-center space-x-3 ${
-                selectedPatientId === p.patient_id
-                  ? 'bg-white border-l-4 border-teal-600 shadow-2xs'
-                  : 'hover:bg-slate-100/60'
-              }`}
-            >
-              <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-extrabold text-xs flex items-center justify-center shrink-0">
-                {p.full_name?.charAt(0) || 'P'}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-extrabold text-xs text-slate-900 truncate">
-                  {p.full_name}
+          {validPatients.map((p) => {
+            const pid = p.patient_id || p.id;
+            return (
+              <div
+                key={pid}
+                onClick={() => setSelectedPatientId(pid)}
+                className={`p-3.5 cursor-pointer transition-all flex items-center space-x-3 ${
+                  selectedPatientId === pid
+                    ? 'bg-white border-l-4 border-teal-600 shadow-2xs'
+                    : 'hover:bg-slate-100/60'
+                }`}
+              >
+                <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-extrabold text-xs flex items-center justify-center shrink-0">
+                  {p.full_name?.charAt(0) || 'P'}
                 </div>
-                <div className="text-[10px] text-slate-500 truncate capitalize">
-                  {p.straw_stage?.replace(/_/g, ' ')}
+                <div className="flex-1 min-w-0">
+                  <div className="font-extrabold text-xs text-slate-900 truncate">
+                    {p.full_name || 'Patient'}
+                  </div>
+                  <div className="text-[10px] text-slate-500 truncate capitalize">
+                    {p.straw_stage?.replace(/_/g, ' ') || 'Stage Unknown'}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

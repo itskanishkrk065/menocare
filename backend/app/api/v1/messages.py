@@ -43,7 +43,7 @@ async def get_messages(
                 PatientDoctorAccess.status == "active",
             )
         )
-        link = link_res.scalar_one_or_none()
+        link = link_res.scalars().first()
         if not link:
             return []
         target_doctor_id = link.doctor_id
@@ -108,7 +108,7 @@ async def send_message(
                 PatientDoctorAccess.status == "active",
             )
         )
-        link = link_res.scalar_one_or_none()
+        link = link_res.scalars().first()
         if not link:
             raise HTTPException(
                 status_code=400,

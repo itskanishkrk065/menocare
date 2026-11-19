@@ -41,6 +41,19 @@ async def list_medications(
     elif current_user.role == "doctor":
         if not patient_id:
             raise HTTPException(status_code=400, detail="patient_id is required for clinician lookup.")
+        d_res = await db.execute(select(DoctorProfile).where(DoctorProfile.user_id == current_user.id))
+        doctor = d_res.scalars().first()
+        if not doctor:
+            raise HTTPException(status_code=404, detail="Doctor profile not found.")
+        access_res = await db.execute(
+            select(PatientDoctorAccess).where(
+                PatientDoctorAccess.doctor_id == doctor.id,
+                PatientDoctorAccess.patient_id == patient_id,
+                PatientDoctorAccess.status == "active",
+            )
+        )
+        if not access_res.scalars().first():
+            raise HTTPException(status_code=403, detail="Not authorized to access this patient's records.")
         target_patient_id = patient_id
 
     today = date.today()
@@ -196,6 +209,21 @@ async def get_adherence_stats(
         p = p_res.scalar_one_or_none()
         target_patient_id = p.id if p else None
     elif current_user.role == "doctor":
+        if not patient_id:
+            raise HTTPException(status_code=400, detail="patient_id is required for clinician lookup.")
+        d_res = await db.execute(select(DoctorProfile).where(DoctorProfile.user_id == current_user.id))
+        doctor = d_res.scalars().first()
+        if not doctor:
+            raise HTTPException(status_code=404, detail="Doctor profile not found.")
+        access_res = await db.execute(
+            select(PatientDoctorAccess).where(
+                PatientDoctorAccess.doctor_id == doctor.id,
+                PatientDoctorAccess.patient_id == patient_id,
+                PatientDoctorAccess.status == "active",
+            )
+        )
+        if not access_res.scalars().first():
+            raise HTTPException(status_code=403, detail="Not authorized to access this patient's records.")
         target_patient_id = patient_id
 
     if not target_patient_id:

@@ -28,7 +28,7 @@ async def get_patient_profile(
         .where(PatientDoctorAccess.patient_id == patient.id, PatientDoctorAccess.status == "active")
         .options(selectinload(PatientDoctorAccess.doctor).selectinload(DoctorProfile.user))
     )
-    active_link = link_res.scalar_one_or_none()
+    active_link = link_res.scalars().first()
 
     doctor_name = None
     doctor_id = None

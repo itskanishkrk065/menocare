@@ -138,12 +138,30 @@ async def generate_clinical_summary(
     # Resolve target patient
     if current_user.role == "patient":
         p_res = await db.execute(select(PatientProfile).where(PatientProfile.user_id == current_user.id))
-        patient = p_res.scalar_one()
+        patient = p_res.scalars().first()
+        if not patient:
+            raise HTTPException(status_code=404, detail="Patient profile not found.")
     elif current_user.role == "doctor":
         if not patient_id:
             raise HTTPException(status_code=400, detail="patient_id required for doctor requests.")
+        d_res = await db.execute(select(DoctorProfile).where(DoctorProfile.user_id == current_user.id))
+        doctor = d_res.scalars().first()
+        if not doctor:
+            raise HTTPException(status_code=404, detail="Doctor profile not found.")
+
+        # Check explicit access permission
+        access_res = await db.execute(
+            select(PatientDoctorAccess).where(
+                PatientDoctorAccess.doctor_id == doctor.id,
+                PatientDoctorAccess.patient_id == patient_id,
+                PatientDoctorAccess.status == "active",
+            )
+        )
+        if not access_res.scalars().first():
+            raise HTTPException(status_code=403, detail="Not authorized to access this patient's records.")
+
         p_res = await db.execute(select(PatientProfile).where(PatientProfile.id == patient_id))
-        patient = p_res.scalar_one_or_none()
+        patient = p_res.scalars().first()
         if not patient:
             raise HTTPException(status_code=404, detail="Patient not found.")
     else:
@@ -202,16 +220,38 @@ async def download_clinical_pdf(
             .where(PatientProfile.user_id == current_user.id)
             .options(selectinload(PatientProfile.user))
         )
-        patient = p_res.scalar_one()
+        patient = p_res.scalars().first()
+        if not patient:
+            raise HTTPException(status_code=404, detail="Patient profile not found.")
     elif current_user.role == "doctor":
         if not patient_id:
             raise HTTPException(status_code=400, detail="patient_id required.")
+        d_res = await db.execute(select(DoctorProfile).where(DoctorProfile.user_id == current_user.id))
+        doctor = d_res.scalars().first()
+        if not doctor:
+            raise HTTPException(status_code=404, detail="Doctor profile not found.")
+
+        # Check explicit access permission
+        access_res = await db.execute(
+            select(PatientDoctorAccess).where(
+                PatientDoctorAccess.doctor_id == doctor.id,
+                PatientDoctorAccess.patient_id == patient_id,
+                PatientDoctorAccess.status == "active",
+            )
+        )
+        if not access_res.scalars().first():
+            raise HTTPException(status_code=403, detail="Not authorized to access this patient's records.")
+
         p_res = await db.execute(
             select(PatientProfile)
             .where(PatientProfile.id == patient_id)
             .options(selectinload(PatientProfile.user))
         )
-        patient = p_res.scalar_one()
+        patient = p_res.scalars().first()
+        if not patient:
+            raise HTTPException(status_code=404, detail="Patient not found.")
+    else:
+        raise HTTPException(status_code=403, detail="Unauthorized.")
 
     # Find linked doctor info
     link_res = await db.execute(
@@ -219,7 +259,7 @@ async def download_clinical_pdf(
         .where(PatientDoctorAccess.patient_id == patient.id, PatientDoctorAccess.status == "active")
         .options(selectinload(PatientDoctorAccess.doctor).selectinload(DoctorProfile.user))
     )
-    doc_link = link_res.scalar_one_or_none()
+    doc_link = link_res.scalars().first()
     doctor_info = None
     if doc_link and doc_link.doctor:
         doctor_info = {

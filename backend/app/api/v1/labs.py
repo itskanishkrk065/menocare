@@ -156,7 +156,7 @@ async def verify_lab_report(
         .where(PatientDoctorAccess.patient_id == patient.id, PatientDoctorAccess.status == "active")
         .options(selectinload(PatientDoctorAccess.doctor).selectinload(DoctorProfile.user))
     )
-    doc_link = doc_link_res.scalar_one_or_none()
+    doc_link = doc_link_res.scalars().first()
     doctor_id = doc_link.doctor_id if doc_link else None
     doctor_name = doc_link.doctor.user.full_name if doc_link and doc_link.doctor and doc_link.doctor.user else None
 

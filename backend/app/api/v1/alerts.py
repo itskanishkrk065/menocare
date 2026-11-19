@@ -85,7 +85,9 @@ async def request_appointment(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Only patients can request appointments.")
 
     p_res = await db.execute(select(PatientProfile).where(PatientProfile.user_id == current_user.id))
-    patient = p_res.scalar_one()
+    patient = p_res.scalars().first()
+    if not patient:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Patient profile not found.")
 
     # Find linked doctor
     link_res = await db.execute(
@@ -94,7 +96,7 @@ async def request_appointment(
             PatientDoctorAccess.status == "active",
         )
     )
-    link = link_res.scalar_one_or_none()
+    link = link_res.scalars().first()
     if not link:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

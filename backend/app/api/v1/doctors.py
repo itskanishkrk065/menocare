@@ -1,6 +1,8 @@
 """Doctor dashboard and clinical patient management endpoints."""
 
 from datetime import datetime, date
+import random
+import string
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel
 from fastapi import APIRouter, Depends, HTTPException, status, Body
@@ -392,14 +394,14 @@ async def get_patient_timeline_feed(
                 "label": lbl,
                 "intensity": r.intensity,
             })
-            if r.patient_notes and r.patient_notes.strip():
-                user_notes.append(r.patient_notes.strip())
+            if r.notes and r.notes.strip():
+                user_notes.append(r.notes.strip())
 
         events.append({
             "id": f"checkin-{a.id}",
             "type": "checkin",
             "date": str(a.assessment_date),
-            "timestamp": a.created_at.isoformat() if a.created_at else str(a.assessment_date),
+            "timestamp": a.completed_at.isoformat() if a.completed_at else str(a.assessment_date),
             "title": f"Daily Symptom Check-In ({len(symptoms)} items tracked)",
             "symptoms": symptoms,
             "patient_notes": user_notes,

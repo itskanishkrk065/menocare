@@ -9,16 +9,24 @@ from backend.app.core.database import get_db
 from backend.app.core.security import decode_access_token
 from backend.app.models import User, PatientProfile, DoctorProfile
 
-security_scheme = HTTPBearer()
+security_scheme = HTTPBearer(auto_error=False)
 
 
 async def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(security_scheme),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security_scheme),
+    token: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
 ) -> User:
-    """Validates JWT bearer token and retrieves active user."""
-    token = credentials.credentials
-    payload = decode_access_token(token)
+    """Validates JWT bearer token (via header or query parameter) and retrieves active user."""
+    raw_token = credentials.credentials if credentials else token
+    if not raw_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication credentials were not provided.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    payload = decode_access_token(raw_token)
     if not payload:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
