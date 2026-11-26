@@ -70,21 +70,22 @@ export const DailyCheckInModal: React.FC<DailyCheckInModalProps> = ({ isOpen, on
   };
 
   const renderIntensityChips = (val: number, setVal: (n: number) => void) => {
-    const labels = ['0: None', '1: Mild', '2: Moderate', '3: Severe', '4: Very Severe'];
+    const labels = ['None', 'Mild', 'Moderate', 'Severe', 'Very Severe'];
     return (
-      <div className="grid grid-cols-5 gap-1.5 mt-1.5">
+      <div className="grid grid-cols-5 gap-1.5 mt-2">
         {labels.map((lbl, idx) => (
           <button
             key={idx}
             type="button"
             onClick={() => setVal(idx)}
-            className={`py-1.5 px-1 text-xs font-medium rounded-lg border text-center transition-all ${
+            className={`py-2 px-1 text-xs font-medium rounded-lg border text-center transition-colors ${
               val === idx
-                ? 'bg-teal-600 text-white border-teal-600 shadow-sm'
-                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                ? 'bg-sage-dark text-white border-sage-dark font-semibold'
+                : 'bg-ivory text-charcoal border-[#E2DBD0] hover:border-sage'
             }`}
           >
-            {lbl}
+            <span className="block">{lbl}</span>
+            <span className="text-xs text-charcoal-muted opacity-80 mt-0.5">{idx}</span>
           </button>
         ))}
       </div>
@@ -92,68 +93,71 @@ export const DailyCheckInModal: React.FC<DailyCheckInModalProps> = ({ isOpen, on
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-100 my-8 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-cream rounded-2xl max-w-2xl w-full border border-[#E2DBD0] shadow-warm-lg my-8 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-700 to-teal-800 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-ivory border-b border-[#E2DBD0] px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-white/10 rounded-xl">
-              <Sparkles className="w-5 h-5 text-teal-200" />
+            <div className="w-10 h-10 bg-sage-soft text-sage-dark rounded-xl flex items-center justify-center">
+              <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold">Daily Micro-Check-in</h2>
-              <p className="text-xs text-teal-100">60-90 seconds sentinel symptom & physiological tracker</p>
+              <h2 className="text-lg font-serif font-semibold text-charcoal">Daily Symptom Check-In</h2>
+              <p className="text-xs text-charcoal-muted">Take a minute to log how your body felt today.</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-white/10 text-white/80 hover:text-white">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="w-8 h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors">
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs flex items-center space-x-2">
+            <div className="p-3 bg-error-container border border-error/30 text-error rounded-xl text-xs flex items-center space-x-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Date Picker */}
-          <div className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
-            <div className="flex items-center space-x-2 text-slate-700 text-sm font-medium">
-              <Calendar className="w-4 h-4 text-teal-600" />
-              <span>Assessment Date:</span>
+          <div className="flex items-center justify-between bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
+            <div className="flex items-center space-x-2 text-charcoal text-xs font-medium">
+              <Calendar className="w-4 h-4 text-sage-dark" />
+              <span>Check-in Date:</span>
             </div>
             <input
               type="date"
               value={assessmentDate}
               onChange={(e) => setAssessmentDate(e.target.value)}
-              className="bg-white border border-slate-300 text-slate-800 text-sm rounded-lg px-2.5 py-1 focus:ring-2 focus:ring-teal-500 focus:outline-none"
+              className="bg-ivory border border-[#E2DBD0] text-charcoal text-xs rounded-lg px-3 py-1.5 focus:border-sage-dark focus:outline-none"
             />
           </div>
 
-          {/* Section: Sentinel Symptoms */}
+          {/* Section: Symptoms */}
           <div className="space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-teal-800 border-b pb-1">
-              Sentinel Symptoms (Past 24 Hours)
+            <h3 className="text-xs font-semibold text-charcoal-muted border-b border-[#E2DBD0] pb-1">
+              Today's Key Symptoms (Past 24 Hours)
             </h3>
 
             {/* Hot Flashes */}
-            <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0]">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-slate-900 flex items-center space-x-2">
-                  <Flame className="w-4 h-4 text-orange-500" />
-                  <span>1. Hot Flashes (Vasomotor)</span>
-                </span>
-                <div className="flex items-center space-x-2 text-xs text-slate-600">
-                  <span>Episodes:</span>
+                <div>
+                  <span className="text-sm font-semibold text-charcoal flex items-center space-x-2">
+                    <Flame className="w-4 h-4 text-peach" />
+                    <span>Hot Flashes</span>
+                  </span>
+                  <p className="text-xs text-charcoal-muted mt-0.5">Sudden warmth across chest, neck, or face.</p>
+                </div>
+                <div className="flex items-center space-x-2 text-xs text-charcoal-muted">
+                  <span>How many today:</span>
                   <input
                     type="number"
                     min="0"
                     max="50"
                     value={hotFlashesCount}
                     onChange={(e) => setHotFlashesCount(Math.max(0, parseInt(e.target.value) || 0))}
-                    className="w-16 bg-white border border-slate-300 rounded px-1.5 py-0.5 text-center font-bold"
+                    className="w-16 bg-ivory border border-[#E2DBD0] rounded-lg px-2 py-1 text-center font-semibold text-charcoal"
                   />
                 </div>
               </div>
@@ -161,75 +165,78 @@ export const DailyCheckInModal: React.FC<DailyCheckInModalProps> = ({ isOpen, on
             </div>
 
             {/* Night Sweats */}
-            <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0]">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-slate-900 flex items-center space-x-2">
-                  <Moon className="w-4 h-4 text-indigo-500" />
-                  <span>2. Night Sweats & Awakenings</span>
-                </span>
-                <div className="flex items-center space-x-2 text-xs text-slate-600">
-                  <span>Awakenings:</span>
+                <div>
+                  <span className="text-sm font-semibold text-charcoal flex items-center space-x-2">
+                    <Moon className="w-4 h-4 text-teal" />
+                    <span>Night Sweats</span>
+                  </span>
+                  <p className="text-xs text-charcoal-muted mt-0.5">Waking up hot or sweaty during the night.</p>
+                </div>
+                <div className="flex items-center space-x-2 text-xs text-charcoal-muted">
+                  <span>Times woke up:</span>
                   <input
                     type="number"
                     min="0"
                     max="20"
                     value={nightSweatsCount}
                     onChange={(e) => setNightSweatsCount(Math.max(0, parseInt(e.target.value) || 0))}
-                    className="w-16 bg-white border border-slate-300 rounded px-1.5 py-0.5 text-center font-bold"
+                    className="w-16 bg-ivory border border-[#E2DBD0] rounded-lg px-2 py-1 text-center font-semibold text-charcoal"
                   />
                 </div>
               </div>
               {renderIntensityChips(nightSweatsIntensity, setNightSweatsIntensity)}
             </div>
 
-            {/* Sleep Disruption */}
-            <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
-              <span className="text-sm font-semibold text-slate-900">3. Sleep Disruption / Fragmentation</span>
-              <p className="text-xs text-slate-500">Difficulty falling asleep, frequent waking, or non-restorative sleep.</p>
+            {/* Sleep Quality */}
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0]">
+              <span className="text-sm font-semibold text-charcoal">Sleep Quality</span>
+              <p className="text-xs text-charcoal-muted mt-0.5">Trouble falling asleep, restless sleep, or waking unrefreshed.</p>
               {renderIntensityChips(sleepDisruption, setSleepDisruption)}
             </div>
 
-            {/* Mood Instability */}
-            <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
-              <span className="text-sm font-semibold text-slate-900">4. Mood Swings & Irritability</span>
-              <p className="text-xs text-slate-500">Emotional volatility, sudden crying spells, or frustration.</p>
+            {/* Mood */}
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0]">
+              <span className="text-sm font-semibold text-charcoal">Mood & Emotional Balance</span>
+              <p className="text-xs text-charcoal-muted mt-0.5">Feeling irritable, unusually sensitive, impatient, or tearful.</p>
               {renderIntensityChips(moodInstability, setMoodInstability)}
             </div>
 
-            {/* Anxiety & Tension */}
-            <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
-              <span className="text-sm font-semibold text-slate-900">5. Internal Anxiety & Restlessness</span>
-              <p className="text-xs text-slate-500">Nervous tension, panic-like feeling, or difficulty relaxing.</p>
+            {/* Anxiety */}
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0]">
+              <span className="text-sm font-semibold text-charcoal">Anxiety & Tension</span>
+              <p className="text-xs text-charcoal-muted mt-0.5">Feeling nervous, on edge, restless, or sudden flutter of worry.</p>
               {renderIntensityChips(anxietyTension, setAnxietyTension)}
             </div>
 
-            {/* Physical Fatigue */}
-            <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
-              <span className="text-sm font-semibold text-slate-900">6. Physical Fatigue / Lethargy</span>
-              <p className="text-xs text-slate-500">Unexplained energy deficit or muscle heaviness.</p>
+            {/* Fatigue */}
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0]">
+              <span className="text-sm font-semibold text-charcoal">Energy & Stamina</span>
+              <p className="text-xs text-charcoal-muted mt-0.5">Feeling physically sluggish, heavy, or experiencing brain fog.</p>
               {renderIntensityChips(fatigueLethargy, setFatigueLethargy)}
             </div>
           </div>
 
-          {/* Section: Menstrual & Bleeding Dynamics */}
+          {/* Section: Period & Bleeding */}
           <div className="space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-rose-800 border-b pb-1">
-              Bleeding & Ovarian Dynamics (PCOD, Cysts & Red-Flag Screening)
+            <h3 className="text-xs font-semibold text-charcoal-muted border-b border-[#E2DBD0] pb-1">
+              Period & Flow Patterns
             </h3>
 
-            <div className="bg-rose-50/50 p-4 rounded-xl border border-rose-200 space-y-3">
+            <div className="bg-white p-4 rounded-xl border border-[#E2DBD0] space-y-3">
               <div>
-                <label className="text-xs font-semibold text-slate-800">Menstrual Flow Status Today:</label>
-                <div className="grid grid-cols-5 gap-1.5 mt-1">
+                <label className="text-xs font-semibold text-charcoal">Bleeding or Spotting Today:</label>
+                <div className="grid grid-cols-5 gap-1.5 mt-2">
                   {(['none', 'spotting', 'light', 'normal', 'heavy'] as const).map((status) => (
                     <button
                       key={status}
                       type="button"
                       onClick={() => setBleedingStatus(status)}
-                      className={`py-1.5 text-xs font-medium rounded-lg border capitalize ${
+                      className={`py-2 text-xs font-medium rounded-lg border capitalize transition-colors ${
                         bleedingStatus === status
-                          ? 'bg-rose-600 text-white border-rose-600 font-bold'
-                          : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                          ? 'bg-peach text-white border-peach font-semibold'
+                          : 'bg-ivory text-charcoal border-[#E2DBD0] hover:border-peach'
                       }`}
                     >
                       {status}
@@ -241,18 +248,18 @@ export const DailyCheckInModal: React.FC<DailyCheckInModalProps> = ({ isOpen, on
               {bleedingStatus !== 'none' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <div>
-                    <label className="text-xs font-medium text-slate-700">Consecutive Days Bleeding:</label>
+                    <label className="text-xs font-medium text-charcoal-muted">Days in a Row Bleeding:</label>
                     <input
                       type="number"
                       min="1"
                       max="60"
                       value={bleedingDuration}
                       onChange={(e) => setBleedingDuration(parseInt(e.target.value) || 0)}
-                      className="w-full mt-1 bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-sm font-semibold"
+                      className="w-full mt-1 bg-ivory border border-[#E2DBD0] rounded-lg px-3 py-1.5 text-xs font-semibold text-charcoal"
                     />
                     {bleedingDuration >= 7 && (
-                      <p className="text-[11px] text-amber-700 font-medium mt-0.5">
-                        ⚠️ Bleeding ≥7 days flags prolonged anovulatory / PCOD pattern.
+                      <p className="text-xs text-[#B07D38] font-medium mt-1">
+                        Notice: Bleeding 7 or more days in a row is helpful to note for your doctor.
                       </p>
                     )}
                   </div>
@@ -263,10 +270,10 @@ export const DailyCheckInModal: React.FC<DailyCheckInModalProps> = ({ isOpen, on
                       id="clotsCheck"
                       checked={hasClots}
                       onChange={(e) => setHasClots(e.target.checked)}
-                      className="w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500"
+                      className="w-4 h-4 text-peach rounded border-[#E2DBD0] focus:ring-peach"
                     />
-                    <label htmlFor="clotsCheck" className="text-xs text-slate-700 font-medium">
-                      Passage of visible blood clots
+                    <label htmlFor="clotsCheck" className="text-xs text-charcoal font-medium">
+                      Noticeable blood clots present
                     </label>
                   </div>
                 </div>
@@ -274,61 +281,60 @@ export const DailyCheckInModal: React.FC<DailyCheckInModalProps> = ({ isOpen, on
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 <div>
-                  <label className="text-xs font-medium text-slate-700">Basal Body Temperature (°C):</label>
+                  <label className="text-xs font-medium text-charcoal-muted">Body Temperature (°C, optional):</label>
                   <input
                     type="number"
                     step="0.1"
                     placeholder="e.g. 36.8"
                     value={basalTemp}
                     onChange={(e) => setBasalTemp(e.target.value)}
-                    className="w-full mt-1 bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-sm"
+                    className="w-full mt-1 bg-ivory border border-[#E2DBD0] rounded-lg px-3 py-1.5 text-xs text-charcoal"
                   />
-                  <span className="text-[10px] text-slate-400">Used for PCOD & ovulation tracking</span>
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium text-slate-700">Pelvic Pain / Discomfort (0-4):</label>
+                  <label className="text-xs font-medium text-charcoal-muted">Pelvic Discomfort or Cramps:</label>
                   <select
                     value={pelvicPain}
                     onChange={(e) => setPelvicPain(parseInt(e.target.value))}
-                    className="w-full mt-1 bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-sm"
+                    className="w-full mt-1 bg-ivory border border-[#E2DBD0] rounded-lg px-3 py-1.5 text-xs text-charcoal"
                   >
-                    <option value={0}>0: No pelvic pain</option>
-                    <option value={1}>1: Mild dull ache</option>
-                    <option value={2}>2: Moderate localized pain</option>
-                    <option value={3}>3: Severe sharp / unilateral pain</option>
-                    <option value={4}>4: Disabling pelvic pain</option>
+                    <option value={0}>None</option>
+                    <option value={1}>Mild dull ache</option>
+                    <option value={2}>Noticeable cramps</option>
+                    <option value={3}>Significant pain</option>
+                    <option value={4}>Severe pain</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Section: Additional Notes */}
+          {/* Section: Notes */}
           <div>
-            <label className="text-xs font-semibold text-slate-800">Additional Notes / Other Symptoms:</label>
+            <label className="text-xs font-semibold text-charcoal">Personal Notes (Optional):</label>
             <textarea
               rows={2}
-              placeholder="e.g. Headaches, bloating, joint pain, facial hair, cold intolerance..."
+              placeholder="Any other sensations today, e.g. headache, bloating, foods eaten, sleep notes..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-teal-500 focus:bg-white focus:outline-none"
+              className="w-full mt-1 p-3 bg-white border border-[#E2DBD0] rounded-xl text-xs text-charcoal focus:border-sage-dark focus:outline-none"
             />
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end space-x-3 pt-2 border-t border-slate-100">
+          <div className="flex items-center justify-end space-x-3 pt-3 border-t border-[#E2DBD0]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+              className="px-4 py-2 text-xs font-medium text-charcoal-muted hover:text-charcoal rounded-xl transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 rounded-xl shadow-sm transition-all disabled:opacity-50 flex items-center space-x-2"
+              className="px-5 py-2 text-xs font-medium text-white bg-sage-dark hover:bg-[#3E5437] rounded-xl transition-colors disabled:opacity-50 flex items-center space-x-2"
             >
               {isSubmitting ? <span>Saving...</span> : <span>Save Daily Check-in</span>}
             </button>

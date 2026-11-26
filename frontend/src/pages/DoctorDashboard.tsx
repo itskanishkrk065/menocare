@@ -113,10 +113,10 @@ export const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ user }) => {
                     <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-sage-dark' : 'text-charcoal-light'}`} />
                     <span>{tab.label}</span>
                     {tab.badge !== null && tab.badge !== undefined && (
-                      <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                         tab.id === 'overview' && criticalCount > 0
                           ? 'bg-error-container text-error border border-error/20'
-                          : 'bg-oat-light text-charcoal-muted'
+                          : 'bg-oat text-charcoal-muted'
                       }`}>
                         {tab.badge}
                       </span>
@@ -129,7 +129,7 @@ export const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ user }) => {
             <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={() => openScheduleModal()}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-sage-dark hover:bg-sage text-cream transition-all shadow-warm-sm"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium bg-sage-dark hover:bg-[#3E5437] text-white transition-colors shadow-warm-sm"
               >
                 <Calendar className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Schedule Telehealth</span>

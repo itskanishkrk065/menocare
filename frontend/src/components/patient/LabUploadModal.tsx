@@ -76,30 +76,30 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-3xl w-full shadow-2xl border border-slate-100 my-8 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-cream rounded-2xl max-w-3xl w-full border border-[#E2DBD0] shadow-warm-lg my-8 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-700 to-teal-800 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-ivory border-b border-[#E2DBD0] px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-white/10 rounded-xl">
-              <FileText className="w-5 h-5 text-teal-200" />
+            <div className="w-10 h-10 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center">
+              <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold">100% Local Lab Report Extraction</h2>
-              <p className="text-xs text-teal-100 flex items-center space-x-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-teal-300" />
-                <span>Extracted locally with PyTesseract & pdfplumber • Zero external API transmission</span>
+              <h2 className="text-base font-serif font-semibold text-charcoal">Upload Blood Test & Lab Report</h2>
+              <p className="text-xs text-charcoal-muted flex items-center space-x-1 mt-0.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-sage-dark" />
+                <span>Private & Secure • Your test records are kept confidential for your doctor.</span>
               </p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-white/10 text-white/80 hover:text-white">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="w-8 h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors">
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         <div className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs flex items-center space-x-2">
+            <div className="p-3 bg-error-container border border-error/30 text-error rounded-xl text-xs flex items-center space-x-2">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
@@ -108,7 +108,7 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
           {!reportData ? (
             /* Upload Dropzone */
             <div className="space-y-4">
-              <div className="border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center hover:border-teal-500 transition-colors bg-slate-50/50">
+              <div className="border-2 border-dashed border-[#E2DBD0] hover:border-sage-dark rounded-2xl p-8 text-center transition-colors bg-white">
                 <input
                   type="file"
                   id="labFileInput"
@@ -117,14 +117,14 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
                   className="hidden"
                 />
                 <label htmlFor="labFileInput" className="cursor-pointer flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mb-3 shadow-inner">
+                  <div className="w-12 h-12 rounded-full bg-sage-soft text-sage-dark flex items-center justify-center mb-3">
                     <Upload className="w-6 h-6" />
                   </div>
-                  <span className="text-sm font-bold text-slate-800">
+                  <span className="text-sm font-semibold text-charcoal">
                     {selectedFile ? selectedFile.name : 'Select or drop blood test report'}
                   </span>
-                  <span className="text-xs text-slate-500 mt-1">
-                    Supports digital PDFs, camera photos, or scanned images (FSH, LH, TSH, Hb, Vit D, etc.)
+                  <span className="text-xs text-charcoal-muted mt-1 max-w-sm">
+                    Supports PDFs or clear photos of hormone panels (FSH, Estradiol, TSH, Ferritin, etc.)
                   </span>
                 </label>
               </div>
@@ -134,7 +134,7 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
                   <button
                     type="button"
                     onClick={() => setSelectedFile(null)}
-                    className="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-xl"
+                    className="px-4 py-2 text-xs font-medium text-charcoal-muted hover:text-charcoal rounded-xl transition-colors"
                   >
                     Clear
                   </button>
@@ -142,9 +142,9 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
                     type="button"
                     disabled={isProcessing}
                     onClick={handleUploadAndOCR}
-                    className="px-5 py-2 text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 rounded-xl shadow-sm disabled:opacity-50 flex items-center space-x-2"
+                    className="px-5 py-2 text-xs font-medium text-white bg-sage-dark hover:bg-[#3E5437] rounded-xl shadow-warm-sm disabled:opacity-50 flex items-center space-x-2 transition-colors"
                   >
-                    {isProcessing ? <span>Processing OCR Locally...</span> : <span>Extract Lab Data Locally</span>}
+                    {isProcessing ? <span>Reading document...</span> : <span>Extract Lab Values</span>}
                   </button>
                 </div>
               )}
@@ -152,63 +152,63 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
           ) : (
             /* Interactive Verification Table */
             <div className="space-y-4">
-              <div className="bg-teal-50 border border-teal-200 rounded-xl p-3 flex items-center justify-between text-xs text-teal-900">
+              <div className="bg-sage-soft border border-sage/30 rounded-xl p-3.5 flex items-center justify-between text-xs text-sage-dark">
                 <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-sage-dark flex-shrink-0" />
                   <span>
-                    Successfully extracted <b>{analytes.length}</b> clinical parameters locally. Please review and verify before committing.
+                    Successfully extracted <strong>{analytes.length}</strong> parameters. Please review values before saving to your profile.
                   </span>
                 </div>
-                <span className="font-semibold text-slate-500">{reportData.file_name}</span>
+                <span className="font-semibold text-charcoal">{reportData.file_name}</span>
               </div>
 
-              <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                <table className="min-w-full divide-y divide-slate-200 text-xs">
-                  <thead className="bg-slate-50 font-bold text-slate-700">
+              <div className="border border-[#E2DBD0] rounded-xl overflow-hidden bg-white shadow-warm-sm">
+                <table className="min-w-full divide-y divide-[#E2DBD0] text-xs">
+                  <thead className="bg-ivory font-semibold text-charcoal">
                     <tr>
-                      <th className="px-3 py-2 text-left">Analyte</th>
-                      <th className="px-3 py-2 text-left">Numeric Value</th>
-                      <th className="px-3 py-2 text-left">Unit</th>
-                      <th className="px-3 py-2 text-left">Ref Range</th>
-                      <th className="px-3 py-2 text-left">Flag</th>
+                      <th className="px-3.5 py-2.5 text-left">Test Name</th>
+                      <th className="px-3.5 py-2.5 text-left">Value</th>
+                      <th className="px-3.5 py-2.5 text-left">Unit</th>
+                      <th className="px-3.5 py-2.5 text-left">Reference Range</th>
+                      <th className="px-3.5 py-2.5 text-left">Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 bg-white">
+                  <tbody className="divide-y divide-[#E2DBD0]">
                     {analytes.map((item, idx) => (
-                      <tr key={idx} className="hover:bg-slate-50/70">
-                        <td className="px-3 py-2 font-semibold text-slate-900">
+                      <tr key={idx} className="hover:bg-ivory/50">
+                        <td className="px-3.5 py-2.5 font-semibold text-charcoal">
                           {item.analyte_name}
                         </td>
-                        <td className="px-3 py-2">
+                        <td className="px-3.5 py-2.5">
                           <input
                             type="number"
                             step="0.01"
                             value={item.numeric_value}
                             onChange={(e) => handleAnalyteChange(idx, 'numeric_value', e.target.value)}
-                            className="w-24 bg-slate-50 border border-slate-300 rounded px-2 py-0.5 font-bold text-slate-800"
+                            className="w-24 bg-ivory border border-[#E2DBD0] rounded-lg px-2.5 py-1 font-semibold text-charcoal text-xs focus:border-sage-dark focus:outline-none"
                           />
                         </td>
-                        <td className="px-3 py-2 text-slate-600">
+                        <td className="px-3.5 py-2.5 text-charcoal-muted">
                           <input
                             type="text"
                             value={item.unit}
                             onChange={(e) => handleAnalyteChange(idx, 'unit', e.target.value)}
-                            className="w-20 bg-slate-50 border border-slate-300 rounded px-1.5 py-0.5"
+                            className="w-20 bg-ivory border border-[#E2DBD0] rounded-lg px-2 py-1 text-xs focus:border-sage-dark focus:outline-none"
                           />
                         </td>
-                        <td className="px-3 py-2 text-slate-500">
+                        <td className="px-3.5 py-2.5 text-charcoal-muted">
                           {item.reference_range_low !== null ? `${item.reference_range_low} - ${item.reference_range_high}` : 'N/A'}
                         </td>
-                        <td className="px-3 py-2">
+                        <td className="px-3.5 py-2.5">
                           <select
                             value={item.flag}
                             onChange={(e) => handleAnalyteChange(idx, 'flag', e.target.value)}
-                            className={`px-2 py-0.5 rounded-full text-[11px] font-bold border ${
+                            className={`px-2.5 py-1 rounded-full text-xs font-medium border ${
                               item.flag === 'high'
-                                ? 'bg-rose-100 text-rose-700 border-rose-300'
+                                ? 'bg-peach-soft text-peach border-peach/30'
                                 : item.flag === 'low'
-                                ? 'bg-amber-100 text-amber-700 border-amber-300'
-                                : 'bg-emerald-100 text-emerald-700 border-emerald-300'
+                                ? 'bg-sand-soft text-[#B07D38] border-sand/40'
+                                : 'bg-sage-soft text-sage-dark border-sage/30'
                             }`}
                           >
                             <option value="normal">Normal</option>
@@ -222,24 +222,24 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
                 </table>
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+              <div className="flex items-center justify-between pt-2 border-t border-[#E2DBD0]">
                 <button
                   type="button"
                   onClick={() => {
                     setReportData(null);
                     setSelectedFile(null);
                   }}
-                  className="px-4 py-2 text-xs text-slate-600 hover:bg-slate-100 rounded-xl"
+                  className="px-4 py-2 text-xs font-medium text-charcoal-muted hover:text-charcoal rounded-xl transition-colors"
                 >
-                  Upload Another
+                  Upload Another File
                 </button>
                 <button
                   type="button"
                   disabled={isSaving}
                   onClick={handleConfirmVerification}
-                  className="px-5 py-2 text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 rounded-xl shadow-sm disabled:opacity-50 flex items-center space-x-2"
+                  className="px-5 py-2 text-xs font-medium text-white bg-sage-dark hover:bg-[#3E5437] rounded-xl shadow-warm-sm disabled:opacity-50 flex items-center space-x-2 transition-colors"
                 >
-                  {isSaving ? <span>Saving Verified Data...</span> : <span>Confirm & Save to Record</span>}
+                  {isSaving ? <span>Saving...</span> : <span>Save to Health Record</span>}
                 </button>
               </div>
             </div>

@@ -373,15 +373,15 @@ export const DailyCommandCenter: React.FC<DailyCommandCenterProps> = ({
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-serif text-2xl md:text-3xl text-charcoal tracking-tight font-medium">
-              Doctor Clinical Command Centre
+              Doctor Clinical Command Center
             </h1>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-soft text-sage-dark text-xs font-semibold tracking-wide border border-sage/30">
-              <span className="w-2 h-2 rounded-full bg-sage-dark animate-pulse" />
-              SYSTEM ACTIVE (EHR INTEGRATED)
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-soft text-sage-dark text-xs font-medium border border-sage/30">
+              <span className="w-2 h-2 rounded-full bg-sage-dark" />
+              Active Patient Cohort
             </span>
           </div>
           <p className="text-charcoal-muted text-sm md:text-base leading-relaxed">
-            Patient-Centric Longitudinal Monitoring, Symptom Progression & Clinical Decision Support
+            Patient cohort monitoring, symptom progression, and clinical decision support
           </p>
           <div className="flex flex-wrap items-center gap-2 pt-1">
             <button

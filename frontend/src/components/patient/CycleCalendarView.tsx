@@ -76,27 +76,27 @@ export const CycleCalendarView: React.FC<CycleCalendarViewProps> = ({
               <Droplet className="w-5 h-5 text-[#C48068]" />
             </span>
             <h3 className="font-serif text-xl font-semibold text-charcoal">
-              Cycle & Menstrual Dynamics
+              Cycle & Period Calendar
             </h3>
           </div>
           <p className="text-xs text-charcoal-muted mt-1">
-            Tracking irregular transition cycles, flow variations, and amenorrhea intervals (STRAW+10).
+            Track cycle lengths, missed periods, and flow intensity during your menopause transition.
           </p>
         </div>
 
         {/* Amenorrhea Counter Badge */}
         <div className="flex items-center gap-3">
-          <div className="bg-peach-soft px-4 py-2 rounded-2xl border border-peach/30 text-center shadow-warm-sm">
-            <div className="text-[10px] font-bold text-charcoal-muted uppercase tracking-wider">
-              Days Since Last Bleed
+          <div className="bg-peach-soft px-4 py-2 rounded-xl border border-peach/30 text-center shadow-warm-sm">
+            <div className="text-xs font-medium text-charcoal-muted">
+              Days Since Last Period
             </div>
             <div className="font-serif text-lg font-bold text-charcoal">
-              {daysSinceLastBleed > 0 ? `${daysSinceLastBleed} Days` : 'Currently Bleeding'}
+              {daysSinceLastBleed > 0 ? `${daysSinceLastBleed} Days` : 'Period Active'}
             </div>
           </div>
-          <div className="bg-sage-soft px-4 py-2 rounded-2xl border border-sage/30 text-center shadow-warm-sm">
-            <div className="text-[10px] font-bold text-sage-dark uppercase tracking-wider">
-              STRAW+10 Stage
+          <div className="bg-sage-soft px-4 py-2 rounded-xl border border-sage/30 text-center shadow-warm-sm">
+            <div className="text-xs font-medium text-sage-dark">
+              Menopause Stage
             </div>
             <div className="text-xs font-bold text-sage-dark capitalize">
               {strawStage.replace(/_/g, ' ')}
@@ -138,7 +138,7 @@ export const CycleCalendarView: React.FC<CycleCalendarViewProps> = ({
       </div>
 
       {/* Weekday Headers */}
-      <div className="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-charcoal-light uppercase">
+      <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium text-charcoal-muted">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
           <div key={d} className="py-1">{d}</div>
         ))}

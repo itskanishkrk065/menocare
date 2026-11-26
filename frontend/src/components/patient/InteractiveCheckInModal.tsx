@@ -28,59 +28,59 @@ const SYMPTOMS_CONFIG = [
   {
     code: 'VM_HF',
     name: 'Hot Flashes',
-    category: 'Vasomotor',
+    category: 'Temperature',
     icon: Flame,
     color: 'text-amber-700 bg-peach-soft border-peach/30',
-    description: 'Sudden sensations of intense thoracic/facial heat, flushing, and sweating.',
+    description: 'Sudden waves of heat across your face, neck, or chest, often followed by chills.',
   },
   {
     code: 'VM_NS',
     name: 'Night Sweats',
-    category: 'Vasomotor',
+    category: 'Sleep & Night',
     icon: Moon,
     color: 'text-teal-dark bg-teal-soft border-teal/20',
-    description: 'Episodes of nocturnal perspiration causing awakenings or bedding changes.',
+    description: 'Waking up hot and sweaty, or needing to change clothing or bedding during the night.',
   },
   {
     code: 'SL_SQ',
-    name: 'Sleep Disruption',
-    category: 'Sleep Architecture',
+    name: 'Sleep Quality',
+    category: 'Sleep & Rest',
     icon: Moon,
     color: 'text-charcoal bg-lavender-soft border-lavender/30',
-    description: 'Difficulty initiating sleep, sleep fragmentation, or premature awakening.',
+    description: 'Trouble falling asleep, waking up frequently during the night, or waking up exhausted.',
   },
   {
     code: 'MD_MS',
-    name: 'Mood Swings & Affect',
-    category: 'Psychological',
+    name: 'Mood & Emotional Changes',
+    category: 'Emotional Health',
     icon: CloudLightning,
     color: 'text-charcoal bg-oat-light border-[#E2DBD0]',
-    description: 'Sudden irritability, dysphoria, or heightened emotional sensitivity.',
+    description: 'Feeling unusually irritable, down, tearful, impatient, or emotionally sensitive.',
   },
   {
     code: 'MD_AN',
     name: 'Anxiety & Tension',
-    category: 'Psychological',
+    category: 'Emotional Health',
     icon: Heart,
     color: 'text-peach bg-peach-soft border-peach/30',
-    description: 'Internal restlessness, autonomic palpitations, or anticipatory dread.',
+    description: 'Feeling restless, nervous, tense, heart fluttering, or having sudden waves of worry.',
   },
   {
     code: 'SO_FT',
-    name: 'Physical Fatigue',
-    category: 'Somatic',
+    name: 'Fatigue & Energy Deficit',
+    category: 'Physical Energy',
     icon: Sparkles,
     color: 'text-sage-dark bg-sage-soft border-sage/30',
-    description: 'Depleted cellular energy, muscular heaviness, or afternoon stamina crash.',
+    description: 'Feeling physically drained, heavy, sluggish, or experiencing brain fog and low stamina.',
   },
 ];
 
 const INTENSITY_LEVELS = [
-  { level: 0, label: 'None', desc: 'Calm & symptom-free' },
-  { level: 1, label: 'Mild', desc: 'Noticeable, zero lifestyle impact' },
-  { level: 2, label: 'Moderate', desc: 'Disrupts tasks or focus' },
-  { level: 3, label: 'Severe', desc: 'Significantly impairs functioning' },
-  { level: 4, label: 'Extreme', desc: 'Exhausting or incapacitating' },
+  { level: 0, label: 'None', desc: 'No symptoms today' },
+  { level: 1, label: 'Mild', desc: 'Noticeable, but did not slow me down' },
+  { level: 2, label: 'Moderate', desc: 'Bothersome, interrupted daily tasks' },
+  { level: 3, label: 'Severe', desc: 'Hard to manage, stopped normal activities' },
+  { level: 4, label: 'Very Severe', desc: 'Overwhelming, needed to stop and rest' },
 ];
 
 export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = ({
@@ -177,11 +177,11 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
         <div className="p-5 sm:p-6 bg-ivory border-b border-[#E2DBD0] flex items-center justify-between shrink-0">
           <div>
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-sage-dark animate-pulse" />
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Daily Health & Symptom Check-In</h2>
+              <span className="w-2.5 h-2.5 rounded-full bg-sage-dark" />
+              <h2 className="font-serif text-xl font-semibold text-charcoal">Daily Symptom Check-In</h2>
             </div>
             <p className="text-xs text-charcoal-muted mt-0.5">
-              Takes ~90 seconds. Feeds directly into your attending clinician's telemetry stream.
+              Takes about 1 minute. Helps track your body's patterns and keeps your doctor informed.
             </p>
           </div>
           <button
@@ -205,7 +205,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           <div className="flex items-center justify-between p-3.5 bg-ivory rounded-2xl border border-[#E2DBD0] shadow-warm-sm">
             <div className="flex items-center gap-2 text-xs font-semibold text-charcoal">
               <Calendar className="w-4 h-4 text-sage-dark" />
-              <span>Assessment Date:</span>
+              <span>Check-In Date:</span>
             </div>
             <input
               type="date"
@@ -215,11 +215,11 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
             />
           </div>
 
-          {/* 6 Core Sentinel Symptoms */}
+          {/* 6 Core Symptoms */}
           <div className="space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-wider text-sage-dark flex items-center gap-1.5">
               <Activity className="w-3.5 h-3.5 text-sage" />
-              Sentinel Clinical Symptoms (0 to 4 Scale)
+              Rate Today's Symptoms (0 to 4 Scale)
             </h3>
 
             <div className="space-y-3">

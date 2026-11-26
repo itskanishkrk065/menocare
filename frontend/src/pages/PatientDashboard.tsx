@@ -135,8 +135,8 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
       
       {/* Toast Notification */}
       {quickFlashToast && (
-        <div className="fixed top-20 right-6 z-50 bg-peach text-charcoal font-semibold text-xs px-4 py-2.5 rounded-2xl shadow-warm-lg flex items-center space-x-2 animate-bounce border border-peach/50">
-          <Flame className="w-4 h-4 text-amber-600" />
+        <div className="fixed top-20 right-6 z-50 bg-peach text-white font-medium text-xs px-4 py-2.5 rounded-xl shadow-warm-lg flex items-center space-x-2 transition-all duration-300 ease-out border border-peach/50">
+          <Flame className="w-4 h-4 text-white" />
           <span>{quickFlashToast}</span>
         </div>
       )}
@@ -147,12 +147,12 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
           <div className="flex items-center justify-between overflow-x-auto py-2.5 gap-2 scrollbar-none">
             <div className="flex items-center gap-1.5 shrink-0">
               {[
-                { id: 'overview', label: 'Overview / Dashboard', icon: Activity },
-                { id: 'calendar', label: 'Cycle & Menstrual Calendar', icon: CalendarIcon },
-                { id: 'medications', label: 'Medication & HRT Tracker', icon: Pill },
-                { id: 'analytics', label: 'Longitudinal Analytics', icon: TrendingUp },
-                { id: 'labs', label: 'Clinical Vault & Labs', icon: FlaskConical },
-                { id: 'telehealth', label: 'Care Team & Telehealth', icon: Video },
+                { id: 'overview', label: 'Overview', icon: Activity },
+                { id: 'calendar', label: 'Cycle & Period Calendar', icon: CalendarIcon },
+                { id: 'medications', label: 'Daily Medications', icon: Pill },
+                { id: 'analytics', label: 'Symptom Trends', icon: TrendingUp },
+                { id: 'labs', label: 'Lab Tests & Bloodwork', icon: FlaskConical },
+                { id: 'telehealth', label: 'Doctor Visits & Messages', icon: Video },
               ].map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -179,14 +179,14 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-teal-soft text-teal-dark border border-teal/20 hover:bg-teal/15 transition-all shadow-warm-sm"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-teal" />
-                <span className="hidden sm:inline">Message Care Team</span>
+                <span className="hidden sm:inline">Message Doctor</span>
               </button>
               <button
                 onClick={() => setIsTelehealthOpen(true)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-sage-dark hover:bg-sage text-cream transition-all shadow-warm-sm"
               >
                 <Video className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Join Telehealth</span>
+                <span className="hidden sm:inline">Video Visit</span>
               </button>
             </div>
           </div>
@@ -196,24 +196,24 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
       {/* Main Page Body */}
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-6">
 
-        {/* Ambient Glow Atmosphere (Behind Hero) */}
+        {/* Ambient Atmosphere */}
         <div className="relative">
           <div className="absolute -top-12 left-1/4 w-96 h-96 rounded-full bg-sage-soft/60 blur-3xl pointer-events-none" />
           <div className="absolute top-10 right-10 w-80 h-80 rounded-full bg-peach-soft/60 blur-3xl pointer-events-none" />
 
           {/* Hero Welcome Card */}
-          <div className="relative z-10 bg-cream/95 backdrop-blur-md rounded-[26px] p-6 sm:p-8 border border-[#E2DBD0] shadow-warm-md flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="relative z-10 bg-cream/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#E2DBD0] shadow-warm-md flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-sage-dark bg-sage-soft px-3 py-0.5 rounded-full border border-sage/20">
-                  {profile?.straw_stage ? profile.straw_stage.replace(/_/g, ' ').toUpperCase() : 'PERIMENOPAUSE TRANSITION -1'}
+                <span className="text-xs font-medium text-sage-dark bg-sage-soft px-3 py-1 rounded-full border border-sage/20">
+                  {profile?.straw_stage ? profile.straw_stage.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Early Perimenopause'}
                 </span>
-                <span className="text-[11px] font-semibold text-charcoal bg-peach-soft px-3 py-0.5 rounded-full border border-peach/30 flex items-center gap-1.5">
+                <span className="text-xs font-medium text-charcoal bg-peach-soft px-3 py-1 rounded-full border border-peach/30 flex items-center gap-1.5">
                   <span>🔥</span>
-                  <span>{streakDays > 0 ? `${streakDays}-Day Adherence Streak` : 'Streak Active'}</span>
+                  <span>{streakDays > 0 ? `${streakDays}-Day Logging Streak` : 'Streak Active'}</span>
                 </span>
-                <span className="text-[11px] font-medium text-charcoal-muted bg-oat-light px-3 py-0.5 rounded-full border border-[#E2DBD0]">
-                  HL7 / FHIR Link Operational
+                <span className="text-xs font-medium text-charcoal-muted bg-oat-light px-3 py-1 rounded-full border border-[#E2DBD0]">
+                  Connected With Doctor
                 </span>
               </div>
 
@@ -221,8 +221,8 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                 <h1 className="font-serif text-3xl sm:text-4xl text-charcoal font-normal tracking-tight">
                   {getGreeting()}, <span className="italic">{user.full_name}</span> 🌸
                 </h1>
-                <p className="text-xs sm:text-sm text-charcoal-muted mt-1 max-w-xl">
-                  Your baseline physiological signals and Menopause Rating Scale telemetry are synchronized with your attending clinical care team.
+                <p className="text-xs sm:text-sm text-charcoal-muted mt-1 max-w-xl text-pretty">
+                  Here is your health snapshot for this week. Your logged symptoms and updates are automatically organized for your doctor visits.
                 </p>
               </div>
             </div>
@@ -231,42 +231,42 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
             <div className="flex flex-wrap items-center gap-2.5">
               <button
                 onClick={() => setIsCheckInOpen(true)}
-                className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sage-dark to-sage hover:to-teal text-cream text-xs font-semibold shadow-warm-md flex items-center gap-2 transition-all active:scale-95"
+                className="px-4 py-2.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium shadow-warm-sm flex items-center gap-2 transition-colors"
               >
                 <PlusCircle className="w-4 h-4" />
-                <span>+ Daily Check-In</span>
+                <span>+ Log Today's Symptoms</span>
               </button>
 
               <button
                 onClick={() => setIsMrsOpen(true)}
-                className="px-4 py-2.5 rounded-xl bg-cream hover:bg-sage-soft text-charcoal border border-[#E2DBD0] text-xs font-semibold shadow-warm-sm flex items-center gap-2 transition-all"
+                className="px-4 py-2.5 rounded-xl bg-cream hover:bg-sage-soft text-charcoal border border-[#E2DBD0] text-xs font-medium shadow-warm-sm flex items-center gap-2 transition-colors"
               >
                 <Heart className="w-4 h-4 text-sage-dark" />
-                <span>Validated MRS Survey</span>
+                <span>Check Symptom Score</span>
               </button>
 
               <button
                 onClick={handleQuickHotFlash}
-                className="px-3.5 py-2.5 rounded-xl bg-peach-soft hover:bg-peach/30 text-charcoal border border-peach/40 text-xs font-semibold shadow-warm-sm flex items-center gap-1.5 transition-all"
-                title="Quick Hot Flash Clicker"
+                className="px-3.5 py-2.5 rounded-xl bg-peach-soft hover:bg-peach/30 text-charcoal border border-peach/40 text-xs font-medium shadow-warm-sm flex items-center gap-1.5 transition-colors"
+                title="Quick 1-Click Hot Flash Tracker"
               >
-                <Flame className="w-4 h-4 text-amber-600" />
-                <span>Flash (+1)</span>
+                <Flame className="w-4 h-4 text-peach" />
+                <span>Hot Flash (+1)</span>
               </button>
 
               <button
                 onClick={() => setIsBreathingOpen(true)}
-                className="px-3.5 py-2.5 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-semibold shadow-warm-sm flex items-center gap-1.5 transition-all"
-                title="Paced Breathing Relief"
+                className="px-3.5 py-2.5 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-medium shadow-warm-sm flex items-center gap-1.5 transition-colors"
+                title="Paced 4-7-8 Breathing Guide"
               >
                 <Wind className="w-4 h-4 text-teal" />
-                <span>Calm Breath</span>
+                <span>Breathe (4-7-8)</span>
               </button>
 
               <button
                 onClick={handleDownloadPdf}
-                className="p-2.5 rounded-xl bg-cream hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] text-xs transition-all shadow-warm-sm"
-                title="Export Longitudinal Clinical Summary (PDF)"
+                className="p-2.5 rounded-xl bg-cream hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] text-xs transition-colors shadow-warm-sm"
+                title="Download Summary Report (PDF)"
               >
                 <Download className="w-4 h-4" />
               </button>
@@ -283,13 +283,13 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         {activeTab === 'overview' && (
           <div className="space-y-6">
             
-            {/* 4 Stat Telemetry Cards */}
+            {/* 4 Stat Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               
-              {/* MRS Burden Card */}
+              {/* Symptom Score Card */}
               <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
                 <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold uppercase tracking-wider">MRS Burden Index</span>
+                  <span className="font-semibold tracking-wide">Overall Symptom Score</span>
                   <Activity className="w-4 h-4 text-sage-dark" />
                 </div>
                 <div className="flex items-baseline gap-2">
@@ -298,46 +298,46 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-sage-dark font-semibold">
                   <span className="w-2 h-2 rounded-full bg-sage-dark" />
-                  <span>{latestMrs < 15 ? 'Mild Burden' : latestMrs < 25 ? 'Moderate Domain Shift' : 'Severe Vasomotor Elevation'}</span>
+                  <span>{latestMrs < 15 ? 'Mild Symptoms' : latestMrs < 25 ? 'Moderate Symptoms' : 'Noticeable Symptoms'}</span>
                 </div>
               </div>
 
-              {/* Vasomotor Frequency */}
+              {/* Hot Flash Frequency */}
               <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
                 <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold uppercase tracking-wider">Vasomotor Frequency</span>
+                  <span className="font-semibold tracking-wide">Hot Flashes Today</span>
                   <Flame className="w-4 h-4 text-peach" />
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-serif text-3xl font-bold text-charcoal">
                     {history.length > 0 && history[0].hot_flashes ? history[0].hot_flashes : 3}
                   </span>
-                  <span className="text-xs text-charcoal-muted font-medium">episodes / 24h</span>
+                  <span className="text-xs text-charcoal-muted font-medium">logged today</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-charcoal-muted">
-                  <span>Cluster: Peak 02:00–04:00 AM nocturnal</span>
+                  <span>Most common in early morning</span>
                 </div>
               </div>
 
               {/* Sleep Restfulness */}
               <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
                 <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold uppercase tracking-wider">Sleep Architecture</span>
+                  <span className="font-semibold tracking-wide">Sleep Duration</span>
                   <Moon className="w-4 h-4 text-lavender" />
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-serif text-3xl font-bold text-charcoal">6.8</span>
-                  <span className="text-xs text-charcoal-muted font-medium">hrs rest</span>
+                  <span className="text-xs text-charcoal-muted font-medium">hours rest</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-teal-dark font-medium">
-                  <span>Night sweats latency: -15 min vs baseline</span>
+                  <span>Night awakenings reduced this week</span>
                 </div>
               </div>
 
               {/* Next Clinical Touchpoint */}
               <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
                 <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold uppercase tracking-wider">Next Consult</span>
+                  <span className="font-semibold tracking-wide">Next Appointment</span>
                   <Stethoscope className="w-4 h-4 text-teal" />
                 </div>
                 <div className="flex items-baseline gap-2">
@@ -346,35 +346,35 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-charcoal-muted">
-                  <span>Dr. Elena Vance, MD • Video Telehealth</span>
+                  <span>Dr. Elena Vance, MD • Video Visit</span>
                 </div>
               </div>
 
             </div>
 
-            {/* Roman Vasnev SVG Bento Charts (Warm Health Adapted) */}
+            {/* Bento Charts */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="font-serif text-xl font-semibold text-charcoal">Longitudinal Physiological Telemetry</h2>
-                  <p className="text-xs text-charcoal-muted">Multi-signal trend monitoring with 7-day Simple Moving Average (SMA)</p>
+                  <h2 className="font-serif text-xl font-semibold text-charcoal">Symptom Trends & Patterns</h2>
+                  <p className="text-xs text-charcoal-muted">Daily changes and 7-day rolling averages</p>
                 </div>
-                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-sage-soft text-sage-dark border border-sage/20">
-                  Deterministic Smoothing
+                <span className="text-xs font-medium px-3 py-1 rounded-full bg-sage-soft text-sage-dark border border-sage/20">
+                  7-Day Trend
                 </span>
               </div>
 
-              <div className="bg-cream rounded-3xl p-4 sm:p-6 border border-[#E2DBD0] shadow-warm-md overflow-hidden">
+              <div className="bg-cream rounded-2xl p-4 sm:p-6 border border-[#E2DBD0] shadow-warm-md overflow-hidden">
                 <AnalyticsBento
                   revenue={bentoData.revenue}
                   sessions={bentoData.sessions}
                   categories={bentoData.categories}
                   seasonality={bentoData.seasonality}
                   colors={{
-                    revenue: ['#5B6F54', '#8E9F86'],
-                    desktop: ['#5B6F54', '#8E9F86'],
-                    mobile: ['#7A9B96', '#E8F1EF'],
-                    radar: '#5B6F54',
+                    revenue: ['#4A5F43', '#71846A'],
+                    desktop: ['#4A5F43', '#71846A'],
+                    mobile: ['#527772', '#E8F1EF'],
+                    radar: '#4A5F43',
                   }}
                   credit={false}
                 />
@@ -383,14 +383,14 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
 
             {/* Split Grid: Symptom Trends & Interactive Hotspots */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              <div className="lg:col-span-8 bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
+              <div className="lg:col-span-8 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
                 <div className="flex items-center justify-between border-b border-[#E2DBD0]/60 pb-3">
-                  <h3 className="font-serif text-lg font-semibold text-charcoal">Detailed Symptom Timeline & SMA</h3>
+                  <h3 className="font-serif text-lg font-semibold text-charcoal">Symptom Patterns Over Time</h3>
                   <button
                     onClick={() => setActiveTab('analytics')}
-                    className="text-xs font-semibold text-sage-dark hover:text-charcoal flex items-center gap-1 transition-colors"
+                    className="text-xs font-medium text-sage-dark hover:text-charcoal flex items-center gap-1 transition-colors"
                   >
-                    <span>Full Analytics View</span>
+                    <span>Full Trends View</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -399,9 +399,9 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
 
               <div className="lg:col-span-4 space-y-6">
                 {/* Body Hotspot Visualizer */}
-                <div className="bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
-                  <h3 className="font-serif text-lg font-semibold text-charcoal">Somatic Hotspot Map</h3>
-                  <p className="text-xs text-charcoal-muted">Interactive anatomical heat distribution based on your daily logs.</p>
+                <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
+                  <h3 className="font-serif text-lg font-semibold text-charcoal">Where You Feel Symptoms</h3>
+                  <p className="text-xs text-charcoal-muted">Click a region to see which symptoms you have logged there.</p>
                   <BodyHotspotMap onSelectSymptom={(s) => console.log('Selected hotspot:', s)} />
                 </div>
 
@@ -415,19 +415,19 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
 
             {/* Trigger Correlator & Medication Adherence Strip */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              <div className="lg:col-span-6 bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
-                <h3 className="font-serif text-lg font-semibold text-charcoal">Environmental & Diet Triggers</h3>
+              <div className="lg:col-span-6 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
+                <h3 className="font-serif text-lg font-semibold text-charcoal">What Influences Your Symptoms</h3>
                 <TriggerCorrelatorCard />
               </div>
 
-              <div className="lg:col-span-6 bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
+              <div className="lg:col-span-6 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-serif text-lg font-semibold text-charcoal">HRT & Prescription Adherence</h3>
+                  <h3 className="font-serif text-lg font-semibold text-charcoal">Daily Medications & Supplements</h3>
                   <button
                     onClick={() => setActiveTab('medications')}
-                    className="text-xs font-semibold text-sage-dark hover:text-charcoal flex items-center gap-1"
+                    className="text-xs font-medium text-sage-dark hover:text-charcoal flex items-center gap-1"
                   >
-                    <span>Manage Prescriptions</span>
+                    <span>Manage Medications</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -441,7 +441,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         {/* Tab 2: Cycle & Menstrual Calendar */}
         {activeTab === 'calendar' && (
           <div className="space-y-6">
-            <div className="bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm">
+            <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm">
               <CycleCalendarView
                 history={history}
                 strawStage={profile?.straw_stage || 'early_transition'}
@@ -453,24 +453,24 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         {/* Tab 3: Medications & HRT Tracker */}
         {activeTab === 'medications' && (
           <div className="space-y-6">
-            <div className="bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm">
+            <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm">
               <MedicationAdherenceCard onLogged={loadAllData} />
             </div>
           </div>
         )}
 
-        {/* Tab 4: Longitudinal Analytics Deep Dive */}
+        {/* Tab 4: Symptom Trends Analytics */}
         {activeTab === 'analytics' && (
           <div className="space-y-6">
-            <div className="bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
+            <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
               <div className="flex items-center justify-between border-b border-[#E2DBD0]/60 pb-3">
                 <div>
-                  <h2 className="font-serif text-xl font-semibold text-charcoal">Comprehensive Biometric Trends</h2>
-                  <p className="text-xs text-charcoal-muted">Longitudinal 30-day time series with dual moving average window.</p>
+                  <h2 className="font-serif text-xl font-semibold text-charcoal">Your Symptom Trends</h2>
+                  <p className="text-xs text-charcoal-muted">See how your symptoms and daily logs have changed over the past 30 days.</p>
                 </div>
                 <button
                   onClick={handleDownloadPdf}
-                  className="px-3.5 py-1.5 rounded-xl bg-sage-dark hover:bg-sage text-cream text-xs font-semibold flex items-center gap-1.5 shadow-warm-sm"
+                  className="px-3.5 py-1.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium flex items-center gap-1.5 shadow-warm-sm"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download Report</span>
@@ -482,20 +482,20 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
           </div>
         )}
 
-        {/* Tab 5: Clinical Vault & Labs */}
+        {/* Tab 5: Lab Tests & Bloodwork */}
         {activeTab === 'labs' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-serif text-xl font-semibold text-charcoal">Biomarker Vault & Diagnostics Hub</h2>
-                <p className="text-xs text-charcoal-muted">Endocrine panel telemetry: FSH, Estradiol (E2), Progesterone, and TSH.</p>
+                <h2 className="font-serif text-xl font-semibold text-charcoal">Lab Tests & Bloodwork</h2>
+                <p className="text-xs text-charcoal-muted">Track and review your hormone and health test results with your doctor.</p>
               </div>
               <button
                 onClick={() => setIsLabUploadOpen(true)}
-                className="px-4 py-2 rounded-xl bg-sage-dark hover:bg-sage text-cream text-xs font-semibold flex items-center gap-2 shadow-warm-sm"
+                className="px-4 py-2 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium flex items-center gap-2 shadow-warm-sm"
               >
                 <Upload className="w-3.5 h-3.5" />
-                <span>Upload Diagnostic PDF</span>
+                <span>+ Upload Lab Report (PDF)</span>
               </button>
             </div>
 
@@ -506,33 +506,33 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         {/* Tab 6: Care Team & Telehealth */}
         {activeTab === 'telehealth' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div className="lg:col-span-7 bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Telehealth Consultation Room</h2>
-              <p className="text-xs text-charcoal-muted">HD encrypted clinical video room with real-time biometric sharing.</p>
-              <div className="p-8 rounded-2xl bg-ivory border border-[#E2DBD0] text-center space-y-3">
+            <div className="lg:col-span-7 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
+              <h2 className="font-serif text-xl font-semibold text-charcoal">Doctor Visits & Video Consultation</h2>
+              <p className="text-xs text-charcoal-muted">Secure, private video room for scheduled appointments with your doctor.</p>
+              <div className="p-8 rounded-xl bg-ivory border border-[#E2DBD0] text-center space-y-3">
                 <Video className="w-10 h-10 text-teal mx-auto" />
                 <h3 className="font-serif text-lg font-semibold text-charcoal">Virtual Consultation Ready</h3>
-                <p className="text-xs text-charcoal-muted max-w-md mx-auto">
-                  Your appointment with Dr. Elena Vance is confirmed. Your latest MRS scores and daily check-ins are accessible to the clinician.
+                <p className="text-xs text-charcoal-muted max-w-md mx-auto text-pretty">
+                  Your appointment with Dr. Elena Vance is confirmed. Your symptom logs and notes are ready for your doctor.
                 </p>
                 <button
                   onClick={() => setIsTelehealthOpen(true)}
-                  className="px-5 py-2.5 rounded-xl bg-sage-dark hover:bg-sage text-cream text-xs font-semibold shadow-warm-md"
+                  className="px-5 py-2.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium shadow-warm-sm"
                 >
-                  Enter Telehealth Room Now
+                  Join Video Visit
                 </button>
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-cream rounded-3xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Care Team Messaging</h2>
-              <p className="text-xs text-charcoal-muted">HIPAA & HL7 compliant direct communication with clinical staff.</p>
+            <div className="lg:col-span-5 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
+              <h2 className="font-serif text-xl font-semibold text-charcoal">Messages with Your Doctor</h2>
+              <p className="text-xs text-charcoal-muted">Send a private question or update directly to your doctor's office.</p>
               <button
                 onClick={() => setIsChatOpen(true)}
-                className="w-full py-3 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-semibold shadow-warm-sm flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-medium shadow-warm-sm flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4 text-teal" />
-                <span>Open Secure Messaging Thread</span>
+                <span>Open Doctor Messages</span>
               </button>
             </div>
           </div>

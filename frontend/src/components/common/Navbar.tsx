@@ -23,17 +23,17 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogout }) => {
                 MenoCare
               </span>
               <span
-                className={`text-[10px] font-sans font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider ${
+                className={`text-xs font-sans font-medium px-2.5 py-0.5 rounded-full ${
                   user.role === 'doctor'
                     ? 'bg-teal-soft text-teal-dark border border-teal/20'
                     : 'bg-sage-soft text-sage-dark border border-sage/20'
                 }`}
               >
-                {user.role === 'doctor' ? 'Clinician Command' : 'Patient Companion'}
+                {user.role === 'doctor' ? 'Doctor Workspace' : 'Patient Portal'}
               </span>
             </div>
-            <p className="text-[10px] text-charcoal-light font-medium tracking-wide hidden sm:block">
-              Continuous Endocrine Intelligence & Telemetry
+            <p className="text-[11px] text-charcoal-muted font-medium tracking-wide hidden sm:block">
+              Clear, compassionate menopause care
             </p>
           </div>
         </div>
@@ -41,8 +41,8 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogout }) => {
         {/* Live sync badge & User card */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream border border-[#E2DBD0] text-[11px] text-charcoal-muted">
-            <span className="w-2 h-2 rounded-full bg-sage-dark animate-pulse" />
-            <span className="font-medium">Encrypted Telemetry Live</span>
+            <span className="w-2 h-2 rounded-full bg-sage-dark" />
+            <span className="font-medium">Secure & Connected</span>
           </div>
 
           <div className="flex items-center space-x-2 text-xs text-charcoal bg-cream border border-[#E2DBD0] py-1.5 px-3 rounded-xl font-medium shadow-warm-sm">

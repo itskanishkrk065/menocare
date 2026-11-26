@@ -324,13 +324,13 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
         {/* 3. Secondary Sub-Navigation Tabs */}
         <div className="border-t border-outline-variant px-6 flex space-x-6 text-xs font-semibold overflow-x-auto bg-ivory/40">
           {[
-            { id: 'feed', label: 'Longitudinal Timeline Feed', icon: MessageSquare, count: timelineEvents.length },
+            { id: 'feed', label: 'Health Timeline', icon: MessageSquare, count: timelineEvents.length },
             { id: 'charts', label: 'Biometrics & Trends', icon: Activity },
-            { id: 'differentials', label: '15-Disease Matrix', icon: ShieldAlert, count: diffData?.screenings?.length },
-            { id: 'labs', label: 'Laboratory Vault', icon: FlaskConical, count: Object.keys(diffData?.verified_labs_used || {}).length },
-            { id: 'hrt_advisor', label: 'HRT Advisor & Protocol', icon: Heart },
-            { id: 'notes', label: 'SOAP Care Plan', icon: PenTool, count: clinicalNotes.length },
-            { id: 'messages', label: 'Direct Messages', icon: MessageSquare },
+            { id: 'differentials', label: 'Health Patterns', icon: ShieldAlert, count: diffData?.screenings?.length },
+            { id: 'labs', label: 'Blood Tests & Labs', icon: FlaskConical, count: Object.keys(diffData?.verified_labs_used || {}).length },
+            { id: 'hrt_advisor', label: 'Hormone Therapy Guide', icon: Heart },
+            { id: 'notes', label: "Doctor's Notes (SOAP)", icon: PenTool, count: clinicalNotes.length },
+            { id: 'messages', label: 'Patient Chat', icon: MessageSquare },
           ].map((tab: any) => {
             const Icon = tab.icon;
             const isActive = activeProfileTab === tab.id;
@@ -348,8 +348,8 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
                 <span>{tab.label}</span>
                 {tab.count !== undefined && (
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                      isActive ? 'bg-sage-soft text-sage-dark font-bold' : 'bg-oat text-charcoal-muted'
+                    className={`text-xs px-2 py-0.5 rounded-full font-mono ${
+                      isActive ? 'bg-sage-soft text-sage-dark font-semibold' : 'bg-oat text-charcoal-muted'
                     }`}
                   >
                     {tab.count}
@@ -363,24 +363,24 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
 
       {/* AI Clinical Summary Banner (if generated) */}
       {aiReport && (
-        <div className="bg-cream rounded-card p-6 border border-teal shadow-warm-md space-y-4">
+        <div className="bg-cream rounded-card p-6 border border-teal/40 shadow-warm-md space-y-4">
           <div className="flex items-center justify-between border-b border-outline-variant pb-3">
             <div className="flex items-center space-x-3">
               <div className="w-9 h-9 rounded-xl bg-teal-dark text-ivory flex items-center justify-center shadow-warm-sm">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-charcoal font-serif">Epistemic Clinical Summary (Google Gemini)</h3>
+                <h3 className="text-sm font-bold text-charcoal font-serif">Clinical Summary & Doctor's Notes</h3>
                 <p className="text-xs text-charcoal-muted">
                   {aiReport.is_fallback_template
-                    ? 'Deterministic Rule-Based Clinical Synthesis'
-                    : 'Validated Gemini 1.5 Medical Scribe Narrative (Zero-PII Payload)'}
+                    ? 'Structured Clinical Synthesis'
+                    : 'AI-Assisted Clinical Summary (Doctor Review Required)'}
                 </p>
               </div>
             </div>
 
-            <span className="text-[10px] bg-teal-soft text-teal-dark font-bold px-2.5 py-1 rounded-full border border-teal/40">
-              Anti-Hallucination Guard Verified
+            <span className="text-xs bg-teal-soft text-teal-dark font-medium px-2.5 py-1 rounded-full border border-teal/30">
+              Verified Clinical Synthesis
             </span>
           </div>
 
@@ -669,13 +669,13 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
         <div className="bg-cream rounded-card p-6 border border-outline-variant shadow-warm-md space-y-4">
           <div className="flex items-center justify-between border-b border-outline-variant pb-3">
             <div>
-              <h3 className="text-base font-bold text-charcoal font-serif">15-Disease Clinical Differential Screening Matrix</h3>
+              <h3 className="text-base font-bold text-charcoal font-serif">Health Patterns & Differential Screening</h3>
               <p className="text-xs text-charcoal-muted">
-                Automated screening evaluated against longitudinal observations, bleeding patterns, and verified labs
+                Screens for conditions with symptoms that overlap with menopause (Thyroid, PCOS, Fibroids) based on logged symptoms and verified lab tests.
               </p>
             </div>
             <span className="text-xs text-charcoal font-semibold bg-ivory px-3 py-1 rounded-xl border border-outline-variant">
-              STRAW Stage: {diffData?.straw_stage?.replace('_', ' ').toUpperCase()}
+              Stage: {diffData?.straw_stage?.replace('_', ' ').toUpperCase()}
             </span>
           </div>
 
@@ -743,10 +743,10 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
           <div className="flex items-center justify-between border-b border-outline-variant pb-3">
             <div>
               <h3 className="text-base font-bold text-charcoal font-serif">Verified Laboratory Analytes & Blood Panels</h3>
-              <p className="text-xs text-charcoal-muted">Extracted locally from scanned patient reports via PyTesseract & pdfplumber</p>
+              <p className="text-xs text-charcoal-muted">Extracted and verified lab values from patient reports</p>
             </div>
             <span className="text-xs font-semibold text-sage-dark bg-sage-soft px-3 py-1 rounded-xl border border-sage/30">
-              100% Local OCR Extraction
+              Verified Lab Analytes
             </span>
           </div>
 

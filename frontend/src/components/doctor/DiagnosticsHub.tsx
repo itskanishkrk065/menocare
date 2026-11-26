@@ -60,21 +60,21 @@ export const DiagnosticsHub: React.FC<DiagnosticsHubProps> = ({ patients, onSele
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div className="bg-cream rounded-card p-6 border border-outline-variant shadow-warm-md space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
           <div>
             <div className="flex items-center space-x-2">
-              <FlaskConical className="w-5 h-5 text-teal-600" />
-              <h3 className="text-base font-bold text-slate-900">Biochemical Diagnostics & Laboratory Explorer</h3>
+              <FlaskConical className="w-5 h-5 text-teal" />
+              <h3 className="text-base font-serif font-semibold text-charcoal">Biochemical Diagnostics & Laboratory Explorer</h3>
             </div>
-            <p className="text-xs text-slate-500">
-              Aggregated blood panels extracted locally via OCR (PyTesseract & pdfplumber)
+            <p className="text-xs text-charcoal-muted mt-0.5">
+              Aggregated blood panels and hormone reference ranges extracted from patient reports
             </p>
           </div>
 
-          <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-800 rounded-xl text-xs font-bold border border-emerald-200">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>100% Local Extraction • Zero Cloud PII</span>
+          <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-sage-soft text-sage-dark rounded-xl text-xs font-medium border border-sage/30">
+            <ShieldCheck className="w-4 h-4 text-sage-dark" />
+            <span>Verified Lab Records</span>
           </div>
         </div>
 

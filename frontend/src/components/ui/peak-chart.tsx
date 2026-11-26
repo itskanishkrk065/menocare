@@ -874,7 +874,7 @@ export function PeakChart({
           background: "rgba(20,34,64,0.55)", border: "1px solid rgba(255,255,255,0.12)",
           boxShadow: "0 18px 40px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)",
           backdropFilter: "blur(18px) saturate(150%)", WebkitBackdropFilter: "blur(18px) saturate(150%)",
-          transformOrigin: "top right", transition: "opacity .18s ease, transform .22s cubic-bezier(.2,.9,.3,1.2), visibility .22s",
+          transformOrigin: "top right", transition: "opacity .18s ease, transform .22s cubic-bezier(0.16, 1, 0.3, 1), visibility .22s",
           opacity: open ? 1 : 0, transform: open ? "none" : `translateY(${px(-6)}) scale(0.96)`, visibility: open ? "visible" : "hidden",
         }}
       >

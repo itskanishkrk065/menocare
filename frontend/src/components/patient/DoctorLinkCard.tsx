@@ -32,28 +32,28 @@ export const DoctorLinkCard: React.FC<DoctorLinkCardProps> = ({ linkedDoctorName
   };
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+    <div className="bg-cream rounded-2xl p-5 border border-[#E2DBD0] shadow-warm-sm">
       <div className="flex items-center space-x-3 mb-3">
-        <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+        <div className="w-9 h-9 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center">
           <Stethoscope className="w-5 h-5" />
         </div>
         <div>
-          <h3 className="text-sm font-bold text-slate-900">Care Team & Attending Clinician</h3>
-          <p className="text-xs text-slate-500">Pair with your doctor using their unique practice code</p>
+          <h3 className="text-sm font-serif font-semibold text-charcoal">Connected Doctor</h3>
+          <p className="text-xs text-charcoal-muted">Link your account with your doctor's practice code</p>
         </div>
       </div>
 
       {linkedDoctorName ? (
-        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-center justify-between text-xs">
-          <div className="flex items-center space-x-2 text-emerald-800">
-            <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+        <div className="bg-sage-soft border border-sage/30 rounded-xl p-3 flex items-center justify-between text-xs">
+          <div className="flex items-center space-x-2 text-sage-dark">
+            <CheckCircle className="w-4 h-4 text-sage-dark flex-shrink-0" />
             <div>
-              <span className="font-bold">Active Clinician Link: </span>
-              <span className="font-semibold">{linkedDoctorName}</span>
+              <span className="font-semibold">Connected With: </span>
+              <span className="font-bold">{linkedDoctorName}</span>
             </div>
           </div>
-          <span className="text-[10px] text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full font-bold">
-            Synchronized
+          <span className="text-xs text-sage-dark bg-white/70 px-2.5 py-0.5 rounded-full font-medium">
+            Active
           </span>
         </div>
       ) : (
@@ -64,27 +64,27 @@ export const DoctorLinkCard: React.FC<DoctorLinkCardProps> = ({ linkedDoctorName
               placeholder="e.g. DR-SHARMA-91A"
               value={practiceCode}
               onChange={(e) => setPracticeCode(e.target.value.toUpperCase())}
-              className="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider focus:ring-2 focus:ring-teal-500 focus:bg-white focus:outline-none"
+              className="flex-1 bg-white border border-[#E2DBD0] rounded-xl px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider focus:border-sage-dark focus:outline-none"
             />
             <button
               type="submit"
               disabled={isLoading || !practiceCode}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50 flex items-center space-x-1"
+              className="px-4 py-2 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors disabled:opacity-50 flex items-center space-x-1"
             >
-              <span>{isLoading ? 'Linking...' : 'Connect'}</span>
+              <span>{isLoading ? 'Connecting...' : 'Connect'}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {message && (
-            <p className={`text-xs ${message.type === 'success' ? 'text-emerald-700' : 'text-rose-600'}`}>
+            <p className={`text-xs ${message.type === 'success' ? 'text-sage-dark' : 'text-error'}`}>
               {message.text}
             </p>
           )}
 
-          <p className="text-[11px] text-slate-400 flex items-center space-x-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-teal-600 flex-shrink-0" />
-            <span>Enables automatic anomaly alerting and clinical summary synchronization with your doctor.</span>
+          <p className="text-xs text-charcoal-muted flex items-center space-x-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-sage-dark flex-shrink-0" />
+            <span>Allows your doctor to review your symptom logs before visits.</span>
           </p>
         </form>
       )}

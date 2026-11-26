@@ -50,26 +50,26 @@ export const BreathingReliefModal: React.FC<BreathingReliefModalProps> = ({
       case 'inhale':
         return {
           title: 'Inhale Slowly',
-          instruction: 'Breathe in quietly through your nose, expanding your diaphragm.',
-          color: 'from-teal-400 to-emerald-400',
-          scale: 'scale-110',
-          ring: 'ring-teal-300',
+          instruction: 'Breathe in gently through your nose, letting your belly expand.',
+          color: 'from-sage-dark to-sage',
+          scale: 'scale-105',
+          ring: 'ring-sage/30',
         };
       case 'hold':
         return {
-          title: 'Hold Breath',
-          instruction: 'Gently retain your breath. Keep shoulders relaxed and soft.',
-          color: 'from-amber-400 to-rose-400',
-          scale: 'scale-115',
-          ring: 'ring-amber-300',
+          title: 'Hold Gently',
+          instruction: 'Pause and retain your breath comfortably. Keep shoulders relaxed and soft.',
+          color: 'from-sand to-[#B07D38]',
+          scale: 'scale-110',
+          ring: 'ring-sand/30',
         };
       case 'exhale':
         return {
-          title: 'Exhale Completely',
-          instruction: 'Release all air through your mouth with a gentle whooshing sound.',
-          color: 'from-indigo-400 to-blue-400',
+          title: 'Exhale Slowly',
+          instruction: 'Release all air gently through your mouth with a slow, smooth breath out.',
+          color: 'from-teal to-teal-dark',
           scale: 'scale-95',
-          ring: 'ring-indigo-300',
+          ring: 'ring-teal/30',
         };
     }
   };
@@ -77,36 +77,36 @@ export const BreathingReliefModal: React.FC<BreathingReliefModalProps> = ({
   const meta = getPhaseInstructions();
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-md w-full border border-slate-200 shadow-2xl p-6 sm:p-8 text-center space-y-6 relative overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-cream rounded-2xl max-w-md w-full border border-[#E2DBD0] shadow-warm-lg p-6 sm:p-8 text-center space-y-6 relative overflow-hidden">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-all"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] flex items-center justify-center transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Title */}
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-50 text-teal-800 rounded-full text-[11px] font-bold border border-teal-200/80 mb-2">
-            <Wind className="w-3.5 h-3.5 text-teal-600" />
-            <span>Acute Hot Flash & Vasomotor Relief</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-sage-soft text-sage-dark rounded-full text-xs font-semibold mb-2">
+            <Wind className="w-3.5 h-3.5 text-sage-dark" />
+            <span>Hot Flash & Stress Relief</span>
           </div>
-          <h2 className="text-xl font-extrabold text-slate-900">4-7-8 Parasympathetic Reset</h2>
-          <p className="text-xs text-slate-500 mt-1">
-            Proven to widen the hypothalamic thermoneutral zone and relieve palpitations.
+          <h2 className="text-xl font-serif font-semibold text-charcoal">Calming 4-7-8 Breathing</h2>
+          <p className="text-xs text-charcoal-muted mt-1 text-pretty">
+            A simple, rhythmic breathing exercise to help calm sudden heat, ease heart racing, and relax your nervous system.
           </p>
         </div>
 
         {/* Pulsing Breathing Circle */}
         <div className="py-6 flex items-center justify-center">
           <div
-            className={`w-48 h-48 rounded-full bg-gradient-to-tr ${meta.color} p-1 shadow-xl transition-all duration-1000 ease-in-out flex items-center justify-center ring-8 ${meta.ring} ${meta.scale}`}
+            className={`w-44 h-44 rounded-full bg-gradient-to-tr ${meta.color} p-1 shadow-warm-md transition-all duration-1000 ease-out flex items-center justify-center ring-8 ${meta.ring} ${meta.scale}`}
           >
-            <div className="w-full h-full bg-white/90 backdrop-blur-xs rounded-full flex flex-col items-center justify-center p-4">
-              <span className="text-3xl font-black text-slate-900 tracking-tight">{secondsLeft}s</span>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 mt-1">
+            <div className="w-full h-full bg-white/95 rounded-full flex flex-col items-center justify-center p-4">
+              <span className="text-3xl font-serif font-bold text-charcoal tracking-tight">{secondsLeft}s</span>
+              <span className="text-xs font-semibold text-sage-dark mt-1">
                 {meta.title}
               </span>
             </div>
@@ -114,28 +114,28 @@ export const BreathingReliefModal: React.FC<BreathingReliefModalProps> = ({
         </div>
 
         {/* Instructions */}
-        <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-1">
-          <p className="font-semibold text-slate-800">{meta.instruction}</p>
-          <div className="text-[11px] text-slate-500 pt-1">
-            Cycles Completed: <b className="text-teal-700">{cyclesCompleted}</b> (Recommended: 4 cycles)
+        <div className="bg-white p-4 rounded-xl border border-[#E2DBD0] text-xs text-charcoal space-y-1">
+          <p className="font-medium text-charcoal text-pretty">{meta.instruction}</p>
+          <div className="text-xs text-charcoal-muted pt-1">
+            Cycles Completed: <strong className="text-sage-dark">{cyclesCompleted}</strong> (4 cycles recommended)
           </div>
         </div>
 
         {/* Controls */}
-        <div className="flex gap-2 justify-center">
+        <div className="flex items-center justify-center gap-3 pt-1">
           <button
             type="button"
             onClick={() => setIsActive(!isActive)}
-            className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold transition-all"
+            className="px-4 py-2 bg-ivory hover:bg-oat-light text-charcoal rounded-xl text-xs font-medium border border-[#E2DBD0] transition-colors"
           >
-            {isActive ? 'Pause Session' : 'Resume Session'}
+            {isActive ? 'Pause' : 'Resume'}
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-teal-600/20"
+            className="px-5 py-2 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors"
           >
-            Done & Relaxed
+            Done
           </button>
         </div>
       </div>

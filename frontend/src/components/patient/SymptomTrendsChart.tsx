@@ -1,15 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import {
   ResponsiveContainer,
-  LineChart,
+  ComposedChart,
   Line,
   XAxis,
   YAxis,
   Tooltip,
   CartesianGrid,
   Legend,
-  Area,
-  ComposedChart,
 } from 'recharts';
 import { TrendingUp, TrendingDown, Minus, Activity, Layers } from 'lucide-react';
 
@@ -31,9 +29,9 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
     { code: 'VM_HF', label: 'Hot Flashes' },
     { code: 'VM_NS', label: 'Night Sweats' },
     { code: 'SL_SQ', label: 'Sleep Disruption' },
-    { code: 'PS_MD', label: 'Mood Swings' },
-    { code: 'PS_AX', label: 'Anxiety' },
-    { code: 'PH_FT', label: 'Fatigue' },
+    { code: 'PS_MD', label: 'Mood Changes' },
+    { code: 'PS_AX', label: 'Anxiety & Tension' },
+    { code: 'PH_FT', label: 'Fatigue & Low Energy' },
   ];
 
   const primarySeries = chartsData?.time_series_data?.[selectedSymptom] || [];
@@ -60,8 +58,8 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
 
   if (!chartsData || !chartsData.time_series_data) {
     return (
-      <div className="bg-white rounded-2xl p-6 border border-slate-200 text-center text-xs text-slate-500">
-        No longitudinal time-series data logged yet. Complete daily micro-check-ins to generate trends.
+      <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] text-center text-xs text-charcoal-muted">
+        No symptom data logged yet. Complete a daily check-in to see your trends.
       </div>
     );
   }
@@ -74,34 +72,34 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
   const compareLabel = compareSymptom ? symptomsList.find((s) => s.code === compareSymptom)?.label : null;
 
   return (
-    <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+    <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] space-y-4">
       {/* Header & Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#E2DBD0]/70 pb-4">
         <div>
           <div className="flex items-center space-x-2">
-            <Activity className="w-5 h-5 text-teal-600" />
-            <h3 className="text-base font-bold text-slate-900">Deterministic Time-Series Trends</h3>
+            <Activity className="w-5 h-5 text-sage-dark" />
+            <h3 className="text-base font-serif font-semibold text-charcoal">Symptom Patterns Over Time</h3>
           </div>
-          <p className="text-xs text-slate-500">
-            Computed via 7-day and 30-day Simple Moving Averages (SMA) & Mann-Kendall monotonic test
+          <p className="text-xs text-charcoal-muted mt-0.5">
+            Shows your daily ratings alongside 7-day trend averages to highlight patterns over time.
           </p>
         </div>
 
         {/* Time Horizon Window Toggle */}
         {onWindowChange && (
-          <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl self-start">
+          <div className="flex items-center space-x-1 bg-ivory p-1 rounded-xl border border-[#E2DBD0] self-start">
             {[
               { days: 30, label: '30 Days' },
               { days: 90, label: '90 Days' },
-              { days: 180, label: '180 Days (6M)' },
+              { days: 180, label: '6 Months' },
             ].map((w) => (
               <button
                 key={w.days}
                 onClick={() => onWindowChange(w.days)}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
                   windowDays === w.days
-                    ? 'bg-white text-teal-700 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-sage-dark text-white font-semibold'
+                    : 'text-charcoal-muted hover:text-charcoal'
                 }`}
               >
                 {w.label}
@@ -123,18 +121,18 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
                   setSelectedSymptom(s.code);
                   if (compareSymptom === s.code) setCompareSymptom(null);
                 }}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center space-x-1.5 ${
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl border transition-colors flex items-center space-x-1.5 ${
                   selectedSymptom === s.code
-                    ? 'bg-teal-600 text-white shadow-sm'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-sage-dark text-white border-sage-dark font-semibold'
+                    : 'bg-ivory text-charcoal-muted border-[#E2DBD0] hover:text-charcoal'
                 }`}
               >
                 <span>{s.label}</span>
                 <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                  className={`text-xs px-1.5 py-0.2 rounded-full ${
                     selectedSymptom === s.code
-                      ? 'bg-teal-700 text-teal-100'
-                      : 'bg-slate-200 text-slate-600'
+                      ? 'bg-white/20 text-white'
+                      : 'bg-oat text-charcoal-muted'
                   }`}
                 >
                   {count}d
@@ -145,15 +143,15 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
         </div>
 
         {/* Multi-Symptom Comparison Dropdown */}
-        <div className="flex items-center space-x-1.5 text-xs shrink-0 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-xl">
-          <Layers className="w-3.5 h-3.5 text-indigo-600" />
-          <span className="text-slate-600 font-medium">Overlay:</span>
+        <div className="flex items-center space-x-1.5 text-xs shrink-0 bg-white border border-[#E2DBD0] px-3 py-1.5 rounded-xl">
+          <Layers className="w-3.5 h-3.5 text-teal" />
+          <span className="text-charcoal-muted font-medium">Compare with:</span>
           <select
             value={compareSymptom || ''}
             onChange={(e) => setCompareSymptom(e.target.value || null)}
-            className="bg-transparent text-xs font-bold text-slate-800 focus:outline-none"
+            className="bg-transparent text-xs font-semibold text-charcoal focus:outline-none"
           >
-            <option value="">None (Single Symptom)</option>
+            <option value="">None</option>
             {symptomsList
               .filter((s) => s.code !== selectedSymptom)
               .map((s) => (
@@ -165,46 +163,46 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
         </div>
       </div>
 
-      {/* Summary KPI Badges */}
+      {/* Summary Stat Badges */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <span className="text-[11px] text-slate-500 font-medium">Trajectory</span>
-          <div className="flex items-center space-x-1.5 mt-0.5">
+        <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
+          <span className="text-xs text-charcoal-muted font-medium">Trend Direction</span>
+          <div className="flex items-center space-x-1.5 mt-1">
             {isIncreasing ? (
-              <TrendingUp className="w-4 h-4 text-rose-600" />
+              <TrendingUp className="w-4 h-4 text-peach" />
             ) : isDecreasing ? (
-              <TrendingDown className="w-4 h-4 text-emerald-600" />
+              <TrendingDown className="w-4 h-4 text-sage-dark" />
             ) : (
-              <Minus className="w-4 h-4 text-slate-600" />
+              <Minus className="w-4 h-4 text-charcoal-muted" />
             )}
             <span
-              className={`text-xs font-bold uppercase ${
-                isIncreasing ? 'text-rose-600' : isDecreasing ? 'text-emerald-600' : 'text-slate-700'
+              className={`text-xs font-semibold ${
+                isIncreasing ? 'text-peach' : isDecreasing ? 'text-sage-dark' : 'text-charcoal'
               }`}
             >
-              {trend} ({summary.confidence || 'Moderate'})
+              {isDecreasing ? 'Improving' : isIncreasing ? 'More Frequent' : 'Stable'}
             </span>
           </div>
         </div>
 
-        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <span className="text-[11px] text-slate-500 font-medium">Presence Rate</span>
-          <p className="text-sm font-bold text-slate-900 mt-0.5">
-            {summary.presence_rate_pct ?? 0}% <span className="text-[10px] text-slate-400 font-normal">of logged days</span>
+        <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
+          <span className="text-xs text-charcoal-muted font-medium">Frequency</span>
+          <p className="text-sm font-semibold text-charcoal mt-1">
+            {summary.presence_rate_pct ?? 0}% <span className="text-xs text-charcoal-muted font-normal">of logged days</span>
           </p>
         </div>
 
-        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <span className="text-[11px] text-slate-500 font-medium">Mean Severity</span>
-          <p className="text-sm font-bold text-slate-900 mt-0.5">
-            {summary.mean_intensity ?? 0} <span className="text-[10px] text-slate-400 font-normal">/ 4.0</span>
+        <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
+          <span className="text-xs text-charcoal-muted font-medium">Average Intensity</span>
+          <p className="text-sm font-semibold text-charcoal mt-1">
+            {summary.mean_intensity ?? 0} <span className="text-xs text-charcoal-muted font-normal">/ 4.0</span>
           </p>
         </div>
 
-        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <span className="text-[11px] text-slate-500 font-medium">Current 30-Day SMA</span>
-          <p className="text-sm font-bold text-teal-700 mt-0.5">
-            {summary.current_sma_30 ?? 0} <span className="text-[10px] text-teal-600/70 font-normal">/ 4.0</span>
+        <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
+          <span className="text-xs text-charcoal-muted font-medium">7-Day Trend</span>
+          <p className="text-sm font-semibold text-sage-dark mt-1">
+            {summary.current_sma_30 ?? 0} <span className="text-xs text-charcoal-muted font-normal">/ 4.0</span>
           </p>
         </div>
       </div>
@@ -212,42 +210,43 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
       {/* Chart Canvas */}
       <div className="h-72 w-full pt-2">
         {mergedData.length === 0 ? (
-          <div className="h-full flex items-center justify-center text-xs text-slate-400">
-            No observation days recorded for this symptom.
+          <div className="h-full flex items-center justify-center text-xs text-charcoal-muted">
+            No observation days recorded for this symptom yet.
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={mergedData} margin={{ top: 10, right: 20, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#64748b' }} tickLine={false} />
-              <YAxis domain={[0, 4]} ticks={[0, 1, 2, 3, 4]} tick={{ fontSize: 10, fill: '#64748b' }} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#E2DBD0" />
+              <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#544E45' }} tickLine={false} />
+              <YAxis domain={[0, 4]} ticks={[0, 1, 2, 3, 4]} tick={{ fontSize: 11, fill: '#544E45' }} tickLine={false} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#ffffff',
+                  backgroundColor: '#FAF8F3',
                   borderRadius: '12px',
-                  border: '1px solid #e2e8f0',
-                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-                  fontSize: '11px',
+                  border: '1px solid #E2DBD0',
+                  boxShadow: '0 4px 12px rgba(46, 41, 36, 0.08)',
+                  fontSize: '12px',
+                  color: '#2E2924',
                 }}
               />
-              <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+              <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
 
               {/* Primary Daily Scatter Points */}
               <Line
                 type="monotone"
                 dataKey="intensity"
                 name={`${primaryLabel} (Daily)`}
-                stroke="#94a3b8"
+                stroke="#A69F93"
                 strokeWidth={1}
-                dot={{ r: 2.5, fill: '#64748b' }}
+                dot={{ r: 2.5, fill: '#544E45' }}
               />
 
               {/* Primary SMA-7 Wave */}
               <Line
                 type="monotone"
                 dataKey="sma_7"
-                name={`${primaryLabel} (7d SMA)`}
-                stroke="#0d9488"
+                name={`${primaryLabel} (7d Trend)`}
+                stroke="#4A5F43"
                 strokeWidth={2.5}
                 dot={false}
               />
@@ -257,8 +256,8 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
                 type="monotone"
                 dataKey="sma_30"
                 name={`${primaryLabel} (30d Baseline)`}
-                stroke="#0f766e"
-                strokeWidth={2.5}
+                stroke="#527772"
+                strokeWidth={2}
                 strokeDasharray="4 4"
                 dot={false}
               />
@@ -268,8 +267,8 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
                 <Line
                   type="monotone"
                   dataKey="compare_sma_7"
-                  name={`${compareLabel} (7d SMA)`}
-                  stroke="#8b5cf6"
+                  name={`${compareLabel} (7d Trend)`}
+                  stroke="#C97F63"
                   strokeWidth={2.5}
                   dot={false}
                 />

@@ -72,19 +72,19 @@ export const HrtProtocolAdvisor: React.FC<HrtProtocolAdvisorProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+    <div className="bg-cream rounded-card p-6 border border-outline-variant shadow-warm-md space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-outline-variant pb-4">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="p-2 rounded-xl bg-teal-50 text-teal-700 border border-teal-200">
+            <span className="p-2 rounded-xl bg-teal-soft text-teal-dark border border-teal/20">
               <Stethoscope className="w-5 h-5" />
             </span>
-            <h3 className="text-base font-extrabold text-slate-900">
-              NAMS / BMS Clinical Decision Support & HRT Treatment Advisor
+            <h3 className="text-base font-serif font-semibold text-charcoal">
+              Hormone Therapy Clinical Guide (NAMS / BMS Guidelines)
             </h3>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
-            Algorithmic protocol formulation based on uterine anatomy, thrombotic risks, and vasomotor scores.
+          <p className="text-xs text-charcoal-muted mt-1">
+            Evidence-based decision support evaluating hormone options, uterine status, and cardiovascular safety.
           </p>
         </div>
 
@@ -92,7 +92,7 @@ export const HrtProtocolAdvisor: React.FC<HrtProtocolAdvisorProps> = ({
           type="button"
           onClick={handleEvaluate}
           disabled={isLoading}
-          className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-teal-600/20 disabled:opacity-50 flex items-center gap-1.5 self-start sm:self-auto"
+          className="px-4 py-2 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors shadow-warm-sm disabled:opacity-50 flex items-center gap-1.5 self-start sm:self-auto"
         >
           <Sparkles className="w-4 h-4" />
           <span>{isLoading ? 'Evaluating...' : 'Run Clinical Safety Check'}</span>

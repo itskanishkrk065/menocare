@@ -141,18 +141,18 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
           <div>
             <span className="font-serif text-2xl font-semibold tracking-tight text-charcoal flex items-center gap-2">
               MenoCare
-              <span className="text-[10px] font-sans uppercase font-bold px-2 py-0.5 rounded-full bg-sage-soft text-sage-dark border border-sage/20">
-                Clinical Health
+              <span className="text-xs font-sans font-medium px-2.5 py-0.5 rounded-full bg-sage-soft text-sage-dark border border-sage/20">
+                Women's Health
               </span>
             </span>
-            <p className="text-[11px] text-charcoal-light font-medium tracking-wide">Endocrine Intelligence & Reassurance</p>
+            <p className="text-xs text-charcoal-muted font-medium">Your Menopause & Hormonal Care Companion</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-3 text-xs text-charcoal-muted">
-          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream border border-[#E2DBD0] text-[11px] font-medium">
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream border border-[#E2DBD0] text-xs font-medium">
             <ShieldCheck className="w-3.5 h-3.5 text-sage-dark" />
-            HL7 / FHIR Compliant
+            Private & Doctor-Reviewed
           </span>
         </div>
       </header>
@@ -161,51 +161,51 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
       <main className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 flex items-center justify-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Left Column: Reassurance & Sanctuary Editorial */}
+          {/* Left Column: Clear & Warm Reassurance */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-soft border border-sage/30 rounded-full text-sage-dark text-[11px] font-semibold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-soft border border-sage/30 rounded-full text-sage-dark text-xs font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-sage-dark" />
-              <span>Evidence-Based Midlife Care</span>
+              <span>Evidence-Based Care</span>
             </div>
 
             <div className="space-y-3">
-              <h1 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-charcoal leading-[1.15] tracking-tight">
-                A calm sanctuary for your <span className="italic font-normal text-sage-dark">hormonal health</span>.
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-charcoal leading-[1.18] tracking-tight">
+                Clear, compassionate care for your <span className="italic font-normal text-sage-dark">menopause journey</span>.
               </h1>
-              <p className="text-sm text-charcoal-muted leading-relaxed max-w-md">
-                Continuous physiological tracking, validated Menopause Rating Scale telemetry, and direct connection with attending reproductive endocrinologists.
+              <p className="text-sm text-charcoal-muted leading-relaxed max-w-md text-pretty">
+                Track your daily symptoms in seconds, see clear trends about your body's changes, and share reliable updates directly with your doctor.
               </p>
             </div>
 
-            {/* Feature highlights */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-[#E2DBD0]/80 shadow-warm-sm">
+            {/* Feature highlights: Unnested, breathable list */}
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start gap-3.5">
                 <div className="w-8 h-8 rounded-xl bg-sage-soft text-sage-dark flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Activity className="w-4 h-4" />
                 </div>
                 <div>
-                  <h2 className="text-xs font-semibold text-charcoal">STRAW+10 Staging Algorithm</h2>
-                  <p className="text-[11px] text-charcoal-muted leading-relaxed">Clinically maps menstrual irregularity and amenorrhea intervals into precise reproductive transitions.</p>
+                  <h2 className="text-sm font-semibold text-charcoal">Menopause Stage Tracking</h2>
+                  <p className="text-xs text-charcoal-muted leading-relaxed text-pretty">Understand whether you are in perimenopause, late transition, or postmenopause based on your cycle changes.</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-[#E2DBD0]/80 shadow-warm-sm">
+              <div className="flex items-start gap-3.5">
                 <div className="w-8 h-8 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Stethoscope className="w-4 h-4" />
                 </div>
                 <div>
-                  <h2 className="text-xs font-semibold text-charcoal">Attending Clinician Co-Pilot</h2>
-                  <p className="text-[11px] text-charcoal-muted leading-relaxed">Direct telemetry sharing, smart HRT advisory contraindication checks, and secure telehealth.</p>
+                  <h2 className="text-sm font-semibold text-charcoal">Connected With Your Doctor</h2>
+                  <p className="text-xs text-charcoal-muted leading-relaxed text-pretty">Share your symptom history, explore personalized hormone therapy options, and message your care team.</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-cream/70 border border-[#E2DBD0]/80 shadow-warm-sm">
+              <div className="flex items-start gap-3.5">
                 <div className="w-8 h-8 rounded-xl bg-peach-soft text-peach flex items-center justify-center flex-shrink-0 mt-0.5">
                   <ShieldCheck className="w-4 h-4 text-[#C48068]" />
                 </div>
                 <div>
-                  <h2 className="text-xs font-semibold text-charcoal">Deterministic Data Safety</h2>
-                  <p className="text-[11px] text-charcoal-muted leading-relaxed">Private, zero-judgment health records protected by enterprise-grade cryptographic tokens.</p>
+                  <h2 className="text-sm font-semibold text-charcoal">Private & Secure</h2>
+                  <p className="text-xs text-charcoal-muted leading-relaxed text-pretty">Your personal health notes and symptoms stay strictly private between you and your attending clinician.</p>
                 </div>
               </div>
             </div>
@@ -216,21 +216,21 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
             <div className="bg-cream/95 backdrop-blur-md rounded-[26px] border border-[#E2DBD0] shadow-warm-lg p-6 sm:p-8 space-y-6">
               
               {/* Role Toggle Selector */}
-              <div className="grid grid-cols-2 gap-2 p-1.5 bg-oat-light rounded-2xl border border-[#E2DBD0]/80">
+              <div className="grid grid-cols-2 gap-1.5 p-1 bg-oat-light rounded-xl">
                 <button
                   type="button"
                   onClick={() => {
                     setRole('patient');
                     setError(null);
                   }}
-                  className={`py-2.5 text-xs font-semibold rounded-xl transition-all flex items-center justify-center space-x-2 ${
+                  className={`py-2 text-xs font-semibold rounded-lg transition-all flex items-center justify-center space-x-2 ${
                     role === 'patient'
-                      ? 'bg-cream text-charcoal shadow-warm-sm border border-[#E2DBD0]'
+                      ? 'bg-white text-charcoal shadow-xs'
                       : 'text-charcoal-muted hover:text-charcoal'
                   }`}
                 >
                   <User className="w-4 h-4 text-sage-dark" />
-                  <span>Patient Companion</span>
+                  <span>Patient</span>
                 </button>
                 <button
                   type="button"
@@ -238,53 +238,53 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                     setRole('doctor');
                     setError(null);
                   }}
-                  className={`py-2.5 text-xs font-semibold rounded-xl transition-all flex items-center justify-center space-x-2 ${
+                  className={`py-2 text-xs font-semibold rounded-lg transition-all flex items-center justify-center space-x-2 ${
                     role === 'doctor'
-                      ? 'bg-cream text-charcoal shadow-warm-sm border border-[#E2DBD0]'
+                      ? 'bg-white text-charcoal shadow-xs'
                       : 'text-charcoal-muted hover:text-charcoal'
                   }`}
                 >
                   <Stethoscope className="w-4 h-4 text-teal" />
-                  <span>Attending Clinician</span>
+                  <span>Doctor / Clinician</span>
                 </button>
               </div>
 
-              {/* Instant 1-Click Demo Profiles */}
+              {/* Instant 1-Click Demo Profiles (Clean unnested section) */}
               {!isRegister && (
-                <div className="p-4 rounded-2xl bg-ivory border border-[#E2DBD0] space-y-2.5 shadow-warm-sm">
+                <div className="pt-2 border-t border-[#E2DBD0]/70 space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-sage-dark uppercase tracking-wider flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-sage" />
-                      Instant 1-Click Verification Profiles
+                    <span className="text-xs font-semibold text-charcoal flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-sage-dark" />
+                      Quick Demo Profiles
                     </span>
-                    <span className="text-[10px] text-charcoal-light font-medium">Click to test immediately</span>
+                    <span className="text-xs text-charcoal-muted">Click to sign in instantly</span>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                     {role === 'patient' ? (
                       <>
                         <button
                           type="button"
                           disabled={isLoading}
                           onClick={() => handleQuickDemoLogin('patient1@menocare.com', 'patient')}
-                          className="p-2.5 bg-cream hover:bg-sage-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-all text-left flex items-center justify-between hover:border-sage shadow-warm-sm"
+                          className="p-3 bg-cream hover:bg-sage-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-colors text-left flex items-center justify-between hover:border-sage-dark"
                         >
                           <div>
                             <p className="font-semibold text-xs text-charcoal">Sarah Jenkins (Age 48)</p>
-                            <p className="text-[10px] text-charcoal-muted">Early Perimenopause • MRS 18</p>
+                            <p className="text-xs text-charcoal-muted">Early Perimenopause • Moderate Symptoms</p>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-sage" />
+                          <ChevronRight className="w-4 h-4 text-sage-dark" />
                         </button>
                         <button
                           type="button"
                           disabled={isLoading}
                           onClick={() => handleQuickDemoLogin('patient2@menocare.com', 'patient')}
-                          className="p-2.5 bg-cream hover:bg-sage-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-all text-left flex items-center justify-between hover:border-sage shadow-warm-sm"
+                          className="p-3 bg-cream hover:bg-sage-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-colors text-left flex items-center justify-between hover:border-sage-dark"
                         >
                           <div>
                             <p className="font-semibold text-xs text-charcoal">Maria Rodriguez (Age 52)</p>
-                            <p className="text-[10px] text-charcoal-muted">Late Transition • Vasomotor Hot Flashes</p>
+                            <p className="text-xs text-charcoal-muted">Late Transition • Hot Flashes & Sleep</p>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-sage" />
+                          <ChevronRight className="w-4 h-4 text-sage-dark" />
                         </button>
                       </>
                     ) : (
@@ -293,11 +293,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                           type="button"
                           disabled={isLoading}
                           onClick={() => handleQuickDemoLogin('dr.sharma@apollo.com', 'doctor')}
-                          className="p-2.5 bg-cream hover:bg-teal-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-all text-left flex items-center justify-between hover:border-teal shadow-warm-sm"
+                          className="p-3 bg-cream hover:bg-teal-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-colors text-left flex items-center justify-between hover:border-teal"
                         >
                           <div>
                             <p className="font-semibold text-xs text-charcoal">Dr. Ananya Sharma, MD</p>
-                            <p className="text-[10px] text-charcoal-muted">Apollo Health • Code: DR-SHARMA-91A</p>
+                            <p className="text-xs text-charcoal-muted">Apollo Health • Code: DR-SHARMA-91A</p>
                           </div>
                           <ChevronRight className="w-4 h-4 text-teal" />
                         </button>
@@ -305,11 +305,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                           type="button"
                           disabled={isLoading}
                           onClick={() => handleQuickDemoLogin('doctor@menocare.com', 'doctor')}
-                          className="p-2.5 bg-cream hover:bg-teal-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-all text-left flex items-center justify-between hover:border-teal shadow-warm-sm"
+                          className="p-3 bg-cream hover:bg-teal-soft text-charcoal rounded-xl font-medium border border-[#E2DBD0] transition-colors text-left flex items-center justify-between hover:border-teal"
                         >
                           <div>
                             <p className="font-semibold text-xs text-charcoal">Dr. Elena Vance, MD</p>
-                            <p className="text-[10px] text-charcoal-muted">Reproductive Endocrinology • 7 Patients</p>
+                            <p className="text-xs text-charcoal-muted">Women's Health • 7 Patients</p>
                           </div>
                           <ChevronRight className="w-4 h-4 text-teal" />
                         </button>
@@ -636,7 +636,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full py-3 px-5 rounded-xl bg-gradient-to-r from-sage-dark to-sage hover:to-teal text-cream text-xs font-semibold shadow-warm-md flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                      className="w-full py-3 px-5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-sm font-medium shadow-warm-sm flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                     >
                       {isLoading ? (
                         <>

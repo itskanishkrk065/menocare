@@ -40,21 +40,21 @@ export const ConsultationsHub: React.FC<ConsultationsHubProps> = ({ onOpenSchedu
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2DBD0]/70 pb-4">
           <div>
             <div className="flex items-center space-x-2">
-              <Video className="w-5 h-5 text-indigo-600" />
-              <h3 className="text-base font-bold text-slate-900">Telehealth & Consultation Hub</h3>
+              <Video className="w-5 h-5 text-teal" />
+              <h3 className="text-base font-serif font-semibold text-charcoal">Telehealth & Consultation Hub</h3>
             </div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-charcoal-muted mt-0.5">
               Manage clinical appointments, review patient consultation requests, and launch virtual sessions
             </p>
           </div>
 
           <button
             onClick={() => onOpenScheduleModal()}
-            className="flex items-center space-x-1.5 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all"
+            className="flex items-center space-x-1.5 px-4 py-2 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium shadow-warm-sm transition-colors"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Schedule New Consultation</span>
@@ -72,10 +72,10 @@ export const ConsultationsHub: React.FC<ConsultationsHubProps> = ({ onOpenSchedu
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-xl font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl font-medium transition-colors ${
                 filter === tab.id
-                  ? 'bg-slate-900 text-white shadow-2xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-sage-dark text-white font-semibold'
+                  : 'bg-ivory text-charcoal-muted hover:text-charcoal border border-[#E2DBD0]'
               }`}
             >
               {tab.label}
@@ -87,74 +87,71 @@ export const ConsultationsHub: React.FC<ConsultationsHubProps> = ({ onOpenSchedu
       {/* Consultations List */}
       <div className="space-y-3">
         {isLoading ? (
-          <div className="p-12 text-center text-xs text-slate-400">Loading consultations...</div>
+          <div className="p-12 text-center text-xs text-charcoal-muted">Loading consultations...</div>
         ) : filtered.length === 0 ? (
-          <div className="bg-white rounded-2xl p-12 text-center text-xs text-slate-400 border border-slate-200 shadow-sm">
+          <div className="bg-cream rounded-2xl p-12 text-center text-xs text-charcoal-muted border border-[#E2DBD0] shadow-warm-sm">
             No consultations found in this category.
           </div>
         ) : (
           filtered.map((appt) => (
             <div
               key={appt.id}
-              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-all"
+              className="bg-cream rounded-2xl p-5 border border-[#E2DBD0] shadow-warm-sm flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all"
             >
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <div className="flex items-center space-x-2">
-                  <h4 className="text-sm font-bold text-slate-900">{appt.patient_name || 'Patient'}</h4>
+                  <span className="font-serif font-semibold text-sm text-charcoal">
+                    {appt.patient_name || 'Patient'}
+                  </span>
                   <span
-                    className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full ${
+                    className={`text-xs px-2.5 py-0.5 rounded-full font-medium border ${
                       appt.status === 'confirmed'
-                        ? 'bg-emerald-100 text-emerald-800'
-                        : appt.status === 'pending'
-                        ? 'bg-amber-100 text-amber-800'
-                        : 'bg-slate-100 text-slate-600'
+                        ? 'bg-sage-soft text-sage-dark border-sage/30'
+                        : appt.status === 'completed'
+                        ? 'bg-oat text-charcoal-muted border-[#E2DBD0]'
+                        : 'bg-peach-soft text-peach border-peach/30'
                     }`}
                   >
                     {appt.status}
                   </span>
-                  <span className="text-xs text-slate-400 font-mono flex items-center space-x-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{appt.requested_date || 'Today'}</span>
-                  </span>
                 </div>
-
-                <p className="text-xs text-slate-700 font-medium leading-relaxed max-w-2xl">
-                  {appt.reason}
+                <p className="text-xs text-charcoal-muted">
+                  Requested: {appt.date_time || appt.requested_date || 'Date Pending'}
                 </p>
+                {appt.reason && (
+                  <p className="text-xs text-charcoal mt-1">
+                    <b>Reason:</b> {appt.reason}
+                  </p>
+                )}
               </div>
 
-              {/* Action buttons */}
-              <div className="flex items-center space-x-2 shrink-0">
+              <div className="flex items-center space-x-2">
                 {appt.status === 'pending' && (
                   <button
                     onClick={() => handleUpdateStatus(appt.id, 'confirmed')}
-                    className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-2xs transition-all flex items-center space-x-1"
+                    className="px-3.5 py-1.5 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors"
                   >
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Confirm</span>
+                    Confirm Session
                   </button>
                 )}
-
+                {appt.status === 'confirmed' && (
+                  <button
+                    onClick={() => handleUpdateStatus(appt.id, 'completed')}
+                    className="px-3.5 py-1.5 bg-ivory hover:bg-oat text-charcoal border border-[#E2DBD0] rounded-xl text-xs font-medium transition-colors"
+                  >
+                    Mark Completed
+                  </button>
+                )}
                 {appt.meeting_link && (
                   <a
                     href={appt.meeting_link}
                     target="_blank"
                     rel="noreferrer"
-                    className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-2xs transition-all flex items-center space-x-1"
+                    className="px-3.5 py-1.5 bg-teal-soft text-teal-dark border border-teal/20 hover:bg-teal/20 rounded-xl text-xs font-medium transition-colors flex items-center gap-1"
                   >
                     <Video className="w-3.5 h-3.5" />
-                    <span>Join Video Room</span>
-                    <ExternalLink className="w-3 h-3 ml-0.5 opacity-70" />
+                    <span>Join Room</span>
                   </a>
-                )}
-
-                {appt.status !== 'completed' && (
-                  <button
-                    onClick={() => handleUpdateStatus(appt.id, 'completed')}
-                    className="px-3 py-1.5 hover:bg-slate-100 text-slate-600 text-xs font-medium rounded-xl border border-slate-200"
-                  >
-                    Mark Done
-                  </button>
                 )}
               </div>
             </div>

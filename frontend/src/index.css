@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,14 +13,14 @@
     --popover: #FAF8F3;
     --popover-foreground: #2E2924;
     --muted: #F1ECE2;
-    --muted-foreground: #665F55;
+    --muted-foreground: #544E45;
     --border: #E2DBD0;
     --input: #FAF8F3;
-    --ring: #8E9F86;
+    --ring: #5B6F54;
 
     /* Bento & custom chart variables */
     --color-foreground: #2E2924;
-    --color-muted-foreground: #665F55;
+    --color-muted-foreground: #544E45;
     --color-muted: #F1ECE2;
     --ab-radar: #5B6F54;
     --ab-rev-a: #5B6F54;
@@ -33,8 +32,19 @@ body {
   margin: 0;
   background-color: #F5F1E9;
   color: #2E2924;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Figtree', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p, .text-pretty {
+  text-wrap: pretty;
+}
+
+/* Accessible high-contrast placeholder styling */
+::placeholder {
+  color: #595248 !important;
+  opacity: 1 !important;
 }
 
 /* Material Symbols alignment helper */
