@@ -13,6 +13,17 @@ export default {
       },
       colors: {
         // Stitch Warm Health Design System (Refined for Impeccable contrast >= 4.5:1)
+        espresso: {
+          DEFAULT: '#2E2925',
+          surface: '#39332E',
+          'surface-light': '#453E38',
+          border: '#49413B',
+          text: '#F5F1EA',
+          muted: '#C5BDB4',
+          'muted-dark': '#8E857C',
+        },
+        'sage-accent': '#C4D4BE',
+        'sage-forest': '#526B4D',
         ivory: '#F5F1E9',
         cream: '#FAF8F3',
         oat: '#E9E2D5',
