@@ -38,12 +38,12 @@ export default {
           light: '#595248',
         },
         peach: {
-          DEFAULT: '#C97F63',
+          DEFAULT: '#8C371D',
           soft: '#FDF3EE',
           container: '#F9ECE6',
         },
         lavender: {
-          DEFAULT: '#886C9E',
+          DEFAULT: '#654B7C',
           soft: '#F4F0F8',
         },
         sand: {

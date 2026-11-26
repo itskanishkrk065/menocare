@@ -25,11 +25,19 @@ import { api, setAuthToken } from '../api/client';
 
 interface LoginPageProps {
   onLoginSuccess: (user: any) => void;
+  onBackToHome?: () => void;
+  initialMode?: 'login' | 'register';
+  initialRole?: 'patient' | 'doctor';
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
-  const [isRegister, setIsRegister] = useState(false);
-  const [role, setRole] = useState<'patient' | 'doctor'>('patient');
+export const LoginPage: React.FC<LoginPageProps> = ({
+  onLoginSuccess,
+  onBackToHome,
+  initialMode = 'login',
+  initialRole = 'patient',
+}) => {
+  const [isRegister, setIsRegister] = useState(initialMode === 'register');
+  const [role, setRole] = useState<'patient' | 'doctor'>(initialRole);
 
   // Step indicator for patient onboarding wizard (1 to 4)
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -150,6 +158,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
         </div>
 
         <div className="flex items-center space-x-3 text-xs text-charcoal-muted">
+          {onBackToHome && (
+            <button
+              type="button"
+              onClick={onBackToHome}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E2DBD0] text-xs font-semibold text-charcoal hover:bg-oat-light transition-all shadow-warm-xs"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Overview</span>
+            </button>
+          )}
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream border border-[#E2DBD0] text-xs font-medium">
             <ShieldCheck className="w-3.5 h-3.5 text-sage-dark" />
             Private & Doctor-Reviewed
