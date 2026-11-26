@@ -471,6 +471,35 @@ async def get_patient_timeline_feed(
             "plan": n.plan,
         })
 
+    # 5. Fetch Lab Reports & Extracted Analytes
+    labs_res = await db.execute(
+        select(LabReport)
+        .where(LabReport.patient_id == patient_id)
+        .order_by(LabReport.created_at.desc())
+        .options(selectinload(LabReport.analytes))
+    )
+    labs = labs_res.scalars().all()
+    for lr in labs:
+        analytes_summary = [
+            {
+                "name": a.analyte_name,
+                "value": str(a.numeric_value) if a.numeric_value is not None else "",
+                "unit": a.unit or "",
+                "flag": a.flag or "normal",
+            }
+            for a in (lr.analytes or [])
+        ]
+        events.append({
+            "id": f"lab-{lr.id}",
+            "type": "lab",
+            "date": lr.report_date.strftime("%Y-%m-%d") if lr.report_date else (lr.created_at.strftime("%Y-%m-%d") if lr.created_at else ""),
+            "timestamp": lr.created_at.isoformat() if lr.created_at else "",
+            "title": f"Laboratory Analyte Panel Verified: {lr.file_name}",
+            "file_name": lr.file_name,
+            "status": lr.status,
+            "analytes": analytes_summary,
+        })
+
     # Sort unified feed descending by date/timestamp
     events.sort(key=lambda x: x.get("timestamp", x.get("date", "")), reverse=True)
 

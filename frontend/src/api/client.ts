@@ -87,7 +87,8 @@ export const api = {
   // Local Labs
   uploadLabReport: (formData: FormData) =>
     apiRequest<any>('/labs/upload', { method: 'POST', body: formData }),
-  listLabReports: () => apiRequest<any[]>('/labs/reports'),
+  listLabReports: (patientId?: string) =>
+    apiRequest<any[]>(`/labs/reports${patientId ? `?patient_id=${patientId}` : ''}`),
   verifyLabReport: (reportId: string, analytes: any[]) =>
     apiRequest<any>(`/labs/reports/${reportId}/verify`, { method: 'PUT', body: JSON.stringify({ analytes }) }),
 

@@ -1255,7 +1255,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <p className="text-xs text-espresso-muted leading-relaxed max-w-sm">
               MenoCare is a clinical health intelligence platform designed to empower women and healthcare providers with structured longitudinal symptom clarity.
             </p>
-            <p className="text-xs text-espresso-muted/60">
+            <p className="text-xs text-espresso-muted">
               Disclaimer: MenoCare is an informational tool and does not provide formal medical diagnoses. Always consult a qualified healthcare professional.
             </p>
           </div>
@@ -1305,7 +1305,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </button>
               </div>
             )}
-            <p className="text-xs text-espresso-muted/60 pt-2">
+            <p className="text-xs text-espresso-muted pt-2">
               © {new Date().getFullYear()} MenoCare Health. All rights reserved.
             </p>
           </div>

@@ -3,7 +3,7 @@
 import os
 import shutil
 from datetime import datetime, timezone
-from typing import List
+from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -96,13 +96,42 @@ async def upload_lab_report(
 
 @router.get("/reports", response_model=List[LabReportResponse])
 async def list_patient_lab_reports(
-    patient: PatientProfile = Depends(get_current_patient),
+    patient_id: Optional[str] = None,
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    """Lists all lab reports and their extracted analytes for the patient."""
+    """Lists all lab reports and their extracted analytes for a patient or clinician."""
+    target_patient_id: Optional[str] = None
+
+    if current_user.role == "patient":
+        pat_res = await db.execute(select(PatientProfile).where(PatientProfile.user_id == current_user.id))
+        pat = pat_res.scalar_one_or_none()
+        if not pat:
+            raise HTTPException(status_code=404, detail="Patient profile not found")
+        target_patient_id = pat.id
+    elif current_user.role == "doctor":
+        if not patient_id:
+            raise HTTPException(status_code=400, detail="patient_id is required for clinician access")
+        doc_res = await db.execute(select(DoctorProfile).where(DoctorProfile.user_id == current_user.id))
+        doc = doc_res.scalar_one_or_none()
+        if not doc:
+            raise HTTPException(status_code=404, detail="Doctor profile not found")
+        link_res = await db.execute(
+            select(PatientDoctorAccess).where(
+                PatientDoctorAccess.doctor_id == doc.id,
+                PatientDoctorAccess.patient_id == patient_id,
+                PatientDoctorAccess.status == "active",
+            )
+        )
+        if not link_res.scalar_one_or_none():
+            raise HTTPException(status_code=403, detail="Not authorized to access patient records.")
+        target_patient_id = patient_id
+    else:
+        raise HTTPException(status_code=403, detail="Unauthorized")
+
     res = await db.execute(
         select(LabReport)
-        .where(LabReport.patient_id == patient.id)
+        .where(LabReport.patient_id == target_patient_id)
         .order_by(LabReport.created_at.desc())
         .options(selectinload(LabReport.analytes))
     )

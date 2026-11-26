@@ -146,6 +146,8 @@ export const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ user }) => {
         {selectedPatientId ? (
           <PatientProfileView
             patientId={selectedPatientId}
+            patientsList={patients}
+            onSelectPatient={(pid) => setSelectedPatientId(pid)}
             onBack={() => setSelectedPatientId(null)}
             onScheduleMeeting={(pid) => openScheduleModal(pid)}
           />
