@@ -27,12 +27,12 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
   const [compareSymptom, setCompareSymptom] = useState<string | null>(null);
 
   const symptomsList = [
-    { code: 'VM_HF', label: 'Hot Flashes & Sweating' },
-    { code: 'VM_NS', label: 'Night Sweats' },
-    { code: 'SL_SQ', label: 'Sleep Problems' },
-    { code: 'PS_MD', label: 'Changes in Mood' },
-    { code: 'PS_AX', label: 'Anxiety & Tension' },
-    { code: 'PH_FT', label: 'Fatigue & Low Energy' },
+    { code: 'VM_HF', label: 'Hot Flashes & Sweating', domain: 'Somato-vegetative' },
+    { code: 'VM_NS', label: 'Night Sweats', domain: 'Somato-vegetative' },
+    { code: 'SL_SQ', label: 'Sleep Problems', domain: 'Somato-vegetative' },
+    { code: 'PS_MD', label: 'Changes in Mood', domain: 'Psychological' },
+    { code: 'PS_AX', label: 'Anxiety & Tension', domain: 'Psychological' },
+    { code: 'PH_FT', label: 'Fatigue & Low Energy', domain: 'Physical Asthenia' },
   ];
 
   const primarySeries = chartsData?.time_series_data?.[selectedSymptom] || [];
@@ -112,9 +112,10 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
 
       {/* Primary Symptom Selector */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap items-center gap-1.5">
           {symptomsList.map((s) => {
             const count = chartsData.time_series_data[s.code]?.length || 0;
+            const isSelected = selectedSymptom === s.code;
             return (
               <button
                 key={s.code}
@@ -123,15 +124,15 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
                   if (compareSymptom === s.code) setCompareSymptom(null);
                 }}
                 className={`px-3 py-1.5 text-xs font-medium rounded-xl border transition-colors flex items-center space-x-1.5 ${
-                  selectedSymptom === s.code
-                    ? 'bg-sage-dark text-white border-sage-dark font-semibold'
-                    : 'bg-ivory text-charcoal-muted border-[#E2DBD0] hover:text-charcoal'
+                  isSelected
+                    ? 'bg-sage-dark text-white border-sage-dark font-semibold shadow-warm-sm'
+                    : 'bg-ivory text-charcoal-muted border-[#E2DBD0] hover:text-charcoal hover:border-sage/40'
                 }`}
               >
                 <span>{s.label}</span>
                 <span
-                  className={`text-xs px-1.5 py-0.2 rounded-full ${
-                    selectedSymptom === s.code
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                    isSelected
                       ? 'bg-white/20 text-white'
                       : 'bg-oat text-charcoal-muted'
                   }`}

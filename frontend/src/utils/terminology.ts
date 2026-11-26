@@ -453,3 +453,99 @@ export function translateInsight(text: string, role: UserRole = 'patient'): stri
   }
   return translated;
 }
+
+/**
+ * Returns a dual presentation object:
+ * - primary: Plain, natural English for the patient
+ * - scientificBadge: Legitimate clinical / medical term highlighting clinical novelty
+ * - explanation: Brief medical insight
+ */
+export function getDualLabel(key: string): {
+  primary: string;
+  scientificBadge: string;
+  explanation: string;
+} {
+  const normalized = key.toLowerCase().trim().replace(/[\s-]+/g, '_');
+  const symptom = SYMPTOM_TERMINOLOGY[normalized];
+  if (symptom) {
+    return {
+      primary: symptom.patient,
+      scientificBadge: symptom.doctor,
+      explanation: symptom.patientDescription || symptom.doctorDescription || '',
+    };
+  }
+
+  const domain = DOMAIN_TERMINOLOGY[normalized];
+  if (domain) {
+    return {
+      primary: domain.patient,
+      scientificBadge: domain.doctor,
+      explanation: domain.patientDescription || domain.doctorDescription || '',
+    };
+  }
+
+  const stage = STAGE_TERMINOLOGY[normalized];
+  if (stage) {
+    return {
+      primary: stage.patient,
+      scientificBadge: stage.doctor,
+      explanation: 'Evaluated according to the STRAW+10 clinical staging criteria for reproductive aging.',
+    };
+  }
+
+  return {
+    primary: key.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+    scientificBadge: 'Clinical Marker',
+    explanation: 'Tracked clinical marker in menopause health.',
+  };
+}
+
+export interface ClinicalStandard {
+  code: string;
+  title: string;
+  scientificName: string;
+  citation: string;
+  badge: string;
+  summary: string;
+  whyItMatters: string;
+}
+
+export const CLINICAL_STANDARDS: ClinicalStandard[] = [
+  {
+    code: 'mrs',
+    title: 'Menopause Rating Scale (MRS)',
+    scientificName: 'Heinemann et al. Validated Quality-of-Life Instrument',
+    citation: 'Heinemann LA, et al. Health Qual Life Outcomes. 2004;2:67.',
+    badge: '11 Validated Items',
+    summary: 'A standardized health scale assessing 11 symptoms across Somato-vegetative, Psychological, and Urogenital domains.',
+    whyItMatters: 'Allows objective tracking of symptom burden over time and helps your physician measure treatment effectiveness.',
+  },
+  {
+    code: 'straw',
+    title: 'STRAW+10 Staging System',
+    scientificName: 'Stages of Reproductive Aging Workshop + 10',
+    citation: 'Harlow SD, et al. Climacteric. 2012;15(2):105-114.',
+    badge: 'Gold Standard Staging',
+    summary: 'The worldwide clinical gold standard for categorizing female reproductive aging based on menstrual cycle irregularity and endocrine markers.',
+    whyItMatters: 'Distinguishes between early perimenopause (cycles ±7 days), late perimenopause (60+ day amenorrhea), and postmenopause.',
+  },
+  {
+    code: 'nams_bms',
+    title: 'Hormone Therapy Clinical Guidelines',
+    scientificName: 'NAMS / BMS Evidence-Based Practice Protocols',
+    citation: 'The Menopause Society (NAMS) Position Statement, 2022.',
+    badge: 'Decision Support',
+    summary: 'Evidence-based criteria evaluating hormone eligibility, transdermal vs. oral routes, uterine status (progestogen protection), and cardiovascular safety.',
+    whyItMatters: 'Ensures clinical safety checks before prescribing and provides non-hormonal options for patients with contraindications.',
+  },
+  {
+    code: 'biomarkers',
+    title: 'Endocrine Biomarker Panel',
+    scientificName: 'FSH, Estradiol, TSH & Ferritin Multiplex',
+    citation: 'Endocrine Society Clinical Practice Guidelines, 2023.',
+    badge: 'Differential Analysis',
+    summary: 'Integrates Follicle-Stimulating Hormone, Estradiol, Thyroid (TSH), and Iron (Ferritin) to differentiate menopause from thyroid conditions and anemia.',
+    whyItMatters: 'Prevents misdiagnosis of fatigue and sleep disruption by ruling out common clinical mimics.',
+  },
+];
+

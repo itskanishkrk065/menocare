@@ -100,6 +100,17 @@ export const BiomarkerGaugesCard: React.FC<BiomarkerGaugesCardProps> = ({ labDat
           </div>
         ))}
       </div>
+
+      {/* Differential Science Note */}
+      <div className="p-4 rounded-xl bg-ivory border border-[#E2DBD0] text-xs space-y-1.5">
+        <div className="flex items-center gap-1.5 font-semibold text-sage-dark">
+          <Info className="w-4 h-4 text-teal" />
+          <span>Why Doctors Evaluate These Biomarkers Together (Differential Analysis)</span>
+        </div>
+        <p className="text-charcoal-muted leading-relaxed text-[11px] text-pretty">
+          Estrogen (Estradiol) and FSH help verify your ovarian transition stage under STRAW+10 criteria, while TSH (thyroid function) and Ferritin (iron reserves) rule out clinical mimics that cause fatigue, heart racing, and mood shifts.
+        </p>
+      </div>
     </div>
   );
 };

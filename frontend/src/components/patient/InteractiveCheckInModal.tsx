@@ -28,50 +28,62 @@ const SYMPTOMS_CONFIG = [
   {
     code: 'VM_HF',
     name: 'Hot Flashes',
+    medicalTerm: 'Vasomotor Symptoms (VMS)',
     category: 'Temperature',
     icon: Flame,
     color: 'text-amber-700 bg-peach-soft border-peach/30',
     description: 'Sudden waves of heat across your face, neck, or chest, often followed by chills.',
+    whyWeMeasure: 'Tracks hypothalamic thermoregulatory instability caused by fluctuating estrogen.',
   },
   {
     code: 'VM_NS',
     name: 'Night Sweats',
+    medicalTerm: 'Nocturnal Diaphoresis',
     category: 'Sleep & Night',
     icon: Moon,
     color: 'text-teal-dark bg-teal-soft border-teal/20',
     description: 'Waking up hot and sweaty, or needing to change clothing or bedding during the night.',
+    whyWeMeasure: 'Differentiates daytime flushes from severe nocturnal vasomotor surges that disrupt REM sleep.',
   },
   {
     code: 'SL_SQ',
     name: 'Sleep Quality',
+    medicalTerm: 'Sleep Architecture Index',
     category: 'Sleep & Rest',
     icon: Moon,
     color: 'text-charcoal bg-lavender-soft border-lavender/30',
     description: 'Trouble falling asleep, waking up frequently during the night, or waking up exhausted.',
+    whyWeMeasure: 'Evaluates sleep continuity, sleep-onset latency, and unrefreshing morning sleep.',
   },
   {
     code: 'MD_MS',
     name: 'Mood & Emotional Changes',
+    medicalTerm: 'Affective Reactivity',
     category: 'Emotional Health',
     icon: CloudLightning,
     color: 'text-charcoal bg-oat-light border-[#E2DBD0]',
     description: 'Feeling unusually irritable, down, tearful, impatient, or emotionally sensitive.',
+    whyWeMeasure: 'Monitors neuroendocrine mood shifts associated with rapid progesterone and estrogen fluctuations.',
   },
   {
     code: 'MD_AN',
     name: 'Anxiety & Tension',
+    medicalTerm: 'Psychomotor Agitation',
     category: 'Emotional Health',
     icon: Heart,
     color: 'text-peach bg-peach-soft border-peach/30',
     description: 'Feeling restless, nervous, tense, heart fluttering, or having sudden waves of worry.',
+    whyWeMeasure: 'Tracks sympathetic nervous activation and sudden somatic panic sensations.',
   },
   {
     code: 'SO_FT',
     name: 'Fatigue & Energy Deficit',
+    medicalTerm: 'Physical & Mental Asthenia',
     category: 'Physical Energy',
     icon: Sparkles,
     color: 'text-sage-dark bg-sage-soft border-sage/30',
     description: 'Feeling physically drained, heavy, sluggish, or experiencing brain fog and low stamina.',
+    whyWeMeasure: 'Helps differentiate menopausal hormonal fatigue from thyroid dysfunction or anemia.',
   },
 ];
 
@@ -119,6 +131,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
   const [hasClots, setHasClots] = useState<boolean>(false);
   const [pelvicPain, setPelvicPain] = useState<number>(0);
   const [notes, setNotes] = useState<string>('');
+  const [expandedWhy, setExpandedWhy] = useState<string | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -239,13 +252,27 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
                           <Icon className="w-4 h-4" />
                         </div>
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex flex-wrap items-center gap-1.5">
                             <span className="font-semibold text-xs text-charcoal">{symp.name}</span>
-                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-oat-light text-charcoal-muted font-medium">
-                              {symp.category}
+                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-teal-soft text-teal-dark font-medium border border-teal/20">
+                              {symp.medicalTerm}
                             </span>
+                            <button
+                              type="button"
+                              onClick={() => setExpandedWhy(expandedWhy === symp.code ? null : symp.code)}
+                              className="text-charcoal-light hover:text-sage-dark p-0.5 transition-colors"
+                              title="Why we measure this"
+                            >
+                              <Info className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                           <p className="text-[11px] text-charcoal-muted mt-0.5">{symp.description}</p>
+                          {expandedWhy === symp.code && (
+                            <div className="mt-1.5 p-2 rounded-lg bg-ivory border border-[#E2DBD0] text-[10px] text-charcoal-muted leading-relaxed">
+                              <span className="font-semibold text-sage-dark">Clinical Value: </span>
+                              {symp.whyWeMeasure}
+                            </div>
+                          )}
                         </div>
                       </div>
 

@@ -25,6 +25,7 @@ import {
   Zap,
   RotateCw,
   TrendingUp,
+  BookOpen,
 } from 'lucide-react';
 import { api } from '../api/client';
 import { InteractiveCheckInModal } from '../components/patient/InteractiveCheckInModal';
@@ -44,6 +45,8 @@ import { BiomarkerGaugesCard } from '../components/patient/BiomarkerGaugesCard';
 import { StatCard, StatCardGroup } from '@/components/ui/stat-card';
 import { AnalyticsBento } from '@/components/ui/analytics-bento';
 import { getPatientBentoData } from '@/lib/bento-adapters';
+import { ClinicalScienceDrawer } from '../components/common/ClinicalScienceDrawer';
+import { ReportPreviewModal } from '../components/patient/ReportPreviewModal';
 import {
   translateStage,
   translateConcept,
@@ -73,6 +76,8 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
   const [isTelehealthOpen, setIsTelehealthOpen] = useState(false);
   const [isMrsOpen, setIsMrsOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isScienceOpen, setIsScienceOpen] = useState(false);
+  const [isReportPreviewOpen, setIsReportPreviewOpen] = useState(false);
 
   // Quick Flash feedback toast
   const [quickFlashCount, setQuickFlashCount] = useState<number>(0);
@@ -181,6 +186,13 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
 
             <div className="flex items-center gap-2 shrink-0">
               <button
+                onClick={() => setIsScienceOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white text-charcoal hover:bg-oat-light border border-[#E2DBD0] transition-all shadow-warm-sm"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-sage-dark" />
+                <span className="hidden md:inline">Science & Methodology</span>
+              </button>
+              <button
                 onClick={() => setIsChatOpen(true)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-teal-soft text-teal-dark border border-teal/20 hover:bg-teal/15 transition-all shadow-warm-sm"
               >
@@ -211,8 +223,11 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
           <div className="relative z-10 bg-cream/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#E2DBD0] shadow-warm-md flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-medium text-sage-dark bg-sage-soft px-3 py-1 rounded-full border border-sage/20">
-                  {translateStage(profile?.straw_stage || 'early_perimenopause', 'patient')}
+                <span className="text-xs font-medium text-sage-dark bg-sage-soft px-3 py-1 rounded-full border border-sage/20 flex items-center gap-1.5">
+                  <span>{translateStage(profile?.straw_stage || 'early_perimenopause', 'patient')}</span>
+                  <span className="text-[10px] font-bold text-sage-dark/80 bg-white/70 px-1.5 py-0.2 rounded-full">
+                    STRAW+10 Criteria
+                  </span>
                 </span>
                 <span className="text-xs font-medium text-charcoal bg-peach-soft px-3 py-1 rounded-full border border-peach/30 flex items-center gap-1.5">
                   <span>🔥</span>
@@ -270,11 +285,12 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
               </button>
 
               <button
-                onClick={handleDownloadPdf}
-                className="p-2.5 rounded-xl bg-cream hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] text-xs transition-colors shadow-warm-sm"
-                title="Download Summary Report (PDF)"
+                onClick={() => setIsReportPreviewOpen(true)}
+                className="px-3.5 py-2.5 rounded-xl bg-cream hover:bg-oat-light text-charcoal border border-[#E2DBD0] text-xs font-medium transition-colors shadow-warm-sm flex items-center gap-1.5"
+                title="Preview & Download Doctor Consultation Dossier"
               >
-                <Download className="w-4 h-4" />
+                <FileText className="w-4 h-4 text-teal" />
+                <span>Your Health Report</span>
               </button>
             </div>
           </div>
@@ -488,11 +504,11 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                   <p className="text-xs text-charcoal-muted">See how your symptoms and daily logs have changed over the past 30 days.</p>
                 </div>
                 <button
-                  onClick={handleDownloadPdf}
-                  className="px-3.5 py-1.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium flex items-center gap-1.5 shadow-warm-sm"
+                  onClick={() => setIsReportPreviewOpen(true)}
+                  className="px-3.5 py-1.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium flex items-center gap-1.5 shadow-warm-sm transition-colors"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Your Health Report (PDF)</span>
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Preview Doctor Dossier</span>
                 </button>
               </div>
 
@@ -597,6 +613,20 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
       <CareTeamChatModal
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
+      />
+
+      <ClinicalScienceDrawer
+        isOpen={isScienceOpen}
+        onClose={() => setIsScienceOpen(false)}
+      />
+
+      <ReportPreviewModal
+        isOpen={isReportPreviewOpen}
+        onClose={() => setIsReportPreviewOpen(false)}
+        profile={profile}
+        history={history}
+        latestMrs={latestMrs}
+        linkedDoctorName={profile?.doctor_name || profile?.doctor_practice_code || null}
       />
 
     </div>
