@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AlertCircle, Calendar, CheckCircle, ArrowRight, Info } from 'lucide-react';
 import { api } from '../../api/client';
+import { translateInsight } from '../../utils/terminology';
 
 interface AnomalyBannerProps {
   alerts: any[];
@@ -55,13 +56,13 @@ export const AnomalyBanner: React.FC<AnomalyBannerProps> = ({ alerts, onAppointm
                 </div>
                 <div>
                   <div className="flex items-center space-x-2">
-                    <span className="font-semibold text-sm text-charcoal">{alert.condition_name}</span>
+                    <span className="font-semibold text-sm text-charcoal">{translateInsight(alert.condition_name, 'patient')}</span>
                     <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-peach-soft text-peach border border-peach/30">
                       Helpful to discuss with doctor
                     </span>
                   </div>
                   <p className="text-xs text-charcoal-muted mt-1 leading-relaxed text-pretty">
-                    {alert.recommended_action}
+                    {translateInsight(alert.recommended_action, 'patient')}
                   </p>
                 </div>
               </div>

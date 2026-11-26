@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'recharts';
 import { TrendingUp, TrendingDown, Minus, Activity, Layers } from 'lucide-react';
+import { translateSymptom } from '../../utils/terminology';
 
 interface SymptomTrendsChartProps {
   chartsData: any;
@@ -26,10 +27,10 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
   const [compareSymptom, setCompareSymptom] = useState<string | null>(null);
 
   const symptomsList = [
-    { code: 'VM_HF', label: 'Hot Flashes' },
+    { code: 'VM_HF', label: 'Hot Flashes & Sweating' },
     { code: 'VM_NS', label: 'Night Sweats' },
-    { code: 'SL_SQ', label: 'Sleep Disruption' },
-    { code: 'PS_MD', label: 'Mood Changes' },
+    { code: 'SL_SQ', label: 'Sleep Problems' },
+    { code: 'PS_MD', label: 'Changes in Mood' },
     { code: 'PS_AX', label: 'Anxiety & Tension' },
     { code: 'PH_FT', label: 'Fatigue & Low Energy' },
   ];
@@ -186,21 +187,21 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
         </div>
 
         <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
-          <span className="text-xs text-charcoal-muted font-medium">Frequency</span>
+          <span className="text-xs text-charcoal-muted font-medium">How often it happened</span>
           <p className="text-sm font-semibold text-charcoal mt-1">
             {summary.presence_rate_pct ?? 0}% <span className="text-xs text-charcoal-muted font-normal">of logged days</span>
           </p>
         </div>
 
         <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
-          <span className="text-xs text-charcoal-muted font-medium">Average Intensity</span>
+          <span className="text-xs text-charcoal-muted font-medium">Average strength</span>
           <p className="text-sm font-semibold text-charcoal mt-1">
             {summary.mean_intensity ?? 0} <span className="text-xs text-charcoal-muted font-normal">/ 4.0</span>
           </p>
         </div>
 
         <div className="bg-white p-3.5 rounded-xl border border-[#E2DBD0]">
-          <span className="text-xs text-charcoal-muted font-medium">7-Day Trend</span>
+          <span className="text-xs text-charcoal-muted font-medium">Recent 7-day pattern</span>
           <p className="text-sm font-semibold text-sage-dark mt-1">
             {summary.current_sma_30 ?? 0} <span className="text-xs text-charcoal-muted font-normal">/ 4.0</span>
           </p>
@@ -211,7 +212,7 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
       <div className="h-72 w-full pt-2">
         {mergedData.length === 0 ? (
           <div className="h-full flex items-center justify-center text-xs text-charcoal-muted">
-            No observation days recorded for this symptom yet.
+            No check-ins recorded for this symptom yet.
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">

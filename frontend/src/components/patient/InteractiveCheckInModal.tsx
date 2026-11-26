@@ -178,10 +178,10 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           <div>
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-sage-dark" />
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Daily Symptom Check-In</h2>
+              <h2 className="font-serif text-xl font-semibold text-charcoal">Your Daily Check-in</h2>
             </div>
             <p className="text-xs text-charcoal-muted mt-0.5">
-              Takes about 1 minute. Helps track your body's patterns and keeps your doctor informed.
+              Takes about 1 minute. Helps track how your body feels and keeps your doctor informed.
             </p>
           </div>
           <button
@@ -219,7 +219,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           <div className="space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-wider text-sage-dark flex items-center gap-1.5">
               <Activity className="w-3.5 h-3.5 text-sage" />
-              Rate Today's Symptoms (0 to 4 Scale)
+              How strongly you felt these today
             </h3>
 
             <div className="space-y-3">
@@ -359,9 +359,9 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           {/* Pelvic Pain Intensity (0 to 4) */}
           <div className="p-4 bg-white rounded-2xl border border-[#E2DBD0] shadow-warm-sm space-y-2">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-charcoal">Pelvic / Menstrual Cramping Severity</span>
+              <span className="font-semibold text-charcoal">Pelvic or period cramping</span>
               <span className="font-bold text-sage-dark">
-                {['None', 'Mild', 'Moderate', 'Severe', 'Incapacitating'][pelvicPain]} (Score {pelvicPain})
+                {['None', 'Mild', 'Noticeable', 'Strong', 'Very strong'][pelvicPain]}
               </span>
             </div>
             <input
@@ -377,7 +377,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           {/* Qualitative Journal Notes */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold text-charcoal-muted">
-              Qualitative Clinical Journal (Optional notes for Dr. Vance)
+              Personal notes (Optional notes for your doctor)
             </label>
             <textarea
               rows={3}
@@ -403,11 +403,11 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
               className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-sage-dark to-sage hover:to-teal text-cream text-xs font-semibold shadow-warm-md flex items-center gap-2 transition-all disabled:opacity-50"
             >
               {isSubmitting ? (
-                <span>Submitting Telemetry...</span>
+                <span>Saving your check-in...</span>
               ) : (
                 <>
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>Submit Today's Assessment</span>
+                  <span>Save Today's Check-in</span>
                 </>
               )}
             </button>

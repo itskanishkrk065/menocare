@@ -44,6 +44,12 @@ import { BiomarkerGaugesCard } from '../components/patient/BiomarkerGaugesCard';
 import { StatCard, StatCardGroup } from '@/components/ui/stat-card';
 import { AnalyticsBento } from '@/components/ui/analytics-bento';
 import { getPatientBentoData } from '@/lib/bento-adapters';
+import {
+  translateStage,
+  translateConcept,
+  translateSymptom,
+  formatSeverity,
+} from '../utils/terminology';
 
 interface PatientDashboardProps {
   user: any;
@@ -147,11 +153,11 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
           <div className="flex items-center justify-between overflow-x-auto py-2.5 gap-2 scrollbar-none">
             <div className="flex items-center gap-1.5 shrink-0">
               {[
-                { id: 'overview', label: 'Overview', icon: Activity },
+                { id: 'overview', label: "Your Health Overview", icon: Activity },
                 { id: 'calendar', label: 'Cycle & Period Calendar', icon: CalendarIcon },
-                { id: 'medications', label: 'Daily Medications', icon: Pill },
-                { id: 'analytics', label: 'Symptom Trends', icon: TrendingUp },
-                { id: 'labs', label: 'Lab Tests & Bloodwork', icon: FlaskConical },
+                { id: 'medications', label: 'Your Daily Medications', icon: Pill },
+                { id: 'analytics', label: 'Changes Over Time', icon: TrendingUp },
+                { id: 'labs', label: 'Your Blood Tests & Labs', icon: FlaskConical },
                 { id: 'telehealth', label: 'Doctor Visits & Messages', icon: Video },
               ].map((tab) => {
                 const Icon = tab.icon;
@@ -206,7 +212,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs font-medium text-sage-dark bg-sage-soft px-3 py-1 rounded-full border border-sage/20">
-                  {profile?.straw_stage ? profile.straw_stage.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Early Perimenopause'}
+                  {translateStage(profile?.straw_stage || 'early_perimenopause', 'patient')}
                 </span>
                 <span className="text-xs font-medium text-charcoal bg-peach-soft px-3 py-1 rounded-full border border-peach/30 flex items-center gap-1.5">
                   <span>🔥</span>
@@ -234,7 +240,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                 className="px-4 py-2.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium shadow-warm-sm flex items-center gap-2 transition-colors"
               >
                 <PlusCircle className="w-4 h-4" />
-                <span>+ Log Today's Symptoms</span>
+                <span>+ Your Daily Check-in</span>
               </button>
 
               <button
@@ -283,81 +289,91 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         {activeTab === 'overview' && (
           <div className="space-y-6">
             
-            {/* 4 Stat Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              
-              {/* Symptom Score Card */}
-              <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
-                <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold tracking-wide">Overall Symptom Score</span>
-                  <Activity className="w-4 h-4 text-sage-dark" />
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-3xl font-bold text-charcoal">{latestMrs}</span>
-                  <span className="text-xs text-charcoal-muted font-medium">/ 44</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-sage-dark font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-sage-dark" />
-                  <span>{latestMrs < 15 ? 'Mild Symptoms' : latestMrs < 25 ? 'Moderate Symptoms' : 'Noticeable Symptoms'}</span>
-                </div>
-              </div>
-
-              {/* Hot Flash Frequency */}
-              <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
-                <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold tracking-wide">Hot Flashes Today</span>
-                  <Flame className="w-4 h-4 text-peach" />
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-3xl font-bold text-charcoal">
-                    {history.length > 0 && history[0].hot_flashes ? history[0].hot_flashes : 3}
-                  </span>
-                  <span className="text-xs text-charcoal-muted font-medium">logged today</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-charcoal-muted">
-                  <span>Most common in early morning</span>
-                </div>
-              </div>
-
-              {/* Sleep Restfulness */}
-              <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
-                <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold tracking-wide">Sleep Duration</span>
-                  <Moon className="w-4 h-4 text-lavender" />
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-3xl font-bold text-charcoal">6.8</span>
-                  <span className="text-xs text-charcoal-muted font-medium">hours rest</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-teal-dark font-medium">
-                  <span>Night awakenings reduced this week</span>
-                </div>
-              </div>
-
-              {/* Next Clinical Touchpoint */}
-              <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
-                <div className="flex items-center justify-between text-xs text-charcoal-muted">
-                  <span className="font-semibold tracking-wide">Next Appointment</span>
-                  <Stethoscope className="w-4 h-4 text-teal" />
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-2xl font-semibold text-charcoal">
-                    {appointments.length > 0 ? appointments[0].date_time?.split('T')[0] : 'Tomorrow, 10:30 AM'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-charcoal-muted">
-                  <span>Dr. Elena Vance, MD • Video Visit</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Bento Charts */}
+            {/* Section: How you've been feeling */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="font-serif text-xl font-semibold text-charcoal">Symptom Trends & Patterns</h2>
-                  <p className="text-xs text-charcoal-muted">Daily changes and 7-day rolling averages</p>
+                  <h2 className="font-serif text-xl font-semibold text-charcoal">How you've been feeling</h2>
+                  <p className="text-xs text-charcoal-muted">Your recent symptoms, sleep, and upcoming care at a glance</p>
+                </div>
+              </div>
+
+              {/* 4 Stat Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                {/* Symptom Score Card */}
+                <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
+                  <div className="flex items-center justify-between text-xs text-charcoal-muted">
+                    <span className="font-semibold tracking-wide">Overall Symptom Score</span>
+                    <Activity className="w-4 h-4 text-sage-dark" />
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold text-charcoal">{latestMrs}</span>
+                    <span className="text-xs text-charcoal-muted font-medium">/ 44</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-sage-dark font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-sage-dark" />
+                    <span>{latestMrs < 15 ? 'Mild Symptoms' : latestMrs < 25 ? 'Moderate Symptoms' : 'Noticeable Symptoms'}</span>
+                  </div>
+                </div>
+
+                {/* Hot Flash Frequency */}
+                <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
+                  <div className="flex items-center justify-between text-xs text-charcoal-muted">
+                    <span className="font-semibold tracking-wide">Hot Flashes Today</span>
+                    <Flame className="w-4 h-4 text-peach" />
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold text-charcoal">
+                      {history.length > 0 && history[0].hot_flashes ? history[0].hot_flashes : 3}
+                    </span>
+                    <span className="text-xs text-charcoal-muted font-medium">logged today</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-charcoal-muted">
+                    <span>Most common in early morning</span>
+                  </div>
+                </div>
+
+                {/* Sleep Restfulness */}
+                <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
+                  <div className="flex items-center justify-between text-xs text-charcoal-muted">
+                    <span className="font-semibold tracking-wide">Sleep Duration</span>
+                    <Moon className="w-4 h-4 text-lavender" />
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-serif text-3xl font-bold text-charcoal">6.8</span>
+                    <span className="text-xs text-charcoal-muted font-medium">hours rest</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-teal-dark font-medium">
+                    <span>Night awakenings reduced this week</span>
+                  </div>
+                </div>
+
+                {/* Next Clinical Touchpoint */}
+                <div className="p-5 rounded-2xl bg-cream border border-[#E2DBD0] shadow-warm-sm hover:shadow-warm-md transition-all space-y-2">
+                  <div className="flex items-center justify-between text-xs text-charcoal-muted">
+                    <span className="font-semibold tracking-wide">Your Upcoming Appointments</span>
+                    <Stethoscope className="w-4 h-4 text-teal" />
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-serif text-2xl font-semibold text-charcoal">
+                      {appointments.length > 0 ? appointments[0].date_time?.split('T')[0] : 'Tomorrow, 10:30 AM'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-charcoal-muted">
+                    <span>Dr. Elena Vance, MD • Video Visit</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Bento Charts: Changes over time */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="font-serif text-xl font-semibold text-charcoal">Changes over time</h2>
+                  <p className="text-xs text-charcoal-muted">Your symptoms and daily patterns across the last 7 to 30 days</p>
                 </div>
                 <span className="text-xs font-medium px-3 py-1 rounded-full bg-sage-soft text-sage-dark border border-sage/20">
                   7-Day Trend
@@ -385,7 +401,10 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-8 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
                 <div className="flex items-center justify-between border-b border-[#E2DBD0]/60 pb-3">
-                  <h3 className="font-serif text-lg font-semibold text-charcoal">Symptom Patterns Over Time</h3>
+                  <div>
+                    <h3 className="font-serif text-lg font-semibold text-charcoal">Your symptoms</h3>
+                    <p className="text-xs text-charcoal-muted">How your symptoms have felt over the last 30 days</p>
+                  </div>
                   <button
                     onClick={() => setActiveTab('analytics')}
                     className="text-xs font-medium text-sage-dark hover:text-charcoal flex items-center gap-1 transition-colors"
@@ -422,7 +441,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
 
               <div className="lg:col-span-6 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-serif text-lg font-semibold text-charcoal">Daily Medications & Supplements</h3>
+                  <h3 className="font-serif text-lg font-semibold text-charcoal">Your daily medications & vitamins</h3>
                   <button
                     onClick={() => setActiveTab('medications')}
                     className="text-xs font-medium text-sage-dark hover:text-charcoal flex items-center gap-1"
@@ -459,13 +478,13 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
           </div>
         )}
 
-        {/* Tab 4: Symptom Trends Analytics */}
+        {/* Tab 4: Changes Over Time */}
         {activeTab === 'analytics' && (
           <div className="space-y-6">
             <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
               <div className="flex items-center justify-between border-b border-[#E2DBD0]/60 pb-3">
                 <div>
-                  <h2 className="font-serif text-xl font-semibold text-charcoal">Your Symptom Trends</h2>
+                  <h2 className="font-serif text-xl font-semibold text-charcoal">Changes over time</h2>
                   <p className="text-xs text-charcoal-muted">See how your symptoms and daily logs have changed over the past 30 days.</p>
                 </div>
                 <button
@@ -473,7 +492,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
                   className="px-3.5 py-1.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-medium flex items-center gap-1.5 shadow-warm-sm"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  <span>Download Report</span>
+                  <span>Your Health Report (PDF)</span>
                 </button>
               </div>
 
@@ -487,7 +506,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-serif text-xl font-semibold text-charcoal">Lab Tests & Bloodwork</h2>
+                <h2 className="font-serif text-xl font-semibold text-charcoal">Your blood tests & labs</h2>
                 <p className="text-xs text-charcoal-muted">Track and review your hormone and health test results with your doctor.</p>
               </div>
               <button
@@ -507,7 +526,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         {activeTab === 'telehealth' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-7 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Doctor Visits & Video Consultation</h2>
+              <h2 className="font-serif text-xl font-semibold text-charcoal">Your upcoming appointments</h2>
               <p className="text-xs text-charcoal-muted">Secure, private video room for scheduled appointments with your doctor.</p>
               <div className="p-8 rounded-xl bg-ivory border border-[#E2DBD0] text-center space-y-3">
                 <Video className="w-10 h-10 text-teal mx-auto" />
@@ -525,14 +544,14 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
             </div>
 
             <div className="lg:col-span-5 bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Messages with Your Doctor</h2>
+              <h2 className="font-serif text-xl font-semibold text-charcoal">Messages with your care team</h2>
               <p className="text-xs text-charcoal-muted">Send a private question or update directly to your doctor's office.</p>
               <button
                 onClick={() => setIsChatOpen(true)}
                 className="w-full py-3 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-medium shadow-warm-sm flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4 text-teal" />
-                <span>Open Doctor Messages</span>
+                <span>Open Messages</span>
               </button>
             </div>
           </div>

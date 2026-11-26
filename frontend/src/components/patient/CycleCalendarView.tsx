@@ -10,6 +10,7 @@ import {
   AlertCircle,
   Activity,
 } from 'lucide-react';
+import { translateStage } from '../../utils/terminology';
 
 interface CycleCalendarViewProps {
   history: any[];
@@ -98,8 +99,8 @@ export const CycleCalendarView: React.FC<CycleCalendarViewProps> = ({
             <div className="text-xs font-medium text-sage-dark">
               Menopause Stage
             </div>
-            <div className="text-xs font-bold text-sage-dark capitalize">
-              {strawStage.replace(/_/g, ' ')}
+            <div className="text-xs font-bold text-sage-dark">
+              {translateStage(strawStage, 'patient')}
             </div>
           </div>
         </div>
