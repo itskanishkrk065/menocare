@@ -236,26 +236,26 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       </header>
 
       {/* =========================================================================
-          NEW SECTION: ANCHORING EDITORIAL OPENING STATEMENT
+          ANCHORING EDITORIAL OPENING STATEMENT (Centered & Balanced Poise)
           ========================================================================= */}
-      <section className="relative w-[92%] max-w-[1500px] mx-auto pt-16 pb-12 lg:pt-24 lg:pb-16 text-left border-b border-outline-variant/60">
+      <section className="relative w-[92%] max-w-[1500px] mx-auto pt-8 pb-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="max-w-4xl space-y-5"
+          className="max-w-4xl mx-auto space-y-5 flex flex-col items-center text-center"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream border border-outline-variant text-xs font-semibold text-charcoal-muted shadow-warm-sm">
-            <Sparkles className="w-3.5 h-3.5 text-sage" />
+            <Sparkles className="w-3.5 h-3.5 text-sage-dark" />
             <span>Clinical Women's Health Platform</span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-[62px] font-medium text-charcoal tracking-tight text-balance leading-[1.1]">
+          <h1 className="font-serif text-4xl sm:text-6xl lg:text-[62px] font-medium text-charcoal tracking-tight text-balance leading-[1.12]">
             Your body is changing. <br />
             <span className="text-sage-dark font-normal">Your experience deserves to be understood.</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-charcoal-muted max-w-2xl font-normal leading-relaxed text-pretty">
+          <p className="text-base sm:text-lg lg:text-xl text-charcoal-muted max-w-2xl mx-auto font-normal leading-relaxed text-pretty">
             Menopause is not a decline, nor is it a single statistic. It is a nuanced biological transition that deserves compassionate daily awareness and precise clinical collaboration.
           </p>
         </motion.div>
@@ -366,7 +366,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="p-6 space-y-5">
                 {/* Top Metrics Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-outline-variant border-b border-outline-variant pb-4">
-                  <div className="p-4">
+                  <div className="p-4 bg-oat-light/25">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted">
                         Menopause Rating Scale
@@ -387,7 +387,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     </p>
                   </div>
 
-                  <div className="p-4 space-y-2.5">
+                  <div className="p-4 bg-oat-light/25 space-y-2.5">
                     <span className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted block">
                       Active Primary Clusters
                     </span>
@@ -483,7 +483,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* =========================================================================
           SECTION 2: THE HUMAN EXPERIENCE ("Your experience" anchor, #your-experience)
           ========================================================================= */}
-      <section id="your-experience" className="py-20 lg:py-28 bg-cream/70 border-y border-outline-variant">
+      <section id="your-experience" className="py-20 lg:py-28 bg-oat-light/60 border-y border-outline-variant">
         <div className="w-[92%] max-w-[1500px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Narrative (5 cols) */}
@@ -506,7 +506,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     className={`p-3.5 rounded-xl text-left transition-all duration-200 border flex items-center justify-between ${
                       activeStory === index
                         ? 'bg-sage-dark border-sage-dark text-cream shadow-warm-md'
-                        : 'bg-white border-outline-variant text-charcoal-muted hover:text-charcoal hover:border-charcoal-muted'
+                        : 'bg-cream/90 border-outline-variant text-charcoal-muted hover:text-charcoal hover:bg-white'
                     }`}
                   >
                     <div>
@@ -530,7 +530,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="bg-white rounded-3xl p-8 sm:p-12 border border-outline-variant shadow-warm-md space-y-6"
+                  className="bg-gradient-to-br from-cream via-white to-oat-light/40 rounded-3xl p-8 sm:p-12 border border-outline-variant shadow-warm-md space-y-6"
                 >
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-outline-variant">
                     <div>
@@ -583,7 +583,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <section className="py-20 lg:py-28 w-[92%] max-w-[1500px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Interactive Check-in Controls (7 cols) */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-outline-variant shadow-warm-md space-y-6">
+          <div className="lg:col-span-7 bg-gradient-to-br from-cream via-white to-oat-light/30 rounded-3xl p-6 sm:p-10 border border-outline-variant shadow-warm-md space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-outline-variant">
               <div>
                 <h2 className="font-serif font-semibold text-2xl text-charcoal">
@@ -669,7 +669,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Right Column: Live Calculated Synthesis Output (5 cols) */}
-          <div className="lg:col-span-5 bg-cream rounded-3xl p-6 sm:p-10 border border-outline-variant shadow-warm-md flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-5 bg-gradient-to-b from-oat-light/60 via-cream to-oat-light/30 rounded-3xl p-6 sm:p-10 border border-outline-variant shadow-warm-md flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-charcoal-muted">
@@ -732,7 +732,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* =========================================================================
           SECTION 4: LONGITUDINAL TRENDS & STRAW+10 ("Our approach", #approach)
           ========================================================================= */}
-      <section id="approach" className="py-20 lg:py-28 bg-cream/70 border-y border-outline-variant">
+      <section id="approach" className="py-20 lg:py-28 bg-oat-light/60 border-y border-outline-variant">
         <div className="w-[92%] max-w-[1500px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Narrative (5 cols) */}
@@ -781,7 +781,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Right Chart Showcase (7 cols) */}
-            <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-outline-variant shadow-warm-md">
+            <div className="lg:col-span-7 bg-gradient-to-b from-cream via-white to-oat-light/30 rounded-3xl p-6 sm:p-10 border border-outline-variant shadow-warm-md">
               <div className="flex items-center justify-between pb-4 border-b border-outline-variant mb-6">
                 <div>
                   <h3 className="font-serif text-lg font-semibold text-charcoal">
@@ -908,7 +908,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-8 rounded-3xl bg-white border border-outline-variant shadow-warm-sm hover:shadow-warm-md transition-shadow">
+          <div className="p-8 rounded-3xl bg-gradient-to-br from-cream via-white to-sage-soft/40 border border-outline-variant shadow-warm-sm hover:shadow-warm-md transition-all">
             <h3 className="font-serif text-xl font-semibold text-charcoal mb-3 flex items-center gap-3">
               <Clock className="w-6 h-6 text-sage-dark shrink-0" />
               <span>60-Second Evening Log</span>
@@ -918,7 +918,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-white border border-outline-variant shadow-warm-sm hover:shadow-warm-md transition-shadow">
+          <div className="p-8 rounded-3xl bg-gradient-to-br from-cream via-white to-teal-soft/40 border border-outline-variant shadow-warm-sm hover:shadow-warm-md transition-all">
             <h3 className="font-serif text-xl font-semibold text-charcoal mb-3 flex items-center gap-3">
               <Brain className="w-6 h-6 text-teal-dark shrink-0" />
               <span>Plain-Language Summaries</span>
@@ -928,7 +928,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-white border border-outline-variant shadow-warm-sm hover:shadow-warm-md transition-shadow">
+          <div className="p-8 rounded-3xl bg-gradient-to-br from-cream via-white to-peach-soft/30 border border-outline-variant shadow-warm-sm hover:shadow-warm-md transition-all">
             <h3 className="font-serif text-xl font-semibold text-charcoal mb-3 flex items-center gap-3">
               <Sparkles className="w-6 h-6 text-[#8C371D] shrink-0" />
               <span>Trigger Correlation</span>
@@ -943,7 +943,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* =========================================================================
           SECTION 6: DOCTOR WORKSPACE LENS ("For healthcare providers", #providers)
           ========================================================================= */}
-      <section id="providers" className="py-20 lg:py-28 bg-cream/70 border-y border-outline-variant">
+      <section id="providers" className="py-20 lg:py-28 bg-oat-light/60 border-y border-outline-variant">
         <div className="w-[92%] max-w-[1500px] mx-auto">
           <div className="max-w-3xl mb-12 text-left">
             <h2 className="font-serif text-3xl sm:text-5xl font-medium text-charcoal tracking-tight text-balance">
@@ -981,7 +981,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Perspective Container */}
-          <div className="bg-white rounded-3xl border border-outline-variant shadow-warm-md p-6 sm:p-10">
+          <div className="bg-gradient-to-b from-cream via-white to-oat-light/30 rounded-3xl border border-outline-variant shadow-warm-md p-6 sm:p-10">
             {perspective === 'patient' ? (
               <div className="space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-outline-variant">
@@ -1101,7 +1101,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="p-6 rounded-3xl bg-white border border-outline-variant shadow-warm-sm">
+          <div className="p-6 rounded-3xl bg-gradient-to-b from-cream to-sage-soft/30 border border-outline-variant shadow-warm-sm">
             <span className="text-3xl font-serif font-bold text-sage mb-4 block">01</span>
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-2">
               Baseline Assessment
@@ -1111,7 +1111,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-outline-variant shadow-warm-sm">
+          <div className="p-6 rounded-3xl bg-gradient-to-b from-cream to-teal-soft/30 border border-outline-variant shadow-warm-sm">
             <span className="text-3xl font-serif font-bold text-teal mb-4 block">02</span>
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-2">
               60-Second Daily Log
@@ -1121,7 +1121,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-outline-variant shadow-warm-sm">
+          <div className="p-6 rounded-3xl bg-gradient-to-b from-cream to-peach-soft/30 border border-outline-variant shadow-warm-sm">
             <span className="text-3xl font-serif font-bold text-[#8C371D] mb-4 block">03</span>
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-2">
               Automated Synthesis
@@ -1131,7 +1131,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-outline-variant shadow-warm-sm">
+          <div className="p-6 rounded-3xl bg-gradient-to-b from-cream to-lavender-soft/40 border border-outline-variant shadow-warm-sm">
             <span className="text-3xl font-serif font-bold text-[#654B7C] mb-4 block">04</span>
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-2">
               Shared Care Review
@@ -1146,7 +1146,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* =========================================================================
           SECTION 8: TRUST & VALIDATED SCIENCE
           ========================================================================= */}
-      <section className="py-20 lg:py-28 bg-cream/70 border-y border-outline-variant">
+      <section className="py-20 lg:py-28 bg-oat-light/60 border-y border-outline-variant">
         <div className="w-[92%] max-w-[1500px] mx-auto">
           <div className="max-w-3xl mb-12 text-left">
             <h2 className="font-serif text-3xl sm:text-5xl font-medium text-charcoal tracking-tight text-balance">
@@ -1158,7 +1158,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-white border border-outline-variant shadow-warm-sm">
+            <div className="p-6 rounded-2xl bg-cream border border-outline-variant shadow-warm-sm hover:bg-white transition-colors">
               <Shield className="w-8 h-8 text-sage mb-4" />
               <h3 className="font-serif font-semibold text-base text-charcoal mb-1">
                 Zero Data Monetization
@@ -1168,7 +1168,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-outline-variant shadow-warm-sm">
+            <div className="p-6 rounded-2xl bg-cream border border-outline-variant shadow-warm-sm hover:bg-white transition-colors">
               <FileText className="w-8 h-8 text-teal mb-4" />
               <h3 className="font-serif font-semibold text-base text-charcoal mb-1">
                 Validated MRS Scale
@@ -1178,7 +1178,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-outline-variant shadow-warm-sm">
+            <div className="p-6 rounded-2xl bg-cream border border-outline-variant shadow-warm-sm hover:bg-white transition-colors">
               <Calendar className="w-8 h-8 text-[#8C371D] mb-4" />
               <h3 className="font-serif font-semibold text-base text-charcoal mb-1">
                 STRAW+10 Criteria
@@ -1188,7 +1188,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-outline-variant shadow-warm-sm">
+            <div className="p-6 rounded-2xl bg-cream border border-outline-variant shadow-warm-sm hover:bg-white transition-colors">
               <Lock className="w-8 h-8 text-charcoal mb-4" />
               <h3 className="font-serif font-semibold text-base text-charcoal mb-1">
                 Client-Controlled Access
