@@ -45,3 +45,13 @@ test_menopause.db
 .vscode/
 *.swp
 *.swo
+
+# Agent & Tool Metadata
+.agent/
+.agents/
+.claude/
+.codex/
+.gemini/
+.impeccable/
+.opencode/
+skills-lock.json

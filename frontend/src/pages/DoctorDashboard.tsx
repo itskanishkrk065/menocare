@@ -22,6 +22,7 @@ import { DiagnosticsHub } from '../components/doctor/DiagnosticsHub';
 import { PatientProfileView } from '../components/doctor/PatientProfileView';
 import { ScheduleMeetingModal } from '../components/doctor/ScheduleMeetingModal';
 import { DoctorChatHub } from '../components/doctor/DoctorChatHub';
+import { DoctorBottomNav } from '../components/navigation/DoctorBottomNav';
 
 interface DoctorDashboardProps {
   user: any;
@@ -81,10 +82,10 @@ export const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ user }) => {
   const criticalCount = alerts.filter((a) => a.severity_level === 'emergency' || a.severity_level === 'urgent').length;
 
   return (
-    <div className="w-full min-h-screen bg-ivory text-charcoal pb-16">
+    <div className="w-full min-h-screen bg-ivory text-charcoal pb-28 md:pb-16">
       
-      {/* Top Banner / Navigation Subnav */}
-      <div className="bg-cream/90 backdrop-blur-md border-b border-[#E2DBD0] sticky top-16 z-30">
+      {/* Desktop Top Header / Pathways Subnav (Hidden on mobile <768px, replaced by DoctorBottomNav) */}
+      <div className="hidden md:block bg-cream/90 backdrop-blur-md border-b border-[#E2DBD0] sticky top-16 z-30">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between overflow-x-auto py-2.5 gap-2 scrollbar-none">
             <div className="flex items-center gap-1.5 shrink-0">
@@ -216,6 +217,42 @@ export const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ user }) => {
           onClose={() => setIsMeetingModalOpen(false)}
           onScheduled={loadAllData}
         />
+      )}
+
+      {/* Doctor Mobile Bottom Navigation (< 768px, active when browsing main dashboard) */}
+      {!selectedPatientId && (
+        <DoctorBottomNav
+          activeTab={activeTab}
+          onSelectTab={(tab) => {
+            setSelectedPatientId(null);
+            setActiveTab(tab);
+          }}
+          criticalAlertsCount={criticalCount}
+          patientsCount={patients.length}
+          appointmentsCount={overviewData?.today_appointments_count || 0}
+        />
+      )}
+
+      {/* Doctor Mobile Bottom Action Bar when viewing deep-dive patient profile (< 768px) */}
+      {selectedPatientId && (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-cream/95 backdrop-blur-lg border-t border-[#E2DBD0] shadow-warm-lg p-3 pb-[env(safe-area-inset-bottom,12px)] flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setSelectedPatientId(null)}
+            className="flex-1 px-3 py-2.5 rounded-xl border border-[#E2DBD0] bg-white text-charcoal text-xs font-semibold flex items-center justify-center gap-1.5 min-h-[44px]"
+          >
+            <ArrowLeft className="w-4 h-4 text-charcoal-muted" />
+            <span>Back to Cohort</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => openScheduleModal(selectedPatientId)}
+            className="flex-1 px-3 py-2.5 rounded-xl bg-sage-dark text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-warm-sm min-h-[44px]"
+          >
+            <Video className="w-4 h-4" />
+            <span>Video Visit</span>
+          </button>
+        </div>
       )}
 
     </div>

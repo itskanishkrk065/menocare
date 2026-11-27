@@ -19,11 +19,11 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogout }) => {
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="font-serif text-xl font-semibold tracking-tight text-charcoal">
+              <span className="font-serif text-lg sm:text-xl font-semibold tracking-tight text-charcoal">
                 MenoCare
               </span>
               <span
-                className={`text-xs font-sans font-medium px-2.5 py-0.5 rounded-full ${
+                className={`text-[11px] font-sans font-medium px-2 py-0.5 rounded-full hidden sm:inline-block ${
                   user.role === 'doctor'
                     ? 'bg-teal-soft text-teal-dark border border-teal/20'
                     : 'bg-sage-soft text-sage-dark border border-sage/20'
@@ -39,19 +39,19 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogout }) => {
         </div>
 
         {/* Live sync badge & User card */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
           <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream border border-[#E2DBD0] text-[11px] text-charcoal-muted">
             <span className="w-2 h-2 rounded-full bg-sage-dark" />
             <span className="font-medium">Secure & Connected</span>
           </div>
 
-          <div className="flex items-center space-x-2 text-xs text-charcoal bg-cream border border-[#E2DBD0] py-1.5 px-3 rounded-xl font-medium shadow-warm-sm">
+          <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs text-charcoal bg-cream border border-[#E2DBD0] py-1.5 px-2 sm:px-3 rounded-xl font-medium shadow-warm-sm shrink-0">
             {user.role === 'doctor' ? (
-              <Stethoscope className="w-3.5 h-3.5 text-teal" />
+              <Stethoscope className="w-3.5 h-3.5 text-teal shrink-0" />
             ) : (
-              <User className="w-3.5 h-3.5 text-sage-dark" />
+              <User className="w-3.5 h-3.5 text-sage-dark shrink-0" />
             )}
-            <span className="font-semibold">{user.full_name}</span>
+            <span className="font-semibold truncate max-w-[80px] sm:max-w-none">{user.full_name}</span>
           </div>
 
           <button
@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogout }) => {
               clearAuthToken();
               onLogout();
             }}
-            className="flex items-center space-x-1.5 text-xs text-charcoal-muted hover:text-error transition-colors p-2 rounded-xl hover:bg-cream border border-transparent hover:border-[#E2DBD0]"
+            className="flex items-center space-x-1 text-xs text-charcoal-muted hover:text-error transition-colors p-2 rounded-xl hover:bg-cream border border-transparent hover:border-[#E2DBD0] min-h-[36px] min-w-[36px] justify-center shrink-0"
             title="Sign out"
           >
             <LogOut className="w-3.5 h-3.5" />

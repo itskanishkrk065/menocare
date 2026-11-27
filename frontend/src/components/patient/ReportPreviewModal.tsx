@@ -50,25 +50,30 @@ export const ReportPreviewModal: React.FC<ReportPreviewModalProps> = ({
   const clinicalStage = profile?.straw_stage ? profile.straw_stage.toUpperCase() : 'STRAW -2 (EARLY TRANSITION)';
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="bg-cream rounded-[26px] max-w-3xl w-full border border-[#E2DBD0] shadow-warm-xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-cream rounded-t-[28px] sm:rounded-[26px] max-w-3xl w-full border-t sm:border border-[#E2DBD0] shadow-warm-xl overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col animate-in slide-in-from-bottom duration-300">
         
+        {/* Mobile Swipe Grab Handle */}
+        <div className="sm:hidden w-full pt-3 pb-1 flex justify-center bg-ivory">
+          <div className="w-12 h-1.5 rounded-full bg-[#E2DBD0]" />
+        </div>
+
         {/* Header */}
-        <div className="p-5 sm:p-6 bg-ivory border-b border-[#E2DBD0] flex items-center justify-between shrink-0">
+        <div className="p-4 sm:p-6 bg-ivory border-b border-[#E2DBD0] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-sage-soft text-sage-dark flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-sage-soft text-sage-dark flex items-center justify-center shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-serif text-xl font-semibold text-charcoal">
+                <span className="font-serif text-lg sm:text-xl font-semibold text-charcoal">
                   Your Doctor Consultation Dossier
                 </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-soft text-teal-dark border border-teal/20">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-soft text-teal-dark border border-teal/20 hidden sm:inline-block">
                   Ready to Share
                 </span>
               </div>
-              <p className="text-xs text-charcoal-muted mt-0.5">
+              <p className="text-xs text-charcoal-muted mt-0.5 line-clamp-1 sm:line-clamp-none">
                 Formatted clinical summary prepared for {linkedDoctorName || 'your healthcare provider'}.
               </p>
             </div>
@@ -77,7 +82,7 @@ export const ReportPreviewModal: React.FC<ReportPreviewModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
           >
             <X className="w-4 h-4" />
           </button>

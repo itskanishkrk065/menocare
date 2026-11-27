@@ -1,0 +1,3237 @@
+{
+  "simulation_days": 180,
+  "total_patients": 10,
+  "random_seed": 42,
+  "total_assessments_generated": 1500,
+  "questionnaire_invariants": {
+    "total_sessions_checked": 1545,
+    "exact_core_7_passed": 1545,
+    "exact_rotating_6_passed": 1545,
+    "no_adaptive_replacements_passed": 1545,
+    "rotation_coverage_checks": [
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_01",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_02",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_03",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_04",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_06",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_07",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_08",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_09",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 1,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 2,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 3,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 4,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 5,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 6,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 7,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 8,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 9,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 10,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 11,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 12,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 13,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 14,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 15,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 16,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 17,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 18,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 19,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 20,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 21,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 22,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 23,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 24,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 25,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 26,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 27,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 28,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 29,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 30,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 31,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 32,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 33,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 34,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 35,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 36,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 37,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 38,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 39,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 40,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 41,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 42,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 43,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 44,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 45,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 46,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 47,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 48,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 49,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 50,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 51,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 52,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 53,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 54,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 55,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 56,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 57,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 58,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 59,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      },
+      {
+        "patient_id": "synth_pat_10",
+        "cycle_number": 60,
+        "covered_questions_count": 18,
+        "total_bank_size": 18,
+        "coverage_pct": 100.0
+      }
+    ],
+    "unanswered_recovery_events": 45
+  },
+  "symptom_classification": {
+    "total_phrases_tested": 14,
+    "true_positives": 13,
+    "false_positives": 0,
+    "false_negatives": 2,
+    "true_negatives": 0,
+    "negation_detection_accuracy": 100.0,
+    "clarification_requested_count": 1,
+    "ai_outage_fallback_successes": 1,
+    "precision": 1.0,
+    "recall": 0.867,
+    "f1_score": 0.929
+  },
+  "trend_anomaly_detection": {
+    "total_scans_performed": 0,
+    "persistent_anomalies_detected": 1,
+    "acute_spikes_detected": 0,
+    "non_zero_missing_data_violations": 0,
+    "insufficient_history_safeguards_passed": 1,
+    "false_positives_on_stable_baseline": 0
+  },
+  "prioritisation": {
+    "total_triage_evaluations": 10,
+    "urgent_clinical_count": 1,
+    "clinical_attention_count": 2,
+    "administrative_followup_count": 2,
+    "routine_count": 5,
+    "all_reasons_contain_source_links": true,
+    "deduplication_integrity_passed": true
+  },
+  "fault_injection_tests": {
+    "network_retry_idempotency_passed": true,
+    "corrupted_input_rejection_passed": true,
+    "session_resume_preservation_passed": true
+  },
+  "identified_defects": [],
+  "fixes_applied": []
+}

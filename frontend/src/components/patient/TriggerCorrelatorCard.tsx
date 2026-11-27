@@ -39,18 +39,23 @@ export const TriggerCorrelatorCard: React.FC = () => {
   };
 
   return (
-    <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-5">
-      <div className="flex items-center justify-between border-b border-[#E2DBD0]/70 pb-4">
+    <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] shadow-warm-sm space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2DBD0]/70 pb-3">
         <div className="flex items-center space-x-2.5">
-          <div className="w-9 h-9 rounded-xl bg-peach-soft text-peach flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-peach-soft text-peach flex items-center justify-center shrink-0">
             <Sparkles className="w-5 h-5 text-[#C48068]" />
           </div>
           <div>
-            <h3 className="text-base font-serif font-semibold text-charcoal">
-              Daily Symptom Triggers
-            </h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-base font-serif font-semibold text-charcoal">
+                Factors You Are Tracking
+              </h3>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-ivory text-charcoal-muted border border-[#E2DBD0] font-medium">
+                Observed Influences (Not Direct Causation)
+              </span>
+            </div>
             <p className="text-xs text-charcoal-muted mt-0.5">
-              Select any factors that may have influenced your symptoms today.
+              Select lifestyle factors you want to observe alongside your symptoms.
             </p>
           </div>
         </div>
@@ -58,11 +63,17 @@ export const TriggerCorrelatorCard: React.FC = () => {
         <button
           type="button"
           onClick={handleSave}
-          className="px-3.5 py-1.5 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors shadow-warm-sm flex items-center gap-1.5"
+          className="px-3.5 py-1.5 bg-sage-dark hover:bg-sage text-white rounded-xl text-xs font-semibold transition-colors shadow-warm-sm flex items-center gap-1.5 self-start sm:self-auto"
         >
           {isSaved ? <CheckCircle2 className="w-3.5 h-3.5 text-white" /> : null}
-          <span>{isSaved ? 'Saved for Today' : 'Save Triggers'}</span>
+          <span>{isSaved ? 'Saved for Today' : 'Save Tracked Factors'}</span>
         </button>
+      </div>
+
+      {/* Causality Disclaimer Callout */}
+      <div className="p-3 bg-ivory rounded-xl border border-[#E2DBD0] text-xs text-charcoal-muted leading-relaxed">
+        <span className="font-semibold text-charcoal">How to interpret these: </span>
+        Noticing that a symptom occurred after late coffee or stress is a helpful pattern to discuss with your doctor. An observed association does not necessarily prove one caused the other.
       </div>
 
       {/* Trigger Chips Grid */}

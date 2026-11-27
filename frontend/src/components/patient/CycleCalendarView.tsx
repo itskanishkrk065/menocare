@@ -149,7 +149,7 @@ export const CycleCalendarView: React.FC<CycleCalendarViewProps> = ({
       <div className="grid grid-cols-7 gap-2">
         {/* Empty cells before month starts */}
         {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-          <div key={`empty-${i}`} className="h-20 rounded-2xl bg-ivory/50 border border-transparent" />
+          <div key={`empty-${i}`} className="h-14 sm:h-20 rounded-xl sm:rounded-2xl bg-ivory/50 border border-transparent" />
         ))}
 
         {/* Days of current month */}
@@ -186,7 +186,7 @@ export const CycleCalendarView: React.FC<CycleCalendarViewProps> = ({
                 setSelectedDayRecord(record || { date: dateStr, responses: {}, bleeding: null });
                 if (onSelectDate) onSelectDate(dateStr);
               }}
-              className={`h-20 rounded-2xl border p-2 transition-all cursor-pointer flex flex-col justify-between ${bgClass}`}
+              className={`h-14 sm:h-20 rounded-xl sm:rounded-2xl border p-1 sm:p-2 transition-all cursor-pointer flex flex-col justify-between ${bgClass}`}
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold">{dayNum}</span>

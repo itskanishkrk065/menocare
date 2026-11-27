@@ -55,14 +55,19 @@ export const AnomalyBanner: React.FC<AnomalyBannerProps> = ({ alerts, onAppointm
                   <Info className="w-5 h-5 text-[#C48068]" />
                 </div>
                 <div>
-                  <div className="flex items-center space-x-2">
-                    <span className="font-semibold text-sm text-charcoal">{translateInsight(alert.condition_name, 'patient')}</span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-peach-soft text-peach border border-peach/30">
-                      Helpful to discuss with doctor
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold text-sm text-charcoal">
+                      {translateInsight(alert.condition_name, 'patient')}
+                    </span>
+                    <span className="text-[11px] px-2.5 py-0.5 rounded-full font-medium bg-peach-soft text-peach border border-peach/30">
+                      Informational Pattern • For Discussion
                     </span>
                   </div>
                   <p className="text-xs text-charcoal-muted mt-1 leading-relaxed text-pretty">
-                    {translateInsight(alert.recommended_action, 'patient')}
+                    {translateInsight(alert.recommended_action || alert.description, 'patient')}
+                  </p>
+                  <p className="text-[10px] text-charcoal-light mt-1.5 italic">
+                    Note: This is an automated screening observation based on your logged symptom timing. It is intended to guide your conversation with your doctor and is not a clinical diagnosis.
                   </p>
                 </div>
               </div>

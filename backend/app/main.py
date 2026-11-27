@@ -21,6 +21,10 @@ from backend.app.api.v1.analytics import router as analytics_router
 from backend.app.api.v1.reports import router as reports_router
 from backend.app.api.v1.medications import router as medications_router
 from backend.app.api.v1.messages import router as messages_router
+from backend.app.api.v1.adaptive_assessments import router as adaptive_assessments_router
+from backend.app.api.v1.symptom_intake import router as symptom_intake_router
+from backend.app.api.v1.clinical_anomalies import router as clinical_anomalies_router
+from backend.app.api.v1.doctor_triage import router as doctor_triage_router
 
 
 @asynccontextmanager
@@ -118,6 +122,10 @@ app.include_router(analytics_router, prefix=f"{settings.API_V1_STR}/analytics", 
 app.include_router(reports_router, prefix=f"{settings.API_V1_STR}/reports", tags=["Clinical Reports & PDF"])
 app.include_router(medications_router, prefix=f"{settings.API_V1_STR}/medications", tags=["Medications & Adherence"])
 app.include_router(messages_router, prefix=f"{settings.API_V1_STR}/messages", tags=["Clinical Messaging"])
+app.include_router(adaptive_assessments_router, prefix=f"{settings.API_V1_STR}/adaptive", tags=["Adaptive Questionnaire Engine"])
+app.include_router(symptom_intake_router, prefix=f"{settings.API_V1_STR}/symptoms", tags=["Intelligent Symptom Classification"])
+app.include_router(clinical_anomalies_router, prefix=f"{settings.API_V1_STR}/anomalies", tags=["Clinical Trend Anomaly Detection"])
+app.include_router(doctor_triage_router, prefix=f"{settings.API_V1_STR}/triage", tags=["Doctor Follow-up Prioritisation"])
 
 
 @app.get("/health", tags=["System"])
@@ -154,10 +162,18 @@ if dist_dir:
     if assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
 
-    @app.get("/{full_path:path}", include_in_schema=False)
+    @app.api_route("/{full_path:path}", methods=["GET", "HEAD"], include_in_schema=False)
     async def serve_spa(full_path: str):
         # Don't intercept API routes, docs, or OpenAPI schema
-        if full_path.startswith("api/") or full_path.startswith("docs") or full_path.startswith("openapi.json"):
+        if (
+            full_path == "api"
+            or full_path.startswith("api/")
+            or full_path == "docs"
+            or full_path.startswith("docs/")
+            or full_path == "redoc"
+            or full_path.startswith("redoc/")
+            or full_path.startswith("openapi.json")
+        ):
             from fastapi import HTTPException
             raise HTTPException(status_code=404, detail="API route not found")
         file_path = dist_dir / full_path

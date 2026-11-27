@@ -968,17 +968,17 @@ export const PatientProfileView: React.FC<PatientProfileViewProps> = ({
               </p>
             </div>
             <span className="text-xs text-[#2E2924] font-semibold bg-[#FAF8F5] px-3 py-1 rounded-xl border border-[#EBE4DA]">
-              Staging: {diffData?.straw_stage?.replace('_', ' ').toUpperCase()}
+              Staging: {diffData?.straw_stage ? diffData.straw_stage.replace('_', ' ').toUpperCase() : 'PENDING EVALUATION'}
             </span>
           </div>
 
-          {diffData?.screenings?.length === 0 ? (
+          {!diffData || !diffData.screenings || diffData.screenings.length === 0 ? (
             <div className="p-12 text-center text-xs text-[#766E65] bg-[#FAF8F5] rounded-xl border border-[#EBE4DA]">
               No condition patterns crossed the clinical confidence threshold (all scores &lt; 40%).
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {diffData.screenings.map((cond: any) => {
+              {(diffData?.screenings || []).map((cond: any) => {
                 const isCritical = cond.risk_tier === 'critical';
                 const isHigh = cond.risk_tier === 'high';
 

@@ -104,3 +104,35 @@ h1, h2, h3, .text-balance {
 ::-webkit-scrollbar-thumb:hover {
   background: #B8B0A0;
 }
+
+/* Hide scrollbar for clean horizontal tab strips */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile Safe-Area Inset Utilities */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pl-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+.pr-safe {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Touch usability & native tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}

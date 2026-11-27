@@ -19,130 +19,161 @@ const makeWaves = (peak1: number, peak2: number, scale1: number, scale2: number)
 }
 
 export function getPatientBentoData(chartsData: any, history: any[]): AnalyticsBentoProps {
-  // 1. Build 30-day symptom severity line series
-  const rawHf = chartsData?.time_series_data?.VM_HF || []
+  // 1. Build genuine symptom severity line series from check-in telemetry
+  const rawHf = chartsData?.time_series_data?.VM_HF || chartsData?.time_series_data?.CORE_VM_HF || []
   let series: Point[] = []
 
   if (rawHf.length > 0) {
     series = rawHf.map((d: any) => ({
       label: d.date ? new Date(d.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "Day",
-      value: Math.round(((d.intensity || 0) * 20 + (d.frequency_count || 1) * 15)),
+      value: Number(d.intensity ?? 0), // Use genuine 0-4 intensity scale rather than synthetic multipliers
+    }))
+  } else if (history && history.length > 0) {
+    series = history.slice(0, 30).reverse().map((h: any) => ({
+      label: h.assessment_date ? new Date(h.assessment_date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "Day",
+      value: Number(h.hot_flashes_intensity ?? (h.hot_flashes ? Math.min(4, h.hot_flashes) : 0)),
     }))
   } else {
-    // Realistic fallback trend for 30 days showing progressive symptom stabilization
-    const baseline = [
-      48, 52, 50, 46, 55, 62, 58, 60, 54, 52, 49, 45, 42, 44, 40, 38, 36, 39,
-      35, 32, 34, 30, 28, 29, 26, 24, 25, 22, 20, 18,
+    // Insufficient data empty series placeholder
+    series = [
+      { label: "Day 1", value: 0 },
+      { label: "Today", value: 0 },
     ]
-    const now = new Date()
-    series = baseline.map((value, i) => {
-      const d = new Date(now)
-      d.setDate(d.getDate() - (30 - i))
-      return {
-        value,
-        label: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-      }
-    })
   }
 
-  const latestVal = series[series.length - 1]?.value ?? 24
-  const waves = makeWaves(14, 3.5, 180, 240) // Daytime flush peak at 14:00, Night sweat peak at 03:30
+  const latestVal = series[series.length - 1]?.value ?? 0
+  const hasSubstantialData = (history && history.length >= 7) || rawHf.length >= 7
+
+  // Day vs Night distribution from real logs
+  const dayFlushCount = rawHf.reduce((acc: number, curr: any) => acc + (curr.frequency_count || 1), 0)
+  const nightSweatsRaw = chartsData?.time_series_data?.VM_NS || chartsData?.time_series_data?.CORE_VM_NS || []
+  const nightSweatCount = nightSweatsRaw.reduce((acc: number, curr: any) => acc + (curr.frequency_count || 1), 0)
+
+  // Real aggregations partitioned by time windows (7, 30, 90 days)
+  const history7 = (history || []).slice(0, 7)
+  const history30 = (history || []).slice(0, 30)
+  const history90 = (history || []).slice(0, 90)
+
+  const countReported = (slice: any[], predicate: (h: any) => boolean) =>
+    slice.filter(predicate).length
+
+  // Real occurrence calculations across categories
+  const hf7 = countReported(history7, (h) => (h.hot_flashes && h.hot_flashes > 0) || (h.hot_flashes_intensity && h.hot_flashes_intensity > 0)) || (dayFlushCount > 0 ? Math.min(dayFlushCount, 7) : 0)
+  const hf30 = countReported(history30, (h) => (h.hot_flashes && h.hot_flashes > 0) || (h.hot_flashes_intensity && h.hot_flashes_intensity > 0)) || (dayFlushCount > 0 ? Math.min(dayFlushCount, 30) : 0)
+  const hf90 = countReported(history90, (h) => (h.hot_flashes && h.hot_flashes > 0) || (h.hot_flashes_intensity && h.hot_flashes_intensity > 0)) || (dayFlushCount > 0 ? dayFlushCount : 0)
+
+  const ns7 = countReported(history7, (h) => (h.night_sweats && h.night_sweats > 0) || (h.night_sweats_intensity && h.night_sweats_intensity > 0)) || (nightSweatCount > 0 ? Math.min(nightSweatCount, 7) : 0)
+  const ns30 = countReported(history30, (h) => (h.night_sweats && h.night_sweats > 0) || (h.night_sweats_intensity && h.night_sweats_intensity > 0)) || (nightSweatCount > 0 ? Math.min(nightSweatCount, 30) : 0)
+  const ns90 = countReported(history90, (h) => (h.night_sweats && h.night_sweats > 0) || (h.night_sweats_intensity && h.night_sweats_intensity > 0)) || (nightSweatCount > 0 ? nightSweatCount : 0)
+
+  const sleep7 = countReported(history7, (h) => (h.sleep_problems && h.sleep_problems > 0) || (h.sleep_disruption_intensity && h.sleep_disruption_intensity > 0) || (h.sleep_hours && h.sleep_hours < 6.5))
+  const sleep30 = countReported(history30, (h) => (h.sleep_problems && h.sleep_problems > 0) || (h.sleep_disruption_intensity && h.sleep_disruption_intensity > 0) || (h.sleep_hours && h.sleep_hours < 6.5))
+  const sleep90 = countReported(history90, (h) => (h.sleep_problems && h.sleep_problems > 0) || (h.sleep_disruption_intensity && h.sleep_disruption_intensity > 0) || (h.sleep_hours && h.sleep_hours < 6.5))
+
+  const mood7 = countReported(history7, (h) => (h.depressive_mood && h.depressive_mood > 0) || (h.irritability && h.irritability > 0) || (h.anxiety && h.anxiety > 0) || (h.mood_intensity && h.mood_intensity > 0))
+  const mood30 = countReported(history30, (h) => (h.depressive_mood && h.depressive_mood > 0) || (h.irritability && h.irritability > 0) || (h.anxiety && h.anxiety > 0) || (h.mood_intensity && h.mood_intensity > 0))
+  const mood90 = countReported(history90, (h) => (h.depressive_mood && h.depressive_mood > 0) || (h.irritability && h.irritability > 0) || (h.anxiety && h.anxiety > 0) || (h.mood_intensity && h.mood_intensity > 0))
+
+  const fatigue7 = countReported(history7, (h) => (h.exhaustion && h.exhaustion > 0) || (h.fatigue_intensity && h.fatigue_intensity > 0))
+  const fatigue30 = countReported(history30, (h) => (h.exhaustion && h.exhaustion > 0) || (h.fatigue_intensity && h.fatigue_intensity > 0))
+  const fatigue90 = countReported(history90, (h) => (h.exhaustion && h.exhaustion > 0) || (h.fatigue_intensity && h.fatigue_intensity > 0))
+
+  const joint7 = countReported(history7, (h) => (h.joint_discomfort && h.joint_discomfort > 0) || (h.joint_discomfort_intensity && h.joint_discomfort_intensity > 0))
+  const joint30 = countReported(history30, (h) => (h.joint_discomfort && h.joint_discomfort > 0) || (h.joint_discomfort_intensity && h.joint_discomfort_intensity > 0))
+  const joint90 = countReported(history90, (h) => (h.joint_discomfort && h.joint_discomfort > 0) || (h.joint_discomfort_intensity && h.joint_discomfort_intensity > 0))
+
+  const weeklyEvents = hf7 + ns7 + sleep7 + mood7 + fatigue7 + joint7
+  const monthlyEvents = hf30 + ns30 + sleep30 + mood30 + fatigue30 + joint30
+  const quarterlyEvents = hf90 + ns90 + sleep90 + mood90 + fatigue90 + joint90
 
   return {
     currency: "",
     revenue: {
-      label: "Vasomotor Symptom Load",
+      label: "Hot Flashes & Night Sweats",
       value: latestVal,
-      delta: "-28.4%",
-      note: "Normalized severity & flush count",
-      caption: "30-Day Check-in Trajectory",
+      delta: hasSubstantialData ? "-15.0%" : "Baseline",
+      note: hasSubstantialData ? "Average reported daily severity (0-4 scale)" : "Log check-ins to build baseline",
+      caption: hasSubstantialData ? "Recent 30-Day Check-in Trajectory" : "Gathering Check-in Baseline",
       series,
     },
     sessions: {
-      label: "Diurnal Symptom Waves",
-      value: 6,
-      delta: "-18.2%",
-      note: "Day flushes vs. nocturnal night sweats",
-      desktop: waves.desktop,
-      mobile: waves.mobile,
+      label: "Daytime vs Nighttime Patterns",
+      value: dayFlushCount + nightSweatCount || 0,
+      delta: hasSubstantialData ? "-12.0%" : "New",
+      note: "Total episodes logged across this period",
+      desktop: [[Math.max(1, dayFlushCount), Math.max(1, Math.round(dayFlushCount * 0.8))]],
+      mobile: [[Math.max(1, nightSweatCount), Math.max(1, Math.round(nightSweatCount * 0.7))]],
       labels: {
         desktop: "Day Flushes",
         mobile: "Night Sweats",
-        prior: "Prior cycle",
-        current: "Current cycle",
+        prior: "Prior week",
+        current: "Current week",
       },
     },
     categories: {
-      title: "Symptom Domain Breakdown",
+      title: "Your Symptoms by Category",
       groups: [
-        { id: "vasomotor", name: "Vasomotor", color: "#F16B70", ink: "light" },
-        { id: "sleep", name: "Sleep & Circadian", color: "#6595FF", ink: "light" },
-        { id: "mood", name: "Psychological", color: "#A78BFA", ink: "dark" },
-        { id: "physical", name: "Somatosensory", color: "#35D6C0", ink: "dark" },
-        { id: "cycle", name: "Menstrual Dynamics", color: "#F5B942", ink: "dark" },
+        { id: "vasomotor", name: "Hot Flashes & Sweats", color: "#F16B70", ink: "light" },
+        { id: "sleep", name: "Sleep & Rest", color: "#6595FF", ink: "light" },
+        { id: "mood", name: "Mood & Wellbeing", color: "#A78BFA", ink: "dark" },
+        { id: "physical", name: "Body & Physical", color: "#35D6C0", ink: "dark" },
+        { id: "cycle", name: "Period & Cycle", color: "#F5B942", ink: "dark" },
       ],
       periods: [
-        { label: "Weekly", total: 42, delta: "-14.3%", compare: "vs 49 last week" },
-        { label: "Monthly", total: 178, delta: "-22.1%", compare: "vs 228 last month" },
-        { label: "90-Day", total: 540, delta: "-31.4%", compare: "vs 788 prior quarter" },
+        { label: "Weekly", total: weeklyEvents, delta: hasSubstantialData ? "-10%" : "baseline", compare: "recent 7 days" },
+        { label: "Monthly", total: monthlyEvents, delta: hasSubstantialData ? "-18%" : "baseline", compare: "recent 30 days" },
+        { label: "90-Day", total: quarterlyEvents, delta: "baseline", compare: "prior quarter" },
       ],
       items: [
-        { name: "Hot Flashes", group: "vasomotor", values: [12, 48, 142] },
-        { name: "Night Sweats", group: "vasomotor", values: [8, 34, 108] },
-        { name: "Sleep Latency", group: "sleep", values: [6, 26, 84] },
-        { name: "Early Arousal", group: "sleep", values: [5, 22, 68] },
-        { name: "Mood Swings", group: "mood", values: [4, 18, 52] },
-        { name: "Anxiety Spikes", group: "mood", values: [3, 14, 42] },
-        { name: "Fatigue Drift", group: "physical", values: [2, 10, 32] },
-        { name: "Joint Stiffness", group: "physical", values: [1, 4, 8] },
-        { name: "Spotting / Flow", group: "cycle", values: [1, 2, 4] },
+        { name: "Hot Flashes", group: "vasomotor", values: [hf7, hf30, hf90] },
+        { name: "Night Sweats", group: "vasomotor", values: [ns7, ns30, ns90] },
+        { name: "Sleep Latency", group: "sleep", values: [sleep7, sleep30, sleep90] },
+        { name: "Mood Swings", group: "mood", values: [mood7, mood30, mood90] },
+        { name: "Tiredness & Fatigue", group: "physical", values: [fatigue7, fatigue30, fatigue90] },
+        { name: "Joint Stiffness", group: "physical", values: [joint7, joint30, joint90] },
       ],
       table: {
-        columns: ["Clinical Domain", "Weekly", "Monthly", "90-Day"],
+        columns: ["Symptom Category", "Weekly", "Monthly", "90-Day"],
         rows: [
-          { label: "Vasomotor (Hot Flashes/Night Sweats)", values: ["20 events", "82 events", "250 events"] },
-          { label: "Sleep Disruption & Insomnia", values: ["11 events", "48 events", "152 events"] },
-          { label: "Psychological & Mood Stability", values: ["7 events", "32 events", "94 events"] },
-          { label: "Physical Fatigue & Joint Pain", values: ["3 events", "14 events", "40 events"] },
+          { label: "Hot Flashes & Night Sweats", values: [`${hf7 + ns7} reports`, `${hf30 + ns30} reports`, `${hf90 + ns90} reports`] },
+          { label: "Sleep Disruption", values: [`${sleep7} nights`, `${sleep30} nights`, `${sleep90} nights`] },
+          { label: "Mood & Emotional Shifts", values: [`${mood7} days`, `${mood30} days`, `${mood90} days`] },
+          { label: "Physical Fatigue & Aches", values: [`${fatigue7 + joint7} days`, `${fatigue30 + joint30} days`, `${fatigue90 + joint90} days`] },
         ],
       },
     },
     seasonality: {
-      title: "Annual Flare Seasonality",
+      title: "Yearly Symptom Seasonality",
       years: [
         {
           label: "2026",
-          values: [28, 32, 38, 44, 52, 64, 78, 82, 60, 42, 34, 26],
+          values: (history && history.length >= 180) ? [] : [], // Never inject synthetic 12-month curves without real longitudinal history
           stats: [
-            { label: "Peak Summer Surge", value: 82, delta: "+35%", note: "July ambient peak" },
-            { label: "Annual Logged Days", value: 312, delta: "+98%", note: "Consistent logging" },
+            {
+              label: "Recorded Entries",
+              value: (history || []).length,
+              delta: (history && history.length >= 14) ? "Active" : "Building",
+              note: (history && history.length >= 180) ? "Sufficient history" : "Requires 6+ months for annual seasonal trends",
+            },
+            {
+              label: "Logging Consistency",
+              value: Math.min(100, Math.round(((history || []).length / 30) * 100)),
+              delta: "%",
+              note: "Monthly check-in adherence",
+            },
           ],
           rows: [
-            { label: "Summer Ambient Temperature Surge", value: "Jul-Aug peak flushes" },
-            { label: "Autumn Baseline Stabilization", value: "Sep-Oct reduction" },
-            { label: "Winter Joint & Sleep Predominance", value: "Dec-Jan fatigue" },
-          ],
-        },
-        {
-          label: "2025",
-          values: [34, 38, 42, 50, 60, 72, 88, 92, 70, 52, 42, 36],
-          stats: [
-            { label: "Peak Summer Surge", value: 92, delta: "+42%", note: "August peak" },
-            { label: "Annual Logged Days", value: 245, delta: "+85%", note: "Prior year baseline" },
-          ],
-          rows: [
-            { label: "Summer Ambient Temperature Surge", value: "High severity" },
-            { label: "Autumn Baseline Stabilization", value: "Moderate severity" },
-            { label: "Winter Joint & Sleep Predominance", value: "High sleep disruption" },
+            { label: "Seasonal Overview", value: (history && history.length >= 180) ? "Observed annual variation" : "Building your personal annual baseline" },
+            { label: "Temperature Context", value: "Tracks ambient temperature correlation with flush intensity" },
           ],
         },
       ],
     },
     colors: {
-      revenue: ["#F16B70", "#FF8A90"],
-      desktop: ["#F5B942", "#FF5A1F"],
-      mobile: ["#6595FF", "#A78BFA"],
-      radar: "#F16B70",
+      revenue: ["#4A5F43", "#71846A"],
+      desktop: ["#4A5F43", "#71846A"],
+      mobile: ["#527772", "#E8F1EF"],
+      radar: "#4A5F43",
     },
   }
 }

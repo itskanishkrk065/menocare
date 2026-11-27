@@ -393,8 +393,10 @@ function SessionsChart({ desktop, mobile, labels, colors, tip }: { desktop: numb
 
 type Rect = { name: string; group: string; v: number; x: number; y: number; w: number; h: number };
 function squarify(items: { name: string; group: string; v: number }[], x: number, y: number, w: number, h: number): Rect[] {
-  const total = items.reduce((a, b) => a + b.v, 0) || 1, scale = (w * h) / total, out: Rect[] = [];
-  let rest = items.map((i) => ({ ...i, a: i.v * scale }));
+  const activeItems = items.filter((i) => i.v > 0);
+  if (activeItems.length === 0) return [];
+  const total = activeItems.reduce((a, b) => a + b.v, 0) || 1, scale = (w * h) / total, out: Rect[] = [];
+  let rest = activeItems.map((i) => ({ ...i, a: i.v * scale }));
   const worst = (row: typeof rest, len: number) => {
     const s = row.reduce((a, b) => a + b.a, 0), mx = Math.max(...row.map((r) => r.a)), mn = Math.min(...row.map((r) => r.a));
     return Math.max((len * len * mx) / (s * s), (s * s) / (len * len * mn));
@@ -406,8 +408,8 @@ function squarify(items: { name: string; group: string; v: number }[], x: number
     while (i < rest.length && worst([...row, rest[i]], len) <= worst(row, len)) row.push(rest[i++]);
     rest = rest.slice(i);
     const s = row.reduce((a, b) => a + b.a, 0);
-    if (w >= h) { const cw = s / h; let cy = y; for (const r of row) { const rh = r.a / cw; out.push({ ...r, x, y: cy, w: cw, h: rh }); cy += rh; } x += cw; w -= cw; }
-    else { const rh = s / w; let cx = x; for (const r of row) { const rw = r.a / rh; out.push({ ...r, x: cx, y, w: rw, h: rh }); cx += rw; } y += rh; h -= rh; }
+    if (w >= h) { const cw = s / (h || 1); let cy = y; for (const r of row) { const rh = cw > 0 ? r.a / cw : 0; out.push({ ...r, x, y: cy, w: cw, h: rh }); cy += rh; } x += cw; w -= cw; }
+    else { const rh = s / (w || 1); let cx = x; for (const r of row) { const rw = rh > 0 ? r.a / rh : 0; out.push({ ...r, x: cx, y, w: rw, h: rh }); cx += rw; } y += rh; h -= rh; }
   }
   return out;
 }
@@ -427,6 +429,17 @@ function Treemap({ data, period, mono, tip }: { data: AnalyticsBentoProps["categ
   const items = data.items.map((i) => ({ name: i.name, group: i.group, v: i.values[period] ?? 0 })).sort((a, b) => b.v - a.v);
   const total = items.reduce((a, b) => a + b.v, 0) || 1;
   const rects = W ? squarify(items, 0, 0, W + G, H + G) : [];
+
+  if (items.every((i) => i.v === 0)) {
+    return (
+      <div ref={ref} className="relative mt-1.5 h-[280px] sm:h-[320px] flex items-center justify-center border border-dashed border-[#E2DBD0] rounded-2xl bg-cream/50 text-xs text-charcoal-muted text-center p-6">
+        <div>
+          <p className="font-semibold text-charcoal mb-1">No Symptoms Reported for this Period</p>
+          <p className="max-w-xs text-pretty">Complete your daily check-in to view your category distribution here.</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div ref={ref} className="relative mt-1.5 h-[300px] sm:h-[340px]" role="img" aria-label={`${data.title}, ${data.periods[period]?.label}`}>
       {rects.map((r) => {
@@ -472,16 +485,21 @@ function Treemap({ data, period, mono, tip }: { data: AnalyticsBentoProps["categ
 /* ---------------- D: seasonality radar ---------------- */
 
 function Radar({ values, axis, year, color, prefix, mono, tip }: { values: number[]; axis: string[]; year: string; color: string; prefix: string; mono: string; tip: TipRef }) {
+  const safeValues = values && values.length > 0 ? values : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const [ref, { w }] = useSize();
   const reduce = useReducedMotion();
   const line = React.useRef(null as SVGPathElement | null);
   const cur = React.useRef(null as number[] | null);
   const [hover, setHover] = React.useState(null as number | null);
-  const N = values.length, S = Math.min(w, 420), R = S / 2 - 34, C = S / 2;
+  const N = safeValues.length || 12, S = Math.min(w || 300, 420), R = Math.max(10, S / 2 - 34), C = S / 2;
   const ang = (i: number) => -Math.PI / 2 + (i / N) * Math.PI * 2;
 
   /* a low-order Fourier fit keeps the lobes round and even */
-  const norm = (v: number[]) => { const lo = Math.min(...v), hi = Math.max(...v); return v.map((x) => 0.42 + ((x - lo) / (hi - lo || 1)) * 0.58); };
+  const norm = (v: number[]) => {
+    const lo = Math.min(...v), hi = Math.max(...v);
+    const diff = hi - lo;
+    return v.map((x) => 0.42 + (diff > 0 ? ((x - lo) / diff) * 0.58 : 0.2));
+  };
   const fit = (v: number[]) => {
     const K = Math.min(5, Math.floor(N / 2)), co: [number, number][] = [];
     for (let k = 0; k <= K; k++) {
@@ -495,23 +513,33 @@ function Radar({ values, axis, year, color, prefix, mono, tip }: { values: numbe
     const v = Math.max(0.05, f(th)), a = -Math.PI / 2 + th;
     return [C + Math.cos(a) * (R * 0.2 + v * R * 0.8), C + Math.sin(a) * (R * 0.2 + v * R * 0.8)];
   };
-  const shape = (v: number[]) => { const f = fit(norm(v)); let d = ""; for (let j = 0; j <= 180; j++) { const p = at(f, (j / 180) * Math.PI * 2); d += (j ? "L" : "M") + p[0].toFixed(2) + "," + p[1].toFixed(2); } return d + "Z"; };
+  const shape = (v: number[]) => {
+    const f = fit(norm(v));
+    let d = "";
+    for (let j = 0; j <= 180; j++) {
+      const p = at(f, (j / 180) * Math.PI * 2);
+      const px = isNaN(p[0]) ? C : p[0];
+      const py = isNaN(p[1]) ? C : p[1];
+      d += (j ? "L" : "M") + px.toFixed(2) + "," + py.toFixed(2);
+    }
+    return d + "Z";
+  };
   const point = (v: number[], i: number) => at(fit(norm(v)), (i / N) * Math.PI * 2);
 
   React.useEffect(() => {
     if (!S) return;
-    const from = cur.current ?? values.map(() => 1), to = values, t0 = performance.now();
+    const from = cur.current ?? safeValues.map(() => 1), to = safeValues, t0 = performance.now();
     let raf = 0;
     const step = (now: number) => {
       const t = reduce ? 1 : ease(Math.min(1, (now - t0) / 900));
-      cur.current = from.map((v, i) => v + (to[i] - v) * t);
+      cur.current = from.map((v, i) => v + ((to[i] ?? 0) - v) * t);
       line.current?.setAttribute("d", shape(cur.current));
       if (t < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values, S, reduce]);
+  }, [safeValues, S, reduce]);
 
   const move = (e: React.PointerEvent) => {
     const r = (e.currentTarget as SVGRectElement).ownerSVGElement!.getBoundingClientRect(), x = e.clientX - r.left - C, y = e.clientY - r.top - C;

@@ -17,6 +17,7 @@ import {
   Activity,
 } from 'lucide-react';
 import { api } from '../../api/client';
+import { SymptomVoiceTextInput } from './SymptomVoiceTextInput';
 
 interface InteractiveCheckInModalProps {
   isOpen: boolean;
@@ -183,15 +184,20 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="bg-cream rounded-[26px] max-w-2xl w-full border border-[#E2DBD0] shadow-warm-lg overflow-hidden my-auto max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-cream rounded-t-[28px] sm:rounded-[26px] max-w-2xl w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col animate-in slide-in-from-bottom duration-300">
         
+        {/* Mobile Grab / Swipe Handle */}
+        <div className="sm:hidden w-full pt-3 pb-1 flex justify-center">
+          <div className="w-12 h-1.5 rounded-full bg-[#E2DBD0]" />
+        </div>
+
         {/* Header */}
-        <div className="p-5 sm:p-6 bg-ivory border-b border-[#E2DBD0] flex items-center justify-between shrink-0">
+        <div className="p-4 sm:p-6 bg-ivory border-b border-[#E2DBD0] flex items-center justify-between shrink-0">
           <div>
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-sage-dark" />
-              <h2 className="font-serif text-xl font-semibold text-charcoal">Your Daily Check-in</h2>
+              <h2 className="font-serif text-lg sm:text-xl font-semibold text-charcoal">Your Daily Check-in</h2>
             </div>
             <p className="text-xs text-charcoal-muted mt-0.5">
               Takes about 1 minute. Helps track how your body feels and keeps your doctor informed.
@@ -199,7 +205,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-all shadow-warm-sm"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-all shadow-warm-sm min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
           >
             <X className="w-4 h-4" />
           </button>
@@ -301,7 +307,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
                     </div>
 
                     {/* Intensity Level Pill Selectors */}
-                    <div className="grid grid-cols-5 gap-1.5 pt-1">
+                    <div className="grid grid-cols-5 gap-1 sm:gap-1.5 pt-1">
                       {INTENSITY_LEVELS.map((lvl) => {
                         const isSelected = currentVal === lvl.level;
                         return (
@@ -309,13 +315,13 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
                             type="button"
                             key={lvl.level}
                             onClick={() => handleIntensityChange(symp.code, lvl.level)}
-                            className={`py-1.5 px-1 rounded-xl text-center transition-all border ${
+                            className={`py-1.5 px-0.5 sm:px-1 rounded-xl text-center transition-all border min-h-[44px] flex flex-col items-center justify-center ${
                               isSelected
                                 ? 'bg-sage-soft border-sage-dark text-sage-dark font-bold shadow-warm-sm'
                                 : 'bg-ivory border-[#E2DBD0] text-charcoal-muted hover:border-sage'
                             }`}
                           >
-                            <span className="block text-[11px] font-semibold">{lvl.label}</span>
+                            <span className="block text-[10px] sm:text-[11px] font-semibold leading-tight truncate max-w-full px-0.5">{lvl.label}</span>
                             <span className="text-[9px] text-charcoal-light font-medium block">Lvl {lvl.level}</span>
                           </button>
                         );
@@ -401,33 +407,29 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
             />
           </div>
 
-          {/* Qualitative Journal Notes */}
-          <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-charcoal-muted">
-              Personal notes (Optional notes for your doctor)
-            </label>
-            <textarea
-              rows={3}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="e.g. Woke up at 3:15 AM sweating; drank coffee later than usual; experienced brain fog during morning meeting."
-              className="w-full p-3 bg-white border border-[#E2DBD0] rounded-2xl text-xs text-charcoal placeholder:text-charcoal-light focus:outline-none focus:border-sage-dark focus:ring-2 focus:ring-sage/20 transition-all shadow-warm-sm"
-            />
-          </div>
+          {/* Intelligent Symptom Reporting (Voice & Text with Category Confirmation) */}
+          <SymptomVoiceTextInput
+            onConfirmed={(categories) => {
+              const summary = categories.map((c: any) => c.category_name).join(', ');
+              if (summary) {
+                setNotes((prev) => (prev ? `${prev} | Confirmed: ${summary}` : `Confirmed: ${summary}`));
+              }
+            }}
+          />
 
           {/* Form Actions */}
-          <div className="pt-2 flex items-center justify-end gap-3">
+          <div className="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2.5 rounded-xl border border-[#E2DBD0] bg-cream text-charcoal-muted hover:text-charcoal text-xs font-semibold"
+              className="px-4 py-3 sm:py-2.5 rounded-xl border border-[#E2DBD0] bg-cream text-charcoal-muted hover:text-charcoal text-xs font-semibold min-h-[44px] text-center"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-sage-dark to-sage hover:to-teal text-cream text-xs font-semibold shadow-warm-md flex items-center gap-2 transition-all disabled:opacity-50"
+              className="px-6 py-3 sm:py-2.5 rounded-xl bg-gradient-to-r from-sage-dark to-sage hover:to-teal text-cream text-xs font-semibold shadow-warm-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 min-h-[48px]"
             >
               {isSubmitting ? (
                 <span>Saving your check-in...</span>

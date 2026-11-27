@@ -9,8 +9,8 @@ import {
   CartesianGrid,
   Legend,
 } from 'recharts';
-import { TrendingUp, TrendingDown, Minus, Activity, Layers } from 'lucide-react';
-import { translateSymptom } from '../../utils/terminology';
+import { TrendingUp, TrendingDown, Minus, Activity, Layers, Info } from 'lucide-react';
+import { translateSymptom, formatSymptomNarrative } from '../../utils/terminology';
 
 interface SymptomTrendsChartProps {
   chartsData: any;
@@ -57,6 +57,22 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
     });
   }, [primarySeries, secondarySeries, compareSymptom]);
 
+  const primaryLabel = symptomsList.find((s) => s.code === selectedSymptom)?.label || 'Primary';
+  const compareLabel = compareSymptom ? symptomsList.find((s) => s.code === compareSymptom)?.label : null;
+
+  const trend = summary?.trend || 'stable';
+  const isIncreasing = trend === 'increasing';
+  const isDecreasing = trend === 'decreasing';
+
+  const narrative = useMemo(() => {
+    const count = primarySeries.length;
+    return formatSymptomNarrative(primaryLabel, trend, {
+      recentAvg: summary?.current_sma_30,
+      baselineAvg: summary?.mean_intensity,
+      daysCount: count,
+    });
+  }, [primaryLabel, trend, summary, primarySeries]);
+
   if (!chartsData || !chartsData.time_series_data) {
     return (
       <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] text-center text-xs text-charcoal-muted">
@@ -65,15 +81,25 @@ export const SymptomTrendsChart: React.FC<SymptomTrendsChartProps> = ({
     );
   }
 
-  const trend = summary.trend || 'stable';
-  const isIncreasing = trend === 'increasing';
-  const isDecreasing = trend === 'decreasing';
-
-  const primaryLabel = symptomsList.find((s) => s.code === selectedSymptom)?.label || 'Primary';
-  const compareLabel = compareSymptom ? symptomsList.find((s) => s.code === compareSymptom)?.label : null;
-
   return (
     <div className="bg-cream rounded-2xl p-6 border border-[#E2DBD0] space-y-4">
+      {/* Plain-Language Narrative Interpretation Banner */}
+      <div className="p-4 bg-ivory rounded-xl border border-sage/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-warm-sm">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <h4 className="text-xs font-bold text-charcoal">{narrative.headline}</h4>
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${narrative.badgeColor}`}>
+              {narrative.badge}
+            </span>
+          </div>
+          <p className="text-xs text-charcoal-muted">{narrative.detail}</p>
+        </div>
+
+        <div className="text-[11px] text-charcoal-muted shrink-0 bg-white/70 px-3 py-1.5 rounded-lg border border-[#E2DBD0]">
+          <span>Logged: <strong>{primarySeries.length} entries</strong></span>
+        </div>
+      </div>
+
       {/* Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#E2DBD0]/70 pb-4">
         <div>

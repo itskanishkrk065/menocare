@@ -55,8 +55,14 @@ export const CareTeamChatModal: React.FC<CareTeamChatModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-cream rounded-2xl max-w-lg w-full border border-[#E2DBD0] shadow-warm-lg flex flex-col h-[82vh] overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-hidden">
+      <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-lg w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg flex flex-col h-[92vh] sm:h-[82vh] overflow-hidden animate-in slide-in-from-bottom duration-300">
+        
+        {/* Mobile Swipe Handle */}
+        <div className="sm:hidden w-full pt-3 pb-1 flex justify-center bg-ivory">
+          <div className="w-12 h-1.5 rounded-full bg-[#E2DBD0]" />
+        </div>
+
         {/* Header */}
         <div className="p-4 sm:p-5 bg-ivory border-b border-[#E2DBD0] flex items-center justify-between shrink-0">
           <div className="flex items-center space-x-3">
@@ -79,7 +85,7 @@ export const CareTeamChatModal: React.FC<CareTeamChatModalProps> = ({
 
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-cream hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] flex items-center justify-center transition-colors"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-cream hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] flex items-center justify-center transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
           >
             <X className="w-4 h-4" />
           </button>
@@ -123,18 +129,18 @@ export const CareTeamChatModal: React.FC<CareTeamChatModalProps> = ({
         </div>
 
         {/* Input Footer */}
-        <form onSubmit={handleSend} className="p-3.5 bg-cream border-t border-[#E2DBD0] flex items-center gap-2 shrink-0">
+        <form onSubmit={handleSend} className="p-3.5 pb-[calc(0.875rem+env(safe-area-inset-bottom,0px))] bg-cream border-t border-[#E2DBD0] flex items-center gap-2 shrink-0">
           <input
             type="text"
             placeholder="Type your message to your doctor..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            className="flex-1 bg-white border border-[#E2DBD0] rounded-xl px-4 py-2.5 text-xs text-charcoal focus:border-sage-dark focus:outline-none"
+            className="flex-1 bg-white border border-[#E2DBD0] rounded-xl px-4 py-2.5 text-xs text-charcoal focus:border-sage-dark focus:outline-none min-h-[44px]"
           />
           <button
             type="submit"
             disabled={isSending || !inputText.trim()}
-            className="p-2.5 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl transition-colors disabled:opacity-40 shadow-warm-sm flex items-center justify-center"
+            className="p-2.5 min-w-[44px] min-h-[44px] bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl transition-colors disabled:opacity-40 shadow-warm-sm flex items-center justify-center shrink-0"
           >
             <Send className="w-4 h-4" />
           </button>

@@ -292,8 +292,18 @@ export const STAGE_TERMINOLOGY: Record<string, TerminologyMapping> = {
     patient: 'Early Menopause Changes',
     doctor: 'Early Menopausal Transition (STRAW -2)',
   },
+  early_transition: {
+    code: 'early_transition',
+    patient: 'Early Menopause Changes',
+    doctor: 'Early Menopausal Transition (STRAW -2)',
+  },
   late_perimenopause: {
     code: 'late_perimenopause',
+    patient: 'Later Menopause Changes',
+    doctor: 'Late Menopausal Transition (STRAW -1)',
+  },
+  late_transition: {
+    code: 'late_transition',
     patient: 'Later Menopause Changes',
     doctor: 'Late Menopausal Transition (STRAW -1)',
   },
@@ -380,6 +390,82 @@ const CLINICAL_INSIGHT_REPLACEMENTS: Array<{ regex: RegExp; patient: string }> =
     regex: /menopausal transition/gi,
     patient: 'changes happening during menopause',
   },
+  {
+    regex: /Potential Functional Ovarian Cyst \(Follicular \/ Corpus Luteum\)/gi,
+    patient: 'Observed Pattern: Pelvic Discomfort & Cycle Timing',
+  },
+  {
+    regex: /Potential Functional Ovarian Cyst/gi,
+    patient: 'Observed Pattern: Pelvic Discomfort & Cycle Timing',
+  },
+  {
+    regex: /Functional Ovarian Cyst/gi,
+    patient: 'Pelvic Discomfort & Cycle Timing Pattern',
+  },
+  {
+    regex: /Polycystic Ovarian Syndrome \(PCOD\/PCOS\)/gi,
+    patient: 'Observed Pattern: Hormonal Rhythm & Cycle Spacing',
+  },
+  {
+    regex: /Hypothyroidism \(Primary or Hashimoto's\)/gi,
+    patient: 'Observed Pattern: Energy & Metabolic Rhythms',
+  },
+  {
+    regex: /Endometrial Hyperplasia \/ Postmenopausal Bleeding/gi,
+    patient: 'Important Discussion Topic: Cycle Timing & Bleeding Pattern',
+  },
+  {
+    regex: /Uterine Leiomyomas \(Fibroids\)/gi,
+    patient: 'Observed Pattern: Flow Changes & Pelvic Comfort',
+  },
+  {
+    regex: /Iron Deficiency Anemia/gi,
+    patient: 'Observed Pattern: Energy Levels & Heavy Flow',
+  },
+  {
+    regex: /Premature Ovarian Insufficiency \(POI\)/gi,
+    patient: 'Observed Pattern: Early Cycle Spacing & Hormonal Changes',
+  },
+  {
+    regex: /Osteopenia \/ Osteoporosis/gi,
+    patient: 'Bone Health & Joint Comfort Observation',
+  },
+  {
+    regex: /Genitourinary Syndrome of Menopause \(GSM\)/gi,
+    patient: 'Intimate Comfort & Bladder Wellness Pattern',
+  },
+  {
+    regex: /Cardiovascular Dyslipidemia & Endothelial Risk/gi,
+    patient: 'Cardiovascular & Heart Rhythm Observation',
+  },
+  {
+    regex: /Metabolic Syndrome \/ Dysglycemia/gi,
+    patient: 'Metabolic Balance & Energy Pattern',
+  },
+  {
+    regex: /Adenomyosis/gi,
+    patient: 'Observed Pattern: Period Cramping & Flow',
+  },
+  {
+    regex: /Endometriosis \/ Ovarian Endometrioma/gi,
+    patient: 'Observed Pattern: Cyclical Pelvic Comfort',
+  },
+  {
+    regex: /Perimenopausal Affective Disorder \/ Depression/gi,
+    patient: 'Emotional Wellbeing & Mood Support Observation',
+  },
+  {
+    regex: /Obstructive Sleep Apnea \(OSA\)/gi,
+    patient: 'Sleep Continuity & Breathing Pattern',
+  },
+  {
+    regex: /differential screening confidence crosses clinical threshold \(>=60%\)/gi,
+    patient: 'notable symptom pattern observed for your doctor to review',
+  },
+  {
+    regex: /sudden statistical symptom escalation occurs \(>2.5 std deviations\)/gi,
+    patient: 'noticeable increase in symptom strength over the past few days',
+  },
 ];
 
 /**
@@ -445,6 +531,63 @@ export function formatSeverity(level: number, role: UserRole = 'patient'): strin
  * Translates free-form or AI clinical text into patient-friendly plain English.
  * If role is 'doctor', returns the original text untouched.
  */
+/**
+ * Formats a plain-language narrative interpretation for symptom trend charts.
+ */
+export function formatSymptomNarrative(
+  symptomName: string,
+  trend: 'increasing' | 'decreasing' | 'stable' | 'insufficient' | string,
+  options?: {
+    recentAvg?: number;
+    baselineAvg?: number;
+    daysCount?: number;
+    comparisonLabel?: string;
+  }
+): {
+  headline: string;
+  detail: string;
+  badge: string;
+  badgeColor: string;
+} {
+  const normTrend = trend.toLowerCase();
+  const comp = options?.comparisonLabel || 'compared to the previous period';
+  const name = symptomName.toLowerCase();
+
+  if (normTrend === 'insufficient' || (options?.daysCount !== undefined && options.daysCount < 5)) {
+    return {
+      headline: `Gathering your baseline for ${name}`,
+      detail: 'We need at least 5 check-ins before identifying a reliable pattern over time.',
+      badge: 'Gathering Data',
+      badgeColor: 'bg-oat-light text-charcoal-muted border-[#E2DBD0]',
+    };
+  }
+
+  if (normTrend === 'decreasing' || normTrend === 'improving') {
+    return {
+      headline: `Reported less frequent or milder ${name}`,
+      detail: `Your logged ${name} has eased ${comp}.`,
+      badge: 'Easing',
+      badgeColor: 'bg-sage-soft text-sage-dark border-sage/30',
+    };
+  }
+
+  if (normTrend === 'increasing' || normTrend === 'worsening') {
+    return {
+      headline: `Noticeable increase in ${name}`,
+      detail: `You have reported ${name} more frequently or at higher intensity ${comp}.`,
+      badge: 'More Frequent',
+      badgeColor: 'bg-peach-soft text-peach border-peach/30',
+    };
+  }
+
+  return {
+    headline: `Steady pattern for ${name}`,
+    detail: `Your reported ${name} levels have remained relatively stable ${comp}.`,
+    badge: 'Steady',
+    badgeColor: 'bg-ivory text-charcoal border-[#E2DBD0]',
+  };
+}
+
 export function translateInsight(text: string, role: UserRole = 'patient'): string {
   if (!text || role === 'doctor') return text;
   let translated = text;

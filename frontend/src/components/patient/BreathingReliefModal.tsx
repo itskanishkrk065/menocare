@@ -77,12 +77,18 @@ export const BreathingReliefModal: React.FC<BreathingReliefModalProps> = ({
   const meta = getPhaseInstructions();
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-cream rounded-2xl max-w-md w-full border border-[#E2DBD0] shadow-warm-lg p-6 sm:p-8 text-center space-y-6 relative overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-md w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg p-5 sm:p-8 text-center space-y-5 relative max-h-[92vh] sm:max-h-[88vh] overflow-y-auto animate-in slide-in-from-bottom duration-300">
+        
+        {/* Mobile Swipe Grab Handle */}
+        <div className="sm:hidden w-full -mt-2 pb-2 flex justify-center">
+          <div className="w-12 h-1.5 rounded-full bg-[#E2DBD0]" />
+        </div>
+
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-ivory hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-ivory hover:bg-oat-light text-charcoal-muted hover:text-charcoal border border-[#E2DBD0] flex items-center justify-center transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
         >
           <X className="w-4 h-4" />
         </button>
@@ -126,14 +132,14 @@ export const BreathingReliefModal: React.FC<BreathingReliefModalProps> = ({
           <button
             type="button"
             onClick={() => setIsActive(!isActive)}
-            className="px-4 py-2 bg-ivory hover:bg-oat-light text-charcoal rounded-xl text-xs font-medium border border-[#E2DBD0] transition-colors"
+            className="px-4 py-2.5 min-h-[44px] bg-ivory hover:bg-oat-light text-charcoal rounded-xl text-xs font-medium border border-[#E2DBD0] transition-colors flex-1 sm:flex-none"
           >
             {isActive ? 'Pause' : 'Resume'}
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors"
+            className="px-5 py-2.5 min-h-[44px] bg-sage-dark hover:bg-[#3E5437] text-white rounded-xl text-xs font-medium transition-colors flex-1 sm:flex-none shadow-warm-sm"
           >
             Done
           </button>

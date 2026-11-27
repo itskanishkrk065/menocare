@@ -183,6 +183,103 @@ class Response(Base):
     question: Mapped[Optional["Question"]] = relationship("Question", back_populates="responses")
 
 
+# ---------------------------------------------------------------------------
+# 5b. Adaptive Questionnaire Sessions & Rotation Tracking
+# ---------------------------------------------------------------------------
+
+class QuestionnaireSession(Base):
+    __tablename__ = "questionnaire_sessions"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=generate_uuid)
+    patient_id: Mapped[str] = mapped_column(String(36), ForeignKey("patient_profiles.id", ondelete="CASCADE"), index=True)
+    assessment_date: Mapped[date] = mapped_column(Date, nullable=False, index=True)
+    status: Mapped[str] = mapped_column(String(32), default="in_progress")  # 'in_progress', 'completed', 'interrupted'
+    core_question_codes: Mapped[List[str]] = mapped_column(JSON, default=list)  # exactly 7
+    rotating_question_codes: Mapped[List[str]] = mapped_column(JSON, default=list)  # exactly 6
+    adaptive_question_codes: Mapped[List[str]] = mapped_column(JSON, default=list)  # 0 to 2
+    answers: Mapped[Dict[str, Any]] = mapped_column(JSON, default=dict)
+    questionnaire_version: Mapped[str] = mapped_column(String(32), default="v1.0-adaptive")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+    completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
+class PatientRotationTracker(Base):
+    __tablename__ = "patient_rotation_trackers"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=generate_uuid)
+    patient_id: Mapped[str] = mapped_column(String(36), ForeignKey("patient_profiles.id", ondelete="CASCADE"), unique=True, index=True)
+    cycle_number: Mapped[int] = mapped_column(Integer, default=1)
+    cycle_start_date: Mapped[date] = mapped_column(Date, nullable=False)
+    assigned_pool_history: Mapped[List[str]] = mapped_column(JSON, default=list)
+    completed_pool_history: Mapped[List[str]] = mapped_column(JSON, default=list)
+    unanswered_recovery_pool: Mapped[List[str]] = mapped_column(JSON, default=list)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+
+
+# ---------------------------------------------------------------------------
+# 5c. Intelligent Symptom Extraction & Provenance
+# ---------------------------------------------------------------------------
+
+class SymptomExtraction(Base):
+    __tablename__ = "symptom_extractions"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=generate_uuid)
+    patient_id: Mapped[str] = mapped_column(String(36), ForeignKey("patient_profiles.id", ondelete="CASCADE"), index=True)
+    assessment_id: Mapped[Optional[str]] = mapped_column(String(36), ForeignKey("assessments.id", ondelete="SET NULL"), nullable=True)
+    input_method: Mapped[str] = mapped_column(String(32), default="text")  # 'text', 'voice'
+    raw_input_text: Mapped[str] = mapped_column(Text, nullable=False)
+    reviewed_transcript: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    extracted_candidates: Mapped[List[Dict[str, Any]]] = mapped_column(JSON, default=list)
+    confirmed_categories: Mapped[List[Dict[str, Any]]] = mapped_column(JSON, default=list)
+    rejected_categories: Mapped[List[str]] = mapped_column(JSON, default=list)
+    added_manually_categories: Mapped[List[str]] = mapped_column(JSON, default=list)
+    clarification_requested: Mapped[bool] = mapped_column(Boolean, default=False)
+    clarification_prompt: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    model_version: Mapped[str] = mapped_column(String(32), default="hybrid-nlp-v1")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
+    confirmed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
+# ---------------------------------------------------------------------------
+# 5d. Longitudinal Trend Anomalies & Prioritisation
+# ---------------------------------------------------------------------------
+
+class ClinicalTrendAnomaly(Base):
+    __tablename__ = "clinical_trend_anomalies"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=generate_uuid)
+    patient_id: Mapped[str] = mapped_column(String(36), ForeignKey("patient_profiles.id", ondelete="CASCADE"), index=True)
+    doctor_id: Mapped[Optional[str]] = mapped_column(String(36), ForeignKey("doctor_profiles.id", ondelete="SET NULL"), nullable=True, index=True)
+    observation_type: Mapped[str] = mapped_column(String(64), nullable=False)
+    detection_date: Mapped[date] = mapped_column(Date, nullable=False, index=True)
+    comparison_period_days: Mapped[int] = mapped_column(Integer, default=30)
+    historical_baseline: Mapped[Dict[str, Any]] = mapped_column(JSON, default=dict)
+    current_observation: Mapped[Dict[str, Any]] = mapped_column(JSON, default=dict)
+    detection_method_version: Mapped[str] = mapped_column(String(32), default="stat_zscore_v1")
+    reason_for_flagging: Mapped[str] = mapped_column(Text, nullable=False)
+    relevant_source_records: Mapped[List[Dict[str, Any]]] = mapped_column(JSON, default=list)
+    status: Mapped[str] = mapped_column(String(32), default="unreviewed")  # 'unreviewed', 'acknowledged', 'dismissed', 'action_taken'
+    clinician_feedback: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
+
+
+class DoctorPrioritisationTask(Base):
+    __tablename__ = "doctor_prioritisation_tasks"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=generate_uuid)
+    doctor_id: Mapped[str] = mapped_column(String(36), ForeignKey("doctor_profiles.id", ondelete="CASCADE"), index=True)
+    patient_id: Mapped[str] = mapped_column(String(36), ForeignKey("patient_profiles.id", ondelete="CASCADE"), index=True)
+    priority_tier: Mapped[str] = mapped_column(String(32), nullable=False)  # 'urgent_clinical', 'clinical_attention', 'administrative_followup', 'routine'
+    priority_score: Mapped[float] = mapped_column(Float, default=0.0)
+    reasons: Mapped[List[Dict[str, Any]]] = mapped_column(JSON, default=list)
+    status: Mapped[str] = mapped_column(String(32), default="pending")  # 'pending', 'reviewed', 'acknowledged', 'resolved'
+    override_tier: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    override_notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
+
+
 class BleedingRecord(Base):
     __tablename__ = "bleeding_records"
 

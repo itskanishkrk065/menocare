@@ -53,11 +53,17 @@ export const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-cream rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-warm-lg border border-[#E2DBD0]">
+    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-lg w-full p-5 sm:p-7 shadow-warm-lg border-t sm:border border-[#E2DBD0] max-h-[92vh] sm:max-h-[88vh] overflow-y-auto animate-in slide-in-from-bottom duration-300">
+        
+        {/* Mobile Swipe Grab Handle */}
+        <div className="sm:hidden w-full -mt-2 pb-2 flex justify-center">
+          <div className="w-12 h-1.5 rounded-full bg-[#E2DBD0]" />
+        </div>
+
         <div className="flex items-center justify-between border-b border-[#E2DBD0] pb-4 mb-5">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center shrink-0">
               <Video className="w-5 h-5" />
             </div>
             <div>
@@ -67,7 +73,7 @@ export const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-ivory hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-ivory hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0"
           >
             <X className="w-4 h-4" />
           </button>

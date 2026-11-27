@@ -94,11 +94,11 @@ export const MedicationAdherenceCard: React.FC<{ onLogged?: () => void }> = ({ o
               <Pill className="w-5 h-5" />
             </span>
             <h3 className="font-serif text-xl font-semibold text-charcoal">
-              HRT & Prescription Adherence Tracker
+              Your Medications & Care Adherence
             </h3>
           </div>
           <p className="text-xs text-charcoal-muted mt-1">
-            Verified hormone replacement regimens, non-hormonal modulators, and supplements.
+            Track your daily hormone therapy, prescription modulators, and supplements with clear logs.
           </p>
         </div>
 
@@ -189,6 +189,14 @@ export const MedicationAdherenceCard: React.FC<{ onLogged?: () => void }> = ({ o
           </div>
         </form>
       )}
+
+      {/* Adherence Context Note */}
+      <div className="bg-ivory border border-[#E2DBD0] rounded-xl px-4 py-2.5 flex items-start gap-2.5 text-xs text-charcoal-muted">
+        <Clock className="w-4 h-4 text-sage-dark shrink-0 mt-0.5" />
+        <p>
+          <strong className="text-charcoal font-semibold">How adherence is calculated:</strong> Refers to doses logged as taken over the last 7 recorded days. Days without an entry are marked as <span className="underline decoration-dotted">unlogged</span>, not necessarily missed.
+        </p>
+      </div>
 
       {/* Medication List */}
       <div className="space-y-3">

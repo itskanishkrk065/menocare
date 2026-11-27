@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   CheckCheck,
   Sparkles,
+  ArrowLeft,
 } from 'lucide-react';
 import { api } from '../../api/client';
 
@@ -68,8 +69,8 @@ export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
 
   return (
     <div className="bg-cream rounded-2xl border border-[#E2DBD0] shadow-warm-sm grid grid-cols-1 md:grid-cols-12 overflow-hidden h-[600px]">
-      {/* Left Column: Patient Selector List (4 cols) */}
-      <div className="md:col-span-4 border-r border-[#E2DBD0] bg-ivory/50 flex flex-col">
+      {/* Left Column: Patient Selector List (4 cols, full width on mobile when no patient selected) */}
+      <div className={`md:col-span-4 border-r border-[#E2DBD0] bg-ivory/50 flex flex-col ${selectedPatientId ? 'hidden md:flex' : 'flex'}`}>
         <div className="p-4 border-b border-[#E2DBD0]">
           <h4 className="text-xs font-semibold text-charcoal flex items-center gap-1.5">
             <MessageSquare className="w-4 h-4 text-sage-dark" />
@@ -84,7 +85,7 @@ export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
               <div
                 key={pid}
                 onClick={() => setSelectedPatientId(pid)}
-                className={`p-3.5 cursor-pointer transition-colors flex items-center space-x-3 ${
+                className={`p-3.5 cursor-pointer transition-colors flex items-center space-x-3 min-h-[48px] ${
                   selectedPatientId === pid
                     ? 'bg-cream border-l-4 border-sage-dark shadow-warm-sm'
                     : 'hover:bg-oat-light/60'
@@ -107,14 +108,22 @@ export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
         </div>
       </div>
 
-      {/* Right Column: Active Conversation (8 cols) */}
-      <div className="md:col-span-8 flex flex-col h-full bg-cream">
+      {/* Right Column: Active Conversation (8 cols, full width on mobile when thread active) */}
+      <div className={`md:col-span-8 flex flex-col h-full bg-cream ${selectedPatientId ? 'flex' : 'hidden md:flex'}`}>
         {selectedPatient ? (
           <>
             {/* Conversation Header */}
             <div className="p-4 border-b border-[#E2DBD0] bg-ivory flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-9 h-9 rounded-full bg-teal-soft text-teal-dark font-bold text-xs flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={() => setSelectedPatientId('')}
+                  className="md:hidden p-2 rounded-xl bg-cream hover:bg-oat-light text-charcoal border border-[#E2DBD0] min-h-[44px] min-w-[44px] flex items-center justify-center shrink-0"
+                  aria-label="Back to threads"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+                <div className="w-9 h-9 rounded-full bg-teal-soft text-teal-dark font-bold text-xs flex items-center justify-center shrink-0">
                   {selectedPatient.full_name?.charAt(0) || 'P'}
                 </div>
                 <div>
@@ -123,7 +132,8 @@ export const DoctorChatHub: React.FC<DoctorChatHubProps> = ({
                   </h3>
                   <div className="text-xs text-charcoal-muted flex items-center gap-1 mt-0.5">
                     <ShieldCheck className="w-3.5 h-3.5 text-sage-dark" />
-                    <span>Private Patient Communication Channel</span>
+                    <span className="hidden sm:inline">Private Patient Communication Channel</span>
+                    <span className="sm:hidden">Secure Channel</span>
                   </div>
                 </div>
               </div>

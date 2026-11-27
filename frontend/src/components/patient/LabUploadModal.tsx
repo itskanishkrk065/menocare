@@ -76,23 +76,29 @@ export const LabUploadModal: React.FC<LabUploadModalProps> = ({ isOpen, onClose,
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-cream rounded-2xl max-w-3xl w-full border border-[#E2DBD0] shadow-warm-lg my-8 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-3xl w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg max-h-[92vh] sm:max-h-[88vh] flex flex-col animate-in slide-in-from-bottom duration-300 overflow-hidden">
+        
+        {/* Mobile Swipe Grab Handle */}
+        <div className="sm:hidden w-full pt-3 pb-1 flex justify-center bg-ivory">
+          <div className="w-12 h-1.5 rounded-full bg-[#E2DBD0]" />
+        </div>
+
         {/* Header */}
-        <div className="bg-ivory border-b border-[#E2DBD0] px-6 py-4 flex items-center justify-between">
+        <div className="bg-ivory border-b border-[#E2DBD0] px-4 sm:px-6 py-4 flex items-center justify-between shrink-0">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-teal-soft text-teal-dark flex items-center justify-center shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-base font-serif font-semibold text-charcoal">Upload Blood Test & Lab Report</h2>
-              <p className="text-xs text-charcoal-muted flex items-center space-x-1 mt-0.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-sage-dark" />
-                <span>Private & Secure • Your test records are kept confidential for your doctor.</span>
+              <p className="text-xs text-charcoal-muted flex items-center space-x-1 mt-0.5 line-clamp-1 sm:line-clamp-none">
+                <ShieldCheck className="w-3.5 h-3.5 text-sage-dark shrink-0" />
+                <span>Private & Secure • Kept confidential for your doctor.</span>
               </p>
             </div>
           </div>
-          <button onClick={onClose} className="w-8 h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors">
+          <button onClick={onClose} className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-cream hover:bg-oat-light border border-[#E2DBD0] text-charcoal-muted hover:text-charcoal flex items-center justify-center transition-colors min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0">
             <X className="w-4 h-4" />
           </button>
         </div>

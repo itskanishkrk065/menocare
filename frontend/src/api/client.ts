@@ -133,4 +133,59 @@ export const api = {
   // Clinical Decision Support & HRT Advisor
   evaluateHrtAdvisor: (data: any) =>
     apiRequest<any>('/doctors/hrt-advisor', { method: 'POST', body: JSON.stringify(data) }),
+
+  // Adaptive Assessments Engine
+  getAdaptiveQuestionBank: () =>
+    apiRequest<any>('/adaptive/questions/bank'),
+  getDailyAdaptiveSession: (targetDate?: string) =>
+    apiRequest<any>(`/adaptive/session/daily${targetDate ? `?target_date=${targetDate}` : ''}`),
+  saveSessionDraft: (sessionId: string, answers: any) =>
+    apiRequest<any>(`/adaptive/session/${sessionId}/draft`, { method: 'POST', body: JSON.stringify({ answers }) }),
+  completeAdaptiveSession: (sessionId: string, finalAnswers: any, timeToCompleteSeconds: number = 60) =>
+    apiRequest<any>(`/adaptive/session/${sessionId}/complete`, {
+      method: 'POST',
+      body: JSON.stringify({ final_answers: finalAnswers, time_to_complete_seconds: timeToCompleteSeconds }),
+    }),
+  getRotationStatus: () =>
+    apiRequest<any>('/adaptive/rotation/status'),
+
+  // Intelligent Symptom Intake
+  getSymptomTaxonomy: () =>
+    apiRequest<any>('/symptoms/taxonomy'),
+  classifySymptoms: (data: { text: string; input_method?: string; reviewed_transcript?: string; assessment_id?: string }) =>
+    apiRequest<any>('/symptoms/classify', { method: 'POST', body: JSON.stringify(data) }),
+  confirmSymptoms: (extractionId: string, data: { confirmed_codes: string[]; rejected_codes: string[]; added_codes: string[] }) =>
+    apiRequest<any>(`/symptoms/${extractionId}/confirm`, { method: 'POST', body: JSON.stringify(data) }),
+  getSymptomHistory: () =>
+    apiRequest<any[]>('/symptoms/history'),
+
+  // Clinical Trend Anomalies
+  listPatientAnomalies: (patientId: string, statusFilter?: string) =>
+    apiRequest<any[]>(`/anomalies/patient/${patientId}${statusFilter ? `?status_filter=${statusFilter}` : ''}`),
+  triggerAnomalyScan: (patientId: string) =>
+    apiRequest<any>(`/anomalies/scan/${patientId}`, { method: 'POST' }),
+  acknowledgeAnomaly: (anomalyId: string, feedback?: string) =>
+    apiRequest<any>(`/anomalies/${anomalyId}/acknowledge`, {
+      method: 'POST',
+      body: JSON.stringify({ clinician_feedback: feedback }),
+    }),
+  dismissAnomaly: (anomalyId: string, feedback?: string) =>
+    apiRequest<any>(`/anomalies/${anomalyId}/dismiss`, {
+      method: 'POST',
+      body: JSON.stringify({ clinician_feedback: feedback }),
+    }),
+
+  // Doctor Triage & Prioritisation
+  getTriageQueue: (tierFilter?: string) =>
+    apiRequest<any[]>(`/triage/queue${tierFilter ? `?tier_filter=${tierFilter}` : ''}`),
+  overrideTaskPriority: (taskId: string, overrideTier: string, overrideNotes: string) =>
+    apiRequest<any>(`/triage/task/${taskId}/override`, {
+      method: 'POST',
+      body: JSON.stringify({ override_tier: overrideTier, override_notes: overrideNotes }),
+    }),
+  updateTaskStatus: (taskId: string, newStatus: string) =>
+    apiRequest<any>(`/triage/task/${taskId}/status`, {
+      method: 'POST',
+      body: JSON.stringify({ status: newStatus }),
+    }),
 };
