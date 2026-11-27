@@ -25,6 +25,7 @@ import {
   Eye,
   RefreshCw
 } from 'lucide-react';
+import { DoctorMobileStitchView } from './DoctorMobileStitchView';
 
 interface DailyCommandCenterProps {
   overviewData?: any;
@@ -47,6 +48,7 @@ export const DailyCommandCenter: React.FC<DailyCommandCenterProps> = ({
   onOpenScheduleModal,
   onScheduleMeeting,
   onAcknowledgeAlert,
+  onNavigateTab,
 }) => {
   const activeOverview = overviewData || overview;
   const triggerSchedule = onScheduleMeeting || onOpenScheduleModal || (() => {});
@@ -366,9 +368,23 @@ export const DailyCommandCenter: React.FC<DailyCommandCenterProps> = ({
 
   return (
     <div className="space-y-7 pb-16 font-sans text-charcoal">
-      {/* ========================================================================= */}
-      {/* 0. HEADER BANNER: Patient-Centric Clinical Command Centre                */}
-      {/* ========================================================================= */}
+      {/* Mobile-First Stitch Layout (< md) */}
+      <div className="block md:hidden">
+        <DoctorMobileStitchView
+          user={overviewData?.user}
+          patients={patients}
+          triagePatients={defaultTriagePatients}
+          onSelectPatient={onSelectPatient}
+          onLaunchTelehealth={(pid) => onScheduleMeeting ? onScheduleMeeting(pid) : onOpenScheduleModal ? onOpenScheduleModal(pid) : null}
+          onOpenChat={(pid) => onNavigateTab ? onNavigateTab('messages') : null}
+        />
+      </div>
+
+      {/* Desktop Command Center (>= md) */}
+      <div className="hidden md:block space-y-7">
+        {/* ========================================================================= */}
+        {/* 0. HEADER BANNER: Patient-Centric Clinical Command Centre                */}
+        {/* ========================================================================= */}
       <section className="w-full bg-cream rounded-card p-6 md:p-7 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6 border border-outline-variant shadow-warm-md">
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-3">
@@ -1391,6 +1407,7 @@ export const DailyCommandCenter: React.FC<DailyCommandCenterProps> = ({
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 };

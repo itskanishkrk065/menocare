@@ -49,6 +49,7 @@ import { ClinicalScienceDrawer } from '../components/common/ClinicalScienceDrawe
 import { ReportPreviewModal } from '../components/patient/ReportPreviewModal';
 import { RankedSymptomBreakdown } from '../components/patient/RankedSymptomBreakdown';
 import { PatientNextActionsCard } from '../components/patient/PatientNextActionsCard';
+import { PatientMobileStitchView } from '../components/patient/PatientMobileStitchView';
 import { PatientBottomNav } from '../components/navigation/PatientBottomNav';
 import { MobileMoreDrawer } from '../components/navigation/MobileMoreDrawer';
 import { clearAuthToken } from '../api/client';
@@ -272,8 +273,31 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         </div>
       </div>
 
-      {/* Main Page Body */}
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 space-y-6">
+      {/* Mobile-First Stitch Layout (< md) */}
+      <div className="block md:hidden">
+        <PatientMobileStitchView
+          user={user}
+          profile={profile}
+          history={history}
+          streakDays={streakDays}
+          latestMrs={latestMrs}
+          sleepStats={sleepStats}
+          quickFlashCount={quickFlashCount}
+          nextAppt={nextAppt}
+          onOpenCheckIn={() => setIsCheckInOpen(true)}
+          onQuickFlash={handleQuickHotFlash}
+          onOpenBreathing={() => setIsBreathingOpen(true)}
+          onOpenChat={() => setIsChatOpen(true)}
+          onOpenReport={() => setIsReportPreviewOpen(true)}
+          onOpenCalendar={() => setActiveTab('calendar')}
+          onOpenLabs={() => setIsLabUploadOpen(true)}
+          onOpenTelehealth={() => setIsTelehealthOpen(true)}
+          onOpenMrs={() => setIsMrsOpen(true)}
+        />
+      </div>
+
+      {/* Desktop Main Page Body (>= md) */}
+      <div className="hidden md:block max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 space-y-6">
 
         {/* Ambient Atmosphere */}
         <div className="relative">
