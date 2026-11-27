@@ -52,7 +52,7 @@ export const ClinicalScienceDrawer: React.FC<ClinicalScienceDrawerProps> = ({
   );
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-[60] overflow-hidden">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-charcoal/40 backdrop-blur-xs transition-opacity"

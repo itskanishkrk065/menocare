@@ -197,7 +197,7 @@ export const MRSAssessmentModal: React.FC<MRSAssessmentModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-[60] bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
       <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-3xl w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col animate-in slide-in-from-bottom duration-300">
         
         {/* Mobile Swipe / Grab Handle */}

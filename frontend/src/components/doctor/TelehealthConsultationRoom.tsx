@@ -31,7 +31,7 @@ export const TelehealthConsultationRoom: React.FC<TelehealthConsultationRoomProp
   const [callDuration, setCallDuration] = useState('14:28');
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col p-4 sm:p-6 overflow-hidden">
+    <div className="fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md flex flex-col p-4 sm:p-6 overflow-hidden">
       {/* Top Telehealth Bar */}
       <div className="flex items-center justify-between bg-slate-900/90 border border-slate-800 rounded-2xl p-3 px-5 text-white mb-4 shrink-0">
         <div className="flex items-center space-x-3">

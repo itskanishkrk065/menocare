@@ -50,7 +50,7 @@ export const ReportPreviewModal: React.FC<ReportPreviewModalProps> = ({
   const clinicalStage = profile?.straw_stage ? profile.straw_stage.toUpperCase() : 'STRAW -2 (EARLY TRANSITION)';
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-[60] bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
       <div className="bg-cream rounded-t-[28px] sm:rounded-[26px] max-w-3xl w-full border-t sm:border border-[#E2DBD0] shadow-warm-xl overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col animate-in slide-in-from-bottom duration-300">
         
         {/* Mobile Swipe Grab Handle */}

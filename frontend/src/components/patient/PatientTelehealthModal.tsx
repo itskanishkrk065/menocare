@@ -46,7 +46,7 @@ export const PatientTelehealthModal: React.FC<PatientTelehealthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-[60] bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
       <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-lg w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg p-5 sm:p-8 space-y-5 relative max-h-[92vh] sm:max-h-[88vh] overflow-y-auto animate-in slide-in-from-bottom duration-300">
         
         {/* Mobile Swipe Grab Handle */}

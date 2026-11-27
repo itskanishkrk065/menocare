@@ -55,7 +55,7 @@ export const CareTeamChatModal: React.FC<CareTeamChatModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-hidden">
+    <div className="fixed inset-0 z-[60] bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-hidden">
       <div className="bg-cream rounded-t-[28px] sm:rounded-2xl max-w-lg w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg flex flex-col h-[92vh] sm:h-[82vh] overflow-hidden animate-in slide-in-from-bottom duration-300">
         
         {/* Mobile Swipe Handle */}

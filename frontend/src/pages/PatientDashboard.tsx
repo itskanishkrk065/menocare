@@ -273,127 +273,155 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
         </div>
       </div>
 
-      {/* Mobile-First Stitch Layout (< md) */}
-      <div className="block md:hidden">
-        <PatientMobileStitchView
-          user={user}
-          profile={profile}
-          history={history}
-          streakDays={streakDays}
-          latestMrs={latestMrs}
-          sleepStats={sleepStats}
-          quickFlashCount={quickFlashCount}
-          nextAppt={nextAppt}
-          onOpenCheckIn={() => setIsCheckInOpen(true)}
-          onQuickFlash={handleQuickHotFlash}
-          onOpenBreathing={() => setIsBreathingOpen(true)}
-          onOpenChat={() => setIsChatOpen(true)}
-          onOpenReport={() => setIsReportPreviewOpen(true)}
-          onOpenCalendar={() => setActiveTab('calendar')}
-          onOpenLabs={() => setIsLabUploadOpen(true)}
-          onOpenTelehealth={() => setIsTelehealthOpen(true)}
-          onOpenMrs={() => setIsMrsOpen(true)}
-        />
-      </div>
-
-      {/* Desktop Main Page Body (>= md) */}
-      <div className="hidden md:block max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 space-y-6">
-
-        {/* Ambient Atmosphere */}
-        <div className="relative">
-          <div className="absolute -top-12 left-1/4 w-96 h-96 rounded-full bg-sage-soft/60 blur-3xl pointer-events-none" />
-          <div className="absolute top-10 right-10 w-80 h-80 rounded-full bg-peach-soft/60 blur-3xl pointer-events-none" />
-
-          {/* Hero Welcome Card */}
-          <div className="relative z-10 bg-cream/95 backdrop-blur-md rounded-2xl p-5 sm:p-8 border border-[#E2DBD0] shadow-warm-md flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-medium text-sage-dark bg-sage-soft px-3 py-1 rounded-full border border-sage/20 flex items-center gap-1.5">
-                  <span>{translateStage(profile?.straw_stage || 'early_perimenopause', 'patient')}</span>
-                  <span className="text-[10px] font-bold text-sage-dark/80 bg-white/70 px-1.5 py-0.2 rounded-full">
-                    STRAW+10 Criteria
-                  </span>
-                </span>
-                <span className="text-xs font-medium text-charcoal bg-peach-soft px-3 py-1 rounded-full border border-peach/30 flex items-center gap-1.5">
-                  <span>🔥</span>
-                  <span>{streakDays > 0 ? `${streakDays}-Day Logging Streak` : 'Streak Active'}</span>
-                </span>
-                <span className="text-xs font-medium text-charcoal-muted bg-oat-light px-3 py-1 rounded-full border border-[#E2DBD0]">
-                  Connected With Doctor
-                </span>
-              </div>
-
-              <div>
-                <h1 className="font-serif text-2xl sm:text-4xl text-charcoal font-normal tracking-tight">
-                  {getGreeting()}, <span className="italic">{user.full_name}</span> 🌸
-                </h1>
-                <p className="text-xs sm:text-sm text-charcoal-muted mt-1 max-w-xl text-pretty">
-                  Here is your health snapshot for this week. Your logged symptoms and updates are automatically organized for your doctor visits.
-                </p>
-              </div>
-            </div>
-
-            {/* Hero Quick Action Suite (Touch-optimized 44-48px targets) */}
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-2.5 w-full sm:w-auto">
-              <button
-                type="button"
-                onClick={() => setIsCheckInOpen(true)}
-                className="col-span-2 sm:col-span-1 px-4 py-3 sm:py-2.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-semibold shadow-warm-sm flex items-center justify-center gap-2 min-h-[44px] transition-colors"
-              >
-                <PlusCircle className="w-4 h-4" />
-                <span>+ Your Daily Check-in</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setIsMrsOpen(true)}
-                className="px-3.5 py-2.5 rounded-xl bg-cream hover:bg-sage-soft text-charcoal border border-[#E2DBD0] text-xs font-medium shadow-warm-sm flex items-center justify-center gap-2 min-h-[44px] transition-colors"
-              >
-                <Heart className="w-4 h-4 text-sage-dark" />
-                <span>Score (MRS)</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleQuickHotFlash}
-                className="px-3.5 py-2.5 rounded-xl bg-peach-soft hover:bg-peach/30 text-charcoal border border-peach/40 text-xs font-medium shadow-warm-sm flex items-center justify-center gap-1.5 min-h-[44px] transition-colors"
-                title="Quick 1-Click Hot Flash Tracker"
-              >
-                <Flame className="w-4 h-4 text-peach" />
-                <span>Flash (+1)</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setIsBreathingOpen(true)}
-                className="px-3.5 py-2.5 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-medium shadow-warm-sm flex items-center justify-center gap-1.5 min-h-[44px] transition-colors"
-                title="Paced 4-7-8 Breathing Guide"
-              >
-                <Wind className="w-4 h-4 text-teal" />
-                <span>Breathe (4-7-8)</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setIsReportPreviewOpen(true)}
-                className="px-3.5 py-2.5 rounded-xl bg-cream hover:bg-oat-light text-charcoal border border-[#E2DBD0] text-xs font-medium transition-colors shadow-warm-sm flex items-center justify-center gap-1.5 min-h-[44px]"
-                title="Preview & Download Doctor Consultation Dossier"
-              >
-                <FileText className="w-4 h-4 text-teal" />
-                <span>Health Report</span>
-              </button>
-            </div>
-          </div>
+      {/* Mobile-First Stitch Layout (< md) for Overview Tab */}
+      {activeTab === 'overview' && (
+        <div className="block md:hidden">
+          <PatientMobileStitchView
+            user={user}
+            profile={profile}
+            history={history}
+            streakDays={streakDays}
+            latestMrs={latestMrs}
+            sleepStats={sleepStats}
+            quickFlashCount={quickFlashCount}
+            nextAppt={nextAppt}
+            onOpenCheckIn={() => setIsCheckInOpen(true)}
+            onQuickFlash={handleQuickHotFlash}
+            onOpenBreathing={() => setIsBreathingOpen(true)}
+            onOpenChat={() => setIsChatOpen(true)}
+            onOpenReport={() => setIsReportPreviewOpen(true)}
+            onOpenCalendar={() => setActiveTab('calendar')}
+            onOpenLabs={() => setIsLabUploadOpen(true)}
+            onOpenTelehealth={() => setIsTelehealthOpen(true)}
+            onOpenMrs={() => setIsMrsOpen(true)}
+          />
         </div>
+      )}
 
-        {/* Anomaly / Alert Banner */}
-        {alerts && alerts.length > 0 && (
-          <AnomalyBanner alerts={alerts} onAppointmentBooked={loadAllData} />
+      {/* Main Page Body Container */}
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 space-y-6">
+
+        {/* Mobile Header for Non-Overview Tabs */}
+        {activeTab !== 'overview' && (
+          <div className="md:hidden flex items-center justify-between pb-3 border-b border-[#E2DBD0]">
+            <button
+              type="button"
+              onClick={() => setActiveTab('overview')}
+              className="flex items-center gap-1.5 text-xs font-semibold text-sage-dark bg-sage-soft px-3 py-1.5 rounded-xl border border-sage/20 min-h-[36px]"
+            >
+              <span>← Back to Overview</span>
+            </button>
+            <span className="text-xs font-serif font-bold text-charcoal capitalize">
+              {activeTab === 'analytics'
+                ? 'Trends & Progress'
+                : activeTab === 'medications'
+                ? 'Care & Medications'
+                : activeTab === 'calendar'
+                ? 'Cycle Calendar'
+                : activeTab === 'labs'
+                ? 'Blood Tests & Labs'
+                : 'Doctor Telehealth'}
+            </span>
+          </div>
         )}
 
-        {/* Tab 1: Overview */}
+        {/* Desktop Overview Tab (>= md) */}
         {activeTab === 'overview' && (
-          <div className="space-y-8">
+          <div className="hidden md:block space-y-6">
+            {/* Ambient Atmosphere */}
+            <div className="relative">
+              <div className="absolute -top-12 left-1/4 w-96 h-96 rounded-full bg-sage-soft/60 blur-3xl pointer-events-none" />
+              <div className="absolute top-10 right-10 w-80 h-80 rounded-full bg-peach-soft/60 blur-3xl pointer-events-none" />
+
+              {/* Hero Welcome Card */}
+              <div className="relative z-10 bg-cream/95 backdrop-blur-md rounded-2xl p-5 sm:p-8 border border-[#E2DBD0] shadow-warm-md flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-medium text-sage-dark bg-sage-soft px-3 py-1 rounded-full border border-sage/20 flex items-center gap-1.5">
+                      <span>{translateStage(profile?.straw_stage || 'early_perimenopause', 'patient')}</span>
+                      <span className="text-[10px] font-bold text-sage-dark/80 bg-white/70 px-1.5 py-0.2 rounded-full">
+                        STRAW+10 Criteria
+                      </span>
+                    </span>
+                    <span className="text-xs font-medium text-charcoal bg-peach-soft px-3 py-1 rounded-full border border-peach/30 flex items-center gap-1.5">
+                      <span>🔥</span>
+                      <span>{streakDays > 0 ? `${streakDays}-Day Logging Streak` : 'Streak Active'}</span>
+                    </span>
+                    <span className="text-xs font-medium text-charcoal-muted bg-oat-light px-3 py-1 rounded-full border border-[#E2DBD0]">
+                      Connected With Doctor
+                    </span>
+                  </div>
+
+                  <div>
+                    <h1 className="font-serif text-2xl sm:text-4xl text-charcoal font-normal tracking-tight">
+                      {getGreeting()}, <span className="italic">{user.full_name}</span> 🌸
+                    </h1>
+                    <p className="text-xs sm:text-sm text-charcoal-muted mt-1 max-w-xl text-pretty">
+                      Here is your health snapshot for this week. Your logged symptoms and updates are automatically organized for your doctor visits.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hero Quick Action Suite (Touch-optimized 44-48px targets) */}
+                <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-2.5 w-full sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={() => setIsCheckInOpen(true)}
+                    className="col-span-2 sm:col-span-1 px-4 py-3 sm:py-2.5 rounded-xl bg-sage-dark hover:bg-[#3E5437] text-white text-xs font-semibold shadow-warm-sm flex items-center justify-center gap-2 min-h-[44px] transition-colors"
+                  >
+                    <PlusCircle className="w-4 h-4" />
+                    <span>+ Your Daily Check-in</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsMrsOpen(true)}
+                    className="px-3.5 py-2.5 rounded-xl bg-cream hover:bg-sage-soft text-charcoal border border-[#E2DBD0] text-xs font-medium shadow-warm-sm flex items-center justify-center gap-2 min-h-[44px] transition-colors"
+                  >
+                    <Heart className="w-4 h-4 text-sage-dark" />
+                    <span>Score (MRS)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleQuickHotFlash}
+                    className="px-3.5 py-2.5 rounded-xl bg-peach-soft hover:bg-peach/30 text-charcoal border border-peach/40 text-xs font-medium shadow-warm-sm flex items-center justify-center gap-1.5 min-h-[44px] transition-colors"
+                    title="Quick 1-Click Hot Flash Tracker"
+                  >
+                    <Flame className="w-4 h-4 text-peach" />
+                    <span>Flash (+1)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsBreathingOpen(true)}
+                    className="px-3.5 py-2.5 rounded-xl bg-teal-soft hover:bg-teal/20 text-teal-dark border border-teal/25 text-xs font-medium shadow-warm-sm flex items-center justify-center gap-1.5 min-h-[44px] transition-colors"
+                    title="Paced 4-7-8 Breathing Guide"
+                  >
+                    <Wind className="w-4 h-4 text-teal" />
+                    <span>Breathe (4-7-8)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsReportPreviewOpen(true)}
+                    className="px-3.5 py-2.5 rounded-xl bg-cream hover:bg-oat-light text-charcoal border border-[#E2DBD0] text-xs font-medium transition-colors shadow-warm-sm flex items-center justify-center gap-1.5 min-h-[44px]"
+                    title="Preview & Download Doctor Consultation Dossier"
+                  >
+                    <FileText className="w-4 h-4 text-teal" />
+                    <span>Health Report</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Anomaly / Alert Banner */}
+            {alerts && alerts.length > 0 && (
+              <AnomalyBanner alerts={alerts} onAppointmentBooked={loadAllData} />
+            )}
+
+            {/* Desktop Sections A through H */}
+            <div className="space-y-8">
             
             {/* SECTION A: Your Health at a Glance */}
             <div className="space-y-3">
@@ -644,6 +672,7 @@ export const PatientDashboard: React.FC<PatientDashboardProps> = ({ user }) => {
               />
             </div>
 
+          </div>
           </div>
         )}
 

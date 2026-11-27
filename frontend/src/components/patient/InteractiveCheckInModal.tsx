@@ -184,7 +184,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-[60] bg-charcoal/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
       <div className="bg-cream rounded-t-[28px] sm:rounded-[26px] max-w-2xl w-full border-t sm:border border-[#E2DBD0] shadow-warm-lg overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col animate-in slide-in-from-bottom duration-300">
         
         {/* Mobile Grab / Swipe Handle */}
@@ -418,7 +418,7 @@ export const InteractiveCheckInModal: React.FC<InteractiveCheckInModalProps> = (
           />
 
           {/* Form Actions */}
-          <div className="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-3">
+          <div className="pt-2 pb-6 sm:pb-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-3">
             <button
               type="button"
               onClick={onClose}
