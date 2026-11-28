@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-primary": "#baccb1", "on-secondary-container": "#4a6a66", "inverse-surface": "#352f2a", "on-primary-container": "#273623", "tertiary-fixed": "#efdbff", "on-error": "#ffffff", "tertiary-container": "#a593b4", "background": "#fff8f4", "on-background": "#1f1b16", "primary-fixed": "#d6e8cc", "surface-container-high": "#f1e6de", "outline": "#747870", "on-secondary-fixed": "#00201d", "on-surface": "#1f1b16", "on-primary-fixed-variant": "#3c4b36", "primary": "#53634d", "primary-fixed-dim": "#baccb1", "outline-variant": "#c4c8be", "secondary-fixed": "#c7eae4", "on-secondary": "#ffffff", "error": "#ba1a1a", "on-tertiary": "#ffffff", "surface-container-low": "#fcf2ea", "secondary-container": "#c7eae4", "on-tertiary-fixed-variant": "#4f415e", "on-secondary-fixed-variant": "#2d4c48", "primary-container": "#8e9f86", "error-container": "#ffdad6", "tertiary": "#675876", "surface-container": "#f6ece4", "tertiary-fixed-dim": "#d2bfe2", "on-error-container": "#93000a", "on-tertiary-container": "#392c48", "surface-tint": "#53634d", "on-tertiary-fixed": "#221630", "secondary": "#446460", "inverse-on-surface": "#f9efe7", "on-primary": "#ffffff", "surface-variant": "#ebe1d9", "surface-container-highest": "#ebe1d9", "surface-dim": "#e2d8d0", "on-primary-fixed": "#111f0e", "surface-container-lowest": "#ffffff", "surface": "#fff8f4", "on-surface-variant": "#444841", "secondary-fixed-dim": "#abcdc8", "surface-bright": "#fff8f4" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "2rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem", "margin": "3rem", "space-xl": "2.5rem", "margin-mobile": "1.25rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-mobile": ["Newsreader"], "headline-lg": ["Newsreader"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Newsreader"], "body-lg": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "headline-sm": ["Newsreader"], "title-md": ["Plus Jakarta Sans"], "display": ["Newsreader"], "label-lg": ["Plus Jakarta Sans"], "title-sm": ["Plus Jakarta Sans"], "headline-md": ["Newsreader"] }, "fontSize": { "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.03em", "fontWeight": "500" }], "body-sm": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }], "display-mobile": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.015em", "fontWeight": "400" }], "headline-lg": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.015em", "fontWeight": "400" }], "body-md": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }], "headline-lg-mobile": ["1.875rem", { "lineHeight": "2.375rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }], "title-lg": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }], "headline-sm": ["1.5rem", { "lineHeight": "2rem", "fontWeight": "500" }], "title-md": ["1.125rem", { "lineHeight": "1.5rem", "fontWeight": "600" }], "display": ["3.5rem", { "lineHeight": "4rem", "letterSpacing": "-0.02em", "fontWeight": "400" }], "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }], "title-sm": ["1rem", { "lineHeight": "1.375rem", "fontWeight": "600" }], "headline-md": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }] } } } }</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-full antialiased"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_12px_rgba(46,41,36,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-medium">MenoCare</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-container bg-secondary-container/60 px-space-xs py-0.5 rounded-full font-semibold">Doctor View</span></div><div class="flex items-center gap-1.5 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">HIPAA Encrypted Telemetry</span></div></div></div><div class="flex items-center gap-space-sm"><div class="text-right hidden sm:block"><span class="block font-title-sm text-title-sm text-on-surface leading-tight">Dr. Sarah Jenkins</span><span class="block font-label-sm text-label-sm text-on-surface-variant">Lead Endocrinologist</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Sub-header Clinical Telemetry & Breadcrumb Strip -->
+<section class="px-margin-mobile pt-space-md pb-space-sm">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse shrink-0"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase font-semibold">HL7 / FHIR v4.0.1 Ingestion Active</span>
+<span class="text-outline-variant font-label-sm">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sync: 2m ago</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight font-normal leading-tight">
+      Laboratory &amp; Endocrine Diagnostics
+    </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+      Continuous biomarker drift tracking, OCR lab parsing &amp; imaging alert escalations.
+    </p>
+<!-- Quick Action Pills Row (Scrollable) -->
+<div class="flex items-center gap-2 mt-space-md overflow-x-auto pb-1 no-scrollbar -mx-margin-mobile px-margin-mobile">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-error-container text-on-error-container font-label-md text-label-md shrink-0 shadow-sm transition-transform active:scale-95" id="flagFilterBtn">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span>Abnormal Flags (12)</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md shrink-0 shadow-sm transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[16px]">document_scanner</span>
+<span>Upload Lab PDF / OCR</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md shrink-0 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Batch Export</span>
+</button>
+</div>
+</section>
+<!-- 2x2 Diagnostic Volume & Reliability Tiles -->
+<section class="px-margin-mobile py-space-sm">
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Tile 1: Total Panels -->
+<div class="bg-surface-container-low rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Panels</span>
+<span class="material-symbols-outlined text-primary text-[18px]">biotech</span>
+</div>
+<div>
+<div class="font-title-lg text-title-lg text-on-surface font-bold tracking-tight">184 Panels</div>
+<div class="flex items-center gap-1 mt-0.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+14.2% cohort</span>
+</div>
+</div>
+</div>
+<!-- Tile 2: Flagged Abnormal -->
+<div class="bg-error-container/40 rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-error-container uppercase tracking-wider font-semibold">Flagged Biomarkers</span>
+<span class="material-symbols-outlined text-error text-[18px]" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<div>
+<div class="font-title-lg text-title-lg text-on-error-container font-bold tracking-tight">12 Patients</div>
+<div class="text-on-error-container/80 font-label-sm text-label-sm mt-0.5 truncate">
+            Endocrine &amp; Pelvic TVUS
+          </div>
+</div>
+</div>
+<!-- Tile 3: Pending Requisitions -->
+<div class="bg-surface-container-low rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pending Orders</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">pending_actions</span>
+</div>
+<div>
+<div class="font-title-lg text-title-lg text-on-surface font-bold tracking-tight">7 Orders</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+            Quest/Labcorp ~32h TAT
+          </div>
+</div>
+</div>
+<!-- Tile 4: OCR Accuracy -->
+<div class="bg-surface-container-low rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">OCR Parser</span>
+<span class="material-symbols-outlined text-primary-container text-[18px]">verified</span>
+</div>
+<div>
+<div class="font-title-lg text-title-lg text-on-surface font-bold tracking-tight">99.4%</div>
+<div class="text-primary font-label-sm text-label-sm mt-0.5">
+            0 errors in 7 days
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Cohort Biomarker Volatility Distribution (Horizontal Carousel) -->
+<section class="py-space-md">
+<div class="px-margin-mobile flex items-center justify-between mb-2.5">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface font-semibold tracking-tight">Cohort Biomarker Volatility</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Active 30-day statistical dispersion</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">
+        STRAW+10 Mode
+      </span>
+</div>
+<!-- Horizontal Swipe Deck -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar px-margin-mobile snap-x snap-mandatory">
+<!-- Card A: FSH -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed-variant rounded-full font-label-sm text-label-sm font-semibold">Gonadotropins</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">N=162</span>
+</div>
+<div class="font-title-sm text-title-sm text-on-surface font-bold">FSH Median</div>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-title-lg text-title-lg text-primary font-extrabold">41.2</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">mIU/mL</span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm mt-1">Follicular Drift • Late Peri</div>
+</div>
+<!-- Trend sparkline -->
+<div class="mt-3 pt-2">
+<svg class="w-full h-8 text-primary overflow-visible" fill="none" viewbox="0 0 100 24">
+<path d="M0,18 Q15,22 30,12 T60,8 T85,15 T100,4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle class="fill-primary" cx="100" cy="4" r="3"></circle>
+</svg>
+</div>
+</div>
+<!-- Card B: Estrogen Dynamics -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm font-semibold">Estrogens</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">N=178</span>
+</div>
+<div class="font-title-sm text-title-sm text-on-surface font-bold">Serum E2 Dynamics</div>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-title-lg text-title-lg text-secondary font-extrabold">38.0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">pg/mL</span>
+</div>
+<div class="text-error font-label-sm text-label-sm mt-1 flex items-center gap-0.5 font-medium">
+<span class="material-symbols-outlined text-[13px]">scatter_plot</span>
+<span>Wide Scatter (68 spikes)</span>
+</div>
+</div>
+<div class="mt-3 pt-2">
+<svg class="w-full h-8 text-secondary overflow-visible" fill="none" viewbox="0 0 100 24">
+<path d="M0,8 Q20,20 40,5 T70,19 T100,10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle class="fill-secondary" cx="100" cy="10" r="3"></circle>
+</svg>
+</div>
+</div>
+<!-- Card C: Thyroid Axis -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-sm text-label-sm font-semibold">Thyroid Axis</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">N=145</span>
+</div>
+<div class="font-title-sm text-title-sm text-on-surface font-bold">TSH Reflexive</div>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-title-lg text-title-lg text-tertiary font-extrabold">2.14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">μIU/mL</span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm mt-1">5 Subclinical Hypo shifts</div>
+</div>
+<div class="mt-3 pt-2">
+<svg class="w-full h-8 text-tertiary overflow-visible" fill="none" viewbox="0 0 100 24">
+<path d="M0,14 Q25,12 50,15 T75,9 T100,11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle class="fill-tertiary" cx="100" cy="11" r="3"></circle>
+</svg>
+</div>
+</div>
+<!-- Card D: AMH -->
+<div class="snap-start shrink-0 w-[240px] bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="px-2 py-0.5 bg-surface-container text-on-surface rounded-full font-label-sm text-label-sm font-semibold">Reserve Marker</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">N=110</span>
+</div>
+<div class="font-title-sm text-title-sm text-on-surface font-bold">AMH Depletion</div>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-title-lg text-title-lg text-on-surface font-extrabold">0.14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">ng/mL</span>
+</div>
+<div class="text-primary font-label-sm text-label-sm mt-1">94% Concordant Stage -1b</div>
+</div>
+<div class="mt-3 pt-2">
+<svg class="w-full h-8 text-outline overflow-visible" fill="none" viewbox="0 0 100 24">
+<path d="M0,6 Q30,10 60,16 T100,20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle class="fill-outline" cx="100" cy="20" r="3"></circle>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Diagnostic Inspection: Priority Critical Action Banner -->
+<section class="px-margin-mobile py-space-sm">
+<div class="bg-surface-container-lowest rounded-3xl p-5 shadow-md overflow-hidden relative">
+<!-- Top banner label badge -->
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-1.5 bg-error text-on-error px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-semibold tracking-wide">
+<span class="material-symbols-outlined text-[14px]">emergency_home</span>
+<span>HIGH-ACUITY DIAGNOSTIC FLAG</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">TVUS Uploaded 44m ago</span>
+</div>
+<!-- Patient Header Info with Avatar placeholder -->
+<div class="flex items-center gap-3 pb-3">
+<img class="w-12 h-12 rounded-full object-cover shrink-0 shadow-sm" data-alt="Warm studio clinical portrait of Claire Dupont, an elegant 52-year-old woman with silver-streaked hair, soft ambient natural lighting, muted linen beige aesthetic, serene gentle healthcare expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPF1w-PD2B33PyLrLhiEF2s08inno1N2n-wmUx3waN2pK8BIVdP2v9dmw2f5NB7ln1TPjJreNKJd_sEsxzLm5KMBKr-knFkvcGIteAQ79CwX1Wv8LPdf_NaId0vqYUm1beZw72esNkDvBPFH4bz2NKt6eA98ukbgFeWTImvSbpg2e-5B043hq96EbmEmvxOCtJju7AJwFb44SF7nfzbqVEKHHRMnSjz08Xxssj1dgr"/>
+<div class="min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-on-surface font-bold truncate">Claire Dupont</h3>
+<span class="font-label-sm text-label-sm font-semibold px-2 py-0.5 rounded-md bg-surface-container-high text-on-surface">52 yo • F</span>
+</div>
+<p class="font-body-sm text-body-sm text-error font-medium truncate mt-0.5">
+            Postmenopausal Bleeding episode × 3 days
+          </p>
+</div>
+</div>
+<!-- Diagnostic Telemetry Card (Endometrial Stripe) -->
+<div class="bg-surface-container-low rounded-2xl p-3.5 my-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Pelvic Ultrasound (TVUS)</div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-normal mt-0.5">
+              Endometrial Stripe: <span class="font-bold text-error">6.8 mm</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+              Threshold Cutoff: <strong class="text-on-surface">4.0 mm</strong> (<span class="text-error font-semibold">+70% over benchmark</span>)
+            </div>
+</div>
+<span class="material-symbols-outlined text-error text-[28px] shrink-0 mt-1" style="font-variation-settings: 'FILL' 1;">warning_amber</span>
+</div>
+<!-- Clinical Guidelines Trigger -->
+<div class="mt-2.5 pt-2.5 bg-surface-container-lowest/80 rounded-xl p-2.5">
+<div class="flex items-center gap-1 text-primary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[15px]">verified_user</span>
+<span>ACOG Practice Bulletin #149 Protocol</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 leading-snug">
+            Endometrium &gt; 4 mm with postmenopausal uterine bleeding mandates prompt histological evaluation via endometrial biopsy to rule out atypia or neoplasia.
+          </p>
+</div>
+<!-- Concomitant Lab Values -->
+<div class="grid grid-cols-2 gap-2 mt-2.5">
+<div class="bg-surface-container-lowest p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Serum Estradiol (E2)</span>
+<span class="font-title-sm text-title-sm text-on-surface font-bold">18 pg/mL</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">(Menopausal basal)</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">FSH Serum</span>
+<span class="font-title-sm text-title-sm text-primary font-bold">62.4 mIU/mL</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">(Elevated gonadotropin)</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons for Lead Endocrinologist -->
+<div class="space-y-2 mt-3.5">
+<button class="w-full h-12 bg-primary text-on-primary rounded-xl font-title-sm text-title-sm font-semibold flex items-center justify-center gap-2 shadow-sm transition-transform active:scale-[0.98]" id="signOrderBtn">
+<span class="material-symbols-outlined text-[20px]">draw</span>
+<span>Approve &amp; Sign Biopsy Order (Pipelle)</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-10 bg-secondary-container text-on-secondary-container rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-1.5 transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">medical_services</span>
+<span>Gyn-Onc Referral</span>
+</button>
+<button class="h-10 bg-surface-container-high text-on-surface rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-1.5 transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">chat_bubble_outline</span>
+<span>Notify Care Team</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Filterable Diagnostic Records Stream -->
+<section class="px-margin-mobile pt-space-md pb-space-lg">
+<div class="flex items-center justify-between mb-2">
+<div>
+<h2 class="font-title-md text-title-md text-on-surface font-semibold tracking-tight">Recent Diagnostic Records</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Validated HL7 EMR Feed</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</div>
+</div>
+<!-- Filter chips (Interactive) -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-margin-mobile px-margin-mobile">
+<button class="filter-pill px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold shrink-0" data-filter="all">
+        All Modalities (184)
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium shrink-0" data-filter="critical">
+        Critical Flags (4)
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium shrink-0" data-filter="quest">
+        Quest HL7
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium shrink-0" data-filter="labcorp">
+        Labcorp
+      </button>
+<button class="filter-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium shrink-0" data-filter="imaging">
+        Ultrasound &amp; DEXA
+      </button>
+</div>
+<!-- Records Stack -->
+<div class="mt-3.5 space-y-3" id="recordsList">
+<!-- Entry 1: Elena Rostova -->
+<div class="record-item bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-2" data-category="quest">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-title-sm text-title-sm font-bold shrink-0">
+              ER
+            </div>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface font-bold">Elena Rostova</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Quest Diagnostics • HL7 v4</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check</span>
+<span>Reviewed</span>
+</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl text-body-sm font-body-sm text-on-surface">
+<div class="font-label-md text-label-md text-on-surface font-semibold mb-0.5">Comprehensive Perimenopausal Panel</div>
+<div class="flex items-center gap-3 text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span>FSH: <strong class="text-on-surface">34.2</strong></span>
+<span>•</span>
+<span>E2: <strong class="text-on-surface">44 pg/mL</strong></span>
+<span>•</span>
+<span>TSH: <strong class="text-on-surface">1.82</strong></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>Processed: Today, 08:15 AM</span>
+<a class="text-primary font-semibold flex items-center gap-0.5" href="#">View Chart <span class="material-symbols-outlined text-[16px]">chevron_right</span></a>
+</div>
+</div>
+<!-- Entry 2: Sarah Miller (Action Required) -->
+<div class="record-item bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-2 critical-entry" data-category="labcorp critical">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-title-sm text-title-sm font-bold shrink-0">
+              SM
+            </div>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface font-bold">Sarah Miller</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Labcorp Telemetry • Ingestion #8942</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error text-on-error font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">notification_important</span>
+<span>Action Required</span>
+</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl text-body-sm font-body-sm text-on-surface">
+<div class="font-label-md text-label-md text-on-surface font-semibold mb-0.5">Thyroid Cascade &amp; Reflex Antibodies</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm mt-1 text-on-surface-variant">
+<span>TSH: <strong class="text-error font-bold">5.64 μIU/mL (High)</strong></span>
+<span>•</span>
+<span>Free T4: <strong class="text-on-surface">0.91</strong></span>
+<span>•</span>
+<span>TPO: <strong class="text-error font-bold">142 IU/mL</strong></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span class="text-error font-medium">Protocol: Consider Levothyroxine 25mcg</span>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">Triage</button>
+</div>
+</div>
+<!-- Entry 3: Priya Kapoor -->
+<div class="record-item bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-2" data-category="quest">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-title-sm text-title-sm font-bold shrink-0">
+              PK
+            </div>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface font-bold">Priya Kapoor</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Quest Diagnostics • Fasting Metabolic</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+<span>Normal</span>
+</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl text-body-sm font-body-sm text-on-surface">
+<div class="font-label-md text-label-md text-on-surface font-semibold mb-0.5">Cardiometabolic &amp; Lipid Fractionation</div>
+<div class="flex items-center gap-3 text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span>HbA1c: <strong class="text-secondary font-bold">5.4%</strong></span>
+<span>•</span>
+<span>HDL: <strong class="text-on-surface">62 mg/dL</strong></span>
+<span>•</span>
+<span>Triglycerides: <strong class="text-on-surface">118</strong></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>Processed: Yesterday, 4:20 PM</span>
+<a class="text-primary font-semibold flex items-center gap-0.5" href="#">Archive <span class="material-symbols-outlined text-[16px]">chevron_right</span></a>
+</div>
+</div>
+<!-- Entry 4: Linda Thompson (Imaging / DEXA) -->
+<div class="record-item bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-2" data-category="imaging labcorp">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-title-sm text-title-sm font-bold shrink-0">
+              LT
+            </div>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface font-bold">Linda Thompson</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Solstice Bone Density Imaging Center</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">visibility</span>
+<span>Monitored</span>
+</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-xl text-body-sm font-body-sm text-on-surface">
+<div class="font-label-md text-label-md text-on-surface font-semibold mb-0.5">Dual-Energy X-Ray Absorptiometry (DEXA)</div>
+<div class="flex items-center gap-3 text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span>Lumbar Spine T-score: <strong class="text-on-surface">-1.4</strong></span>
+<span>•</span>
+<span>Status: <strong class="text-primary font-bold">Mild Osteopenia</strong></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>Target: Re-scan in 24 months</span>
+<a class="text-primary font-semibold flex items-center gap-0.5" href="#">Full Scan PDF <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- Delight Interaction Toast Container -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 font-label-md text-label-md opacity-0 pointer-events-none transition-all duration-300 z-50" id="actionToast">
+<span class="material-symbols-outlined text-[18px] text-inverse-primary">check_circle</span>
+<span id="toastMessage">Biopsy Order Signed &amp; Dispatched to EHR</span>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for doctor laboratory hub
+  (function() {
+    const signBtn = document.getElementById('signOrderBtn');
+    const toast = document.getElementById('actionToast');
+    const toastMsg = document.getElementById('toastMessage');
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const flagFilterBtn = document.getElementById('flagFilterBtn');
+    const recordItems = document.querySelectorAll('.record-item');
+
+    function showToast(text) {
+      if (!toast) return;
+      toastMsg.textContent = text;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2800);
+    }
+
+    if (signBtn) {
+      signBtn.addEventListener('click', () => {
+        signBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+        signBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">task_alt</span> Order Signed & Transmitted';
+        showToast('Pipelle Biopsy Signed: ACOG Protocol Queued');
+      });
+    }
+
+    if (flagFilterBtn) {
+      flagFilterBtn.addEventListener('click', () => {
+        applyFilter('critical');
+      });
+    }
+
+    function applyFilter(target) {
+      filterPills.forEach(pill => {
+        if (pill.dataset.filter === target) {
+          pill.className = 'filter-pill px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold shrink-0';
+        } else {
+          pill.className = 'filter-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium shrink-0';
+        }
+      });
+
+      recordItems.forEach(item => {
+        const cat = item.dataset.category || '';
+        if (target === 'all' || cat.includes(target)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        applyFilter(pill.dataset.filter);
+      });
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(46,41,36,0.06)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="patient-cohort" href="#"><span class="material-symbols-outlined text-[22px]">groups</span><span class="font-label-sm text-label-sm">Patients</span></a><a class="relative flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="telehealth-consults" href="#"><span class="relative"><span class="material-symbols-outlined text-[22px]">videocam</span><span class="absolute -top-1 -right-2 px-1 py-0.2 bg-primary text-on-primary font-label-sm text-[10px] leading-tight rounded-full">3</span></span><span class="font-label-sm text-label-sm">Telehealth</span></a><a class="relative flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="clinical-messages" href="#"><span class="relative"><span class="material-symbols-outlined text-[22px]">chat_bubble</span><span class="absolute -top-1 -right-2 px-1 py-0.2 bg-secondary text-on-secondary font-label-sm text-[10px] leading-tight rounded-full">5</span></span><span class="font-label-sm text-label-sm">Messages</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="treatment-protocols" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-sm text-label-sm">Protocols</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 transition-colors duration-200 text-primary font-semibold" data-path="labs-diagnostics" href="#"><span class="material-symbols-outlined text-[22px]">science</span><span class="font-label-sm text-label-sm">Labs</span></a></div></nav></body></html>

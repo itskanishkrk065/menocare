@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
                 val isAuthRoute = currentRoute == Screen.Login.route
 
                 Scaffold(
+                    modifier = Modifier.fillMaxSize(),
                     topBar = {
                         if (!isAuthRoute) {
                             val title = if (userRole == "doctor") "MenoCare Clinical Suite" else "MenoCare Patient Portal"
@@ -52,6 +53,7 @@ class MainActivity : ComponentActivity() {
                                 strawStage = strawStage,
                                 onSignOutClick = {
                                     TokenManager.clear()
+                                    userRole = "patient"
                                     navController.navigate(Screen.Login.route) {
                                         popUpTo(0) { inclusive = true }
                                     }
@@ -84,7 +86,9 @@ class MainActivity : ComponentActivity() {
                         } else {
                             Screen.Login.route
                         },
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     ) {
                         // --- AUTH ---
                         composable(Screen.Login.route) {

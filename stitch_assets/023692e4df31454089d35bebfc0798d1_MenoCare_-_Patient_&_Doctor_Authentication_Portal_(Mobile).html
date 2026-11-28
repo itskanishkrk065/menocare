@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_auth" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#fff8f4;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#a593b4", "tertiary-fixed-dim": "#d2bfe2", "outline": "#747870", "on-primary-fixed-variant": "#3c4b36", "on-surface": "#1f1b16", "on-primary-fixed": "#111f0e", "primary-container": "#8e9f86", "surface-container-lowest": "#ffffff", "secondary-container": "#c7eae4", "on-tertiary": "#ffffff", "primary-fixed-dim": "#baccb1", "surface-bright": "#fff8f4", "inverse-on-surface": "#f9efe7", "secondary-fixed-dim": "#abcdc8", "surface-tint": "#53634d", "on-error-container": "#93000a", "inverse-primary": "#baccb1", "on-surface-variant": "#444841", "on-secondary": "#ffffff", "surface-container-low": "#fcf2ea", "primary-fixed": "#d6e8cc", "error": "#ba1a1a", "surface": "#fff8f4", "primary": "#53634d", "on-secondary-fixed": "#00201d", "surface-container": "#f6ece4", "surface-variant": "#ebe1d9", "on-tertiary-container": "#392c48", "on-primary": "#ffffff", "secondary": "#446460", "on-secondary-container": "#4a6a66", "inverse-surface": "#352f2a", "on-error": "#ffffff", "surface-container-highest": "#ebe1d9", "on-tertiary-fixed-variant": "#4f415e", "on-tertiary-fixed": "#221630", "background": "#fff8f4", "surface-container-high": "#f1e6de", "error-container": "#ffdad6", "on-primary-container": "#273623", "secondary-fixed": "#c7eae4", "surface-dim": "#e2d8d0", "on-background": "#1f1b16", "on-secondary-fixed-variant": "#2d4c48", "tertiary-fixed": "#efdbff", "outline-variant": "#c4c8be", "tertiary": "#675876" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "3rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "margin-tablet": "2rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "margin-mobile": "1.25rem", "gutter-mobile": "1rem", "space-xl": "2.5rem" }, "fontFamily": { "label-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Newsreader"], "title-md": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "title-sm": ["Plus Jakarta Sans"], "headline-md": ["Newsreader"], "headline-sm": ["Newsreader"], "display": ["Newsreader"], "body-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "display-mobile": ["Newsreader"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Newsreader"] }, "fontSize": { "label-sm": ["0.6875rem", {"lineHeight": "0.875rem", "letterSpacing": "0.03em", "fontWeight": "500"}], "body-lg": ["1.125rem", {"lineHeight": "1.75rem", "fontWeight": "400"}], "label-md": ["0.75rem", {"lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600"}], "headline-lg": ["2.5rem", {"lineHeight": "3rem", "letterSpacing": "-0.015em", "fontWeight": "400"}], "title-md": ["1.125rem", {"lineHeight": "1.5rem", "fontWeight": "600"}], "title-lg": ["1.25rem", {"lineHeight": "1.75rem", "fontWeight": "600"}], "title-sm": ["1rem", {"lineHeight": "1.375rem", "fontWeight": "600"}], "headline-md": ["2rem", {"lineHeight": "2.5rem", "letterSpacing": "-0.01em", "fontWeight": "500"}], "headline-sm": ["1.5rem", {"lineHeight": "2rem", "fontWeight": "500"}], "display": ["3.5rem", {"lineHeight": "4rem", "letterSpacing": "-0.02em", "fontWeight": "400"}], "body-sm": ["0.875rem", {"lineHeight": "1.375rem", "fontWeight": "400"}], "label-lg": ["0.875rem", {"lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600"}], "display-mobile": ["2.5rem", {"lineHeight": "3rem", "letterSpacing": "-0.015em", "fontWeight": "400"}], "body-md": ["1rem", {"lineHeight": "1.625rem", "fontWeight": "400"}], "headline-lg-mobile": ["1.875rem", {"lineHeight": "2.375rem", "letterSpacing": "-0.01em", "fontWeight": "400"}] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen pt-safe pb-safe"><div class="w-full flex items-center justify-center pt-space-lg pb-space-sm"><div class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-medium">MenoCare</span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium tracking-wide ml-1">CLINICAL</span></div></div><main class="flex-1 flex flex-col relative w-full px-margin-mobile bg-surface"><div class="flex flex-col w-full pb-space-lg select-none">
+<!-- Top Utility Bar: Encryption telemetry pill & Caregiver link -->
+<div class="flex items-center justify-between gap-space-xs py-space-xs">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide">HIPAA / HL7 FHIR v4.0.1</span>
+</div>
+<button class="flex items-center gap-1 font-label-sm text-label-sm text-secondary hover:text-on-secondary-fixed transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">family_restroom</span>
+<span>Caregiver Support</span>
+</button>
+</div>
+<!-- Warm Editorial Reassurance Header -->
+<div class="flex flex-col mt-space-md mb-space-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight">
+      A gentler, scientifically grounded pathway through <em class="italic text-primary font-headline-lg-mobile">perimenopause</em>.
+    </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+      Precision endocrine telemetry, continuous clinician pairing, and compassionate, evidence-based guidance.
+    </p>
+</div>
+<!-- Role Segmented Toggle -->
+<div class="relative w-full p-1 bg-surface-container-high rounded-full flex items-center shadow-sm">
+<button class="flex-1 py-2 px-3 rounded-full bg-surface-container-lowest text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all shadow-sm" id="role-patient" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>Patient Portal</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-full text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all" id="role-clinician" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">stethoscope</span>
+<span>Attending Clinician</span>
+</button>
+</div>
+<!-- Sign-in Main Surface Card -->
+<div class="mt-space-md bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col">
+<!-- Header of card -->
+<div class="flex items-start justify-between gap-space-xs pb-space-sm">
+<div class="flex flex-col">
+<h2 class="font-title-lg text-title-lg text-on-surface" id="portal-title">Welcome Back</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="portal-subtitle">Sign in to sync your biometrics &amp; symptom journal</p>
+</div>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container transition-colors" type="button">
+        New Patient?
+      </button>
+</div>
+<!-- Sign-in Form -->
+<form class="flex flex-col gap-space-md mt-space-xs" onsubmit="event.preventDefault();">
+<!-- Input 1: Identifier -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" id="input-label-id">
+          Patient Email or MRN
+        </label>
+<div class="flex items-center h-12 bg-surface-container-low rounded-xl px-3 focus-within:bg-surface-container-lowest focus-within:shadow-md transition-all">
+<span class="material-symbols-outlined text-outline text-[20px] mr-2.5">mail</span>
+<input autocomplete="username" class="w-full bg-transparent text-on-surface font-body-sm text-body-sm outline-none placeholder:text-outline" id="input-login-id" placeholder="sarah.miller@menocare.internal" type="text" value="sarah.miller@menocare.internal"/>
+<span class="material-symbols-outlined text-primary text-[18px] ml-1" title="HIPAA ID Recognized">verified</span>
+</div>
+</div>
+<!-- Input 2: Encrypted Passkey -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface-variant">
+            Encrypted Biometric Passkey
+          </label>
+<button class="font-label-sm text-label-sm text-primary hover:underline" type="button">
+            Forgot passkey?
+          </button>
+</div>
+<div class="flex items-center h-12 bg-surface-container-low rounded-xl px-3 focus-within:bg-surface-container-lowest focus-within:shadow-md transition-all">
+<span class="material-symbols-outlined text-outline text-[20px] mr-2.5">lock</span>
+<input class="w-full bg-transparent text-on-surface font-body-sm text-body-sm outline-none placeholder:text-outline tracking-wider" id="input-password" placeholder="Enter clinical token or passkey" type="password" value="••••••••••••"/>
+<button class="p-1 rounded-lg text-outline hover:text-on-surface transition-colors flex items-center justify-center" id="toggle-pw-btn" type="button">
+<span class="material-symbols-outlined text-[19px]" id="pw-eye-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Biometric HealthKit Sync Switch Card -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2.5 min-w-0 pr-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-[18px]">ecg_heart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">Biometrics Sync</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Oura Ring, Whoop, Apple HealthKit</span>
+</div>
+</div>
+<button aria-checked="true" class="w-12 h-7 rounded-full bg-primary p-0.5 flex items-center transition-colors relative" id="sync-toggle" type="button">
+<span class="w-6 h-6 rounded-full bg-surface-container-lowest shadow-sm translate-x-5 transition-transform flex items-center justify-center text-primary" id="sync-thumb">
+<span class="material-symbols-outlined text-[14px]">done</span>
+</span>
+</button>
+</div>
+<!-- Primary Action CTA Button -->
+<button class="w-full h-12 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.99] transition-all" id="btn-primary-action" type="button">
+<span id="primary-action-text">Enter MenoCare Patient Vault</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Secondary Clinical Intake Link -->
+<button class="w-full py-2 flex items-center justify-center gap-1.5 text-secondary hover:text-on-secondary-fixed font-label-sm text-label-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">assignment</span>
+<span>Or proceed directly to Clinical Intake Questionnaire →</span>
+</button>
+</form>
+</div>
+<!-- Warm Telemedicine Clinician Banner -->
+<div class="mt-space-md bg-secondary-container/40 rounded-2xl p-space-md flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Today's On-Call Attending</span>
+<span class="w-2 h-2 rounded-full bg-primary shrink-0"></span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Dr. Aris Thorne, MD • 4 min wait</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:bg-surface transition-colors shrink-0" type="button">
+      Connect
+    </button>
+</div>
+<!-- 1-Click Instant Demo Clinical Profiles (Sandbox Exploration) -->
+<div class="mt-space-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">science</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold tracking-wider uppercase">1-Click Instant Sandbox Profiles</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-outline">v4.2 Audited</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Profile 1: Sarah M. -->
+<button class="flex flex-col p-3 rounded-xl bg-surface-container-lowest text-left hover:bg-surface-container-low transition-all shadow-sm active:scale-[0.98] group" onclick="selectDemoProfile('sarah.miller@menocare.internal', 'patient', 'Sarah M.', 'Typical Perimenopause (VMS Stage -1)')" type="button">
+<div class="flex items-center justify-between w-full mb-1.5">
+<div class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-label-md text-label-md">
+            SM
+          </div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-primary font-semibold">Stage -1</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Sarah M.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 line-clamp-2">
+          Typical Perimenopause • Frequent VMS hot flashes &amp; sleep rhythm drops
+        </span>
+</button>
+<!-- Profile 2: Elena R. -->
+<button class="flex flex-col p-3 rounded-xl bg-surface-container-lowest text-left hover:bg-surface-container-low transition-all shadow-sm active:scale-[0.98] group" onclick="selectDemoProfile('elena.rostova@menocare.internal', 'patient', 'Elena R.', 'Hypothyroid Drift &amp; Late Transition')" type="button">
+<div class="flex items-center justify-between w-full mb-1.5">
+<div class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-fixed font-label-md text-label-md">
+            ER
+          </div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-secondary font-semibold">Late Trans</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Elena R.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 line-clamp-2">
+          Hypothyroid Drift • Late transition with nocturnal waking &amp; cortisol spikes
+        </span>
+</button>
+<!-- Profile 3: Claire B. (Stat Trigger) -->
+<button class="flex flex-col p-3 rounded-xl bg-surface-container-lowest text-left hover:bg-surface-container-low transition-all shadow-sm active:scale-[0.98] group" onclick="selectDemoProfile('claire.becker@menocare.internal', 'patient', 'Claire B.', 'Postmenopausal Bleeding Protocol')" type="button">
+<div class="flex items-center justify-between w-full mb-1.5">
+<div class="w-7 h-7 rounded-full bg-error-container flex items-center justify-center text-on-error-container font-label-md text-label-md">
+            CB
+          </div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-semibold">STAT TVUS</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface group-hover:text-error transition-colors">Claire B.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 line-clamp-2">
+          Postmenopausal Bleeding • Urgent clinical ultrasound priority flag
+        </span>
+</button>
+<!-- Profile 4: Dr. Sharma -->
+<button class="flex flex-col p-3 rounded-xl bg-surface-container-lowest text-left hover:bg-surface-container-low transition-all shadow-sm active:scale-[0.98] group" onclick="selectDemoProfile('a.sharma.md@menocare.clinical', 'clinician', 'Dr. Sharma', 'Apollo Clinic Lead')" type="button">
+<div class="flex items-center justify-between w-full mb-1.5">
+<div class="w-7 h-7 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-label-md text-label-md">
+            AS
+          </div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-tertiary font-semibold">MD Panel</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Dr. Sharma</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 line-clamp-2">
+          Apollo Clinic Lead • Attending dashboard for 48 triaged telemetry patients
+        </span>
+</button>
+</div>
+</div>
+<!-- Micro Toast Confirmation Feedback -->
+<div class="opacity-0 pointer-events-none mt-3 p-2.5 rounded-xl bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center justify-between transition-opacity duration-300" id="demo-feedback-toast">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span id="toast-message">Loaded Sarah M.'s telemetry profile.</span>
+</div>
+<span class="text-outline font-medium">Ready</span>
+</div>
+<!-- Trust, Protocols & Verification Footer -->
+<div class="mt-space-lg pt-space-md flex flex-col items-center gap-1.5 text-center">
+<div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-label-sm text-label-sm text-on-surface-variant">
+<span>© 2025 MenoCare Health, Inc.</span>
+<span>•</span>
+<span>ACOG &amp; NAMS Protocol V4.2</span>
+<span>•</span>
+<button class="hover:underline text-primary" type="button">Telemetry Consent</button>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Encrypted Endocrine Synchronization Active</span>
+</div>
+</div>
+</div>
+<script>
+  (function initAuthPortal() {
+    const rolePatientBtn = document.getElementById('role-patient');
+    const roleClinicianBtn = document.getElementById('role-clinician');
+    const portalTitle = document.getElementById('portal-title');
+    const portalSubtitle = document.getElementById('portal-subtitle');
+    const inputLabelId = document.getElementById('input-label-id');
+    const inputLoginId = document.getElementById('input-login-id');
+    const primaryActionText = document.getElementById('primary-action-text');
+    const togglePwBtn = document.getElementById('toggle-pw-btn');
+    const pwInput = document.getElementById('input-password');
+    const pwEyeIcon = document.getElementById('pw-eye-icon');
+    const syncToggle = document.getElementById('sync-toggle');
+    const syncThumb = document.getElementById('sync-thumb');
+    const feedbackToast = document.getElementById('demo-feedback-toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    let currentRole = 'patient';
+    let syncActive = true;
+
+    // Role switcher logic
+    function setRole(role) {
+      currentRole = role;
+      if (role === 'patient') {
+        rolePatientBtn.className = "flex-1 py-2 px-3 rounded-full bg-surface-container-lowest text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all shadow-sm";
+        roleClinicianBtn.className = "flex-1 py-2 px-3 rounded-full text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all";
+        
+        portalTitle.textContent = "Welcome Back";
+        portalSubtitle.textContent = "Sign in to sync your biometrics & symptom journal";
+        inputLabelId.textContent = "Patient Email or MRN";
+        primaryActionText.textContent = "Enter MenoCare Patient Vault";
+      } else {
+        roleClinicianBtn.className = "flex-1 py-2 px-3 rounded-full bg-surface-container-lowest text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all shadow-sm";
+        rolePatientBtn.className = "flex-1 py-2 px-3 rounded-full text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all";
+        
+        portalTitle.textContent = "Clinical Attending Console";
+        portalSubtitle.textContent = "Authenticate with NPI or Institutional FHIR Key";
+        inputLabelId.textContent = "Clinician Email or NPI Registry #";
+        primaryActionText.textContent = "Access Provider Telemetry Panel";
+      }
+    }
+
+    rolePatientBtn.addEventListener('click', () => setRole('patient'));
+    roleClinicianBtn.addEventListener('click', () => setRole('clinician'));
+
+    // Password visibility toggle
+    togglePwBtn.addEventListener('click', () => {
+      const isPassword = pwInput.type === 'password';
+      pwInput.type = isPassword ? 'text' : 'password';
+      pwEyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+    });
+
+    // Biometrics switch toggle
+    syncToggle.addEventListener('click', () => {
+      syncActive = !syncActive;
+      syncToggle.setAttribute('aria-checked', syncActive);
+      if (syncActive) {
+        syncToggle.className = "w-12 h-7 rounded-full bg-primary p-0.5 flex items-center transition-colors relative";
+        syncThumb.className = "w-6 h-6 rounded-full bg-surface-container-lowest shadow-sm translate-x-5 transition-transform flex items-center justify-center text-primary";
+        syncThumb.innerHTML = '<span class="material-symbols-outlined text-[14px]">done</span>';
+      } else {
+        syncToggle.className = "w-12 h-7 rounded-full bg-surface-variant p-0.5 flex items-center transition-colors relative";
+        syncThumb.className = "w-6 h-6 rounded-full bg-surface-container-lowest shadow-sm translate-x-0 transition-transform flex items-center justify-center text-outline";
+        syncThumb.innerHTML = '<span class="material-symbols-outlined text-[14px]">close</span>';
+      }
+    });
+
+    // Instant Sandbox Profile Selector exposed globally for profile card onclick
+    window.selectDemoProfile = function(email, role, name, description) {
+      setRole(role);
+      inputLoginId.value = email;
+      
+      // Flash input focus
+      inputLoginId.focus();
+      
+      // Display gentle toast
+      toastMessage.textContent = "Loaded " + name + " (" + description + ")";
+      feedbackToast.classList.remove('opacity-0', 'pointer-events-none');
+      
+      setTimeout(() => {
+        feedbackToast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3200);
+    };
+  })();
+</script></main><footer class="w-full py-space-md px-margin-mobile flex flex-col items-center justify-center gap-1"><div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary">lock</span><span>End-to-End Encrypted Telemedicine</span></div><p class="font-label-sm text-label-sm text-outline text-center">HIPAA &amp; SOC2 Type II Certified Clinical Environment</p></footer></body></html>

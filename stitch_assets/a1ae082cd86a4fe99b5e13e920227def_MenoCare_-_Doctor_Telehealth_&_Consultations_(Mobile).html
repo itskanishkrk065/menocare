@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-primary": "#baccb1", "on-secondary-container": "#4a6a66", "inverse-surface": "#352f2a", "on-primary-container": "#273623", "tertiary-fixed": "#efdbff", "on-error": "#ffffff", "tertiary-container": "#a593b4", "background": "#fff8f4", "on-background": "#1f1b16", "primary-fixed": "#d6e8cc", "surface-container-high": "#f1e6de", "outline": "#747870", "on-secondary-fixed": "#00201d", "on-surface": "#1f1b16", "on-primary-fixed-variant": "#3c4b36", "primary": "#53634d", "primary-fixed-dim": "#baccb1", "outline-variant": "#c4c8be", "secondary-fixed": "#c7eae4", "on-secondary": "#ffffff", "error": "#ba1a1a", "on-tertiary": "#ffffff", "surface-container-low": "#fcf2ea", "secondary-container": "#c7eae4", "on-tertiary-fixed-variant": "#4f415e", "on-secondary-fixed-variant": "#2d4c48", "primary-container": "#8e9f86", "error-container": "#ffdad6", "tertiary": "#675876", "surface-container": "#f6ece4", "tertiary-fixed-dim": "#d2bfe2", "on-error-container": "#93000a", "on-tertiary-container": "#392c48", "surface-tint": "#53634d", "on-tertiary-fixed": "#221630", "secondary": "#446460", "inverse-on-surface": "#f9efe7", "on-primary": "#ffffff", "surface-variant": "#ebe1d9", "surface-container-highest": "#ebe1d9", "surface-dim": "#e2d8d0", "on-primary-fixed": "#111f0e", "surface-container-lowest": "#ffffff", "surface": "#fff8f4", "on-surface-variant": "#444841", "secondary-fixed-dim": "#abcdc8", "surface-bright": "#fff8f4" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-tablet": "2rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem", "margin": "3rem", "space-xl": "2.5rem", "margin-mobile": "1.25rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-mobile": ["Newsreader"], "headline-lg": ["Newsreader"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Newsreader"], "body-lg": ["Plus Jakarta Sans"], "title-lg": ["Plus Jakarta Sans"], "headline-sm": ["Newsreader"], "title-md": ["Plus Jakarta Sans"], "display": ["Newsreader"], "label-lg": ["Plus Jakarta Sans"], "title-sm": ["Plus Jakarta Sans"], "headline-md": ["Newsreader"] }, "fontSize": { "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.03em", "fontWeight": "500" }], "body-sm": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }], "display-mobile": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.015em", "fontWeight": "400" }], "headline-lg": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.015em", "fontWeight": "400" }], "body-md": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }], "headline-lg-mobile": ["1.875rem", { "lineHeight": "2.375rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }], "title-lg": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }], "headline-sm": ["1.5rem", { "lineHeight": "2rem", "fontWeight": "500" }], "title-md": ["1.125rem", { "lineHeight": "1.5rem", "fontWeight": "600" }], "display": ["3.5rem", { "lineHeight": "4rem", "letterSpacing": "-0.02em", "fontWeight": "400" }], "label-lg": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "600" }], "title-sm": ["1rem", { "lineHeight": "1.375rem", "fontWeight": "600" }], "headline-md": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }] } } } }</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-full antialiased"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_12px_rgba(46,41,36,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-medium">MenoCare</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-container bg-secondary-container/60 px-space-xs py-0.5 rounded-full font-semibold">Doctor View</span></div><div class="flex items-center gap-1.5 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">HIPAA Encrypted Telemetry</span></div></div></div><div class="flex items-center gap-space-sm"><div class="text-right hidden sm:block"><span class="block font-title-sm text-title-sm text-on-surface leading-tight">Dr. Sarah Jenkins</span><span class="block font-label-sm text-label-sm text-on-surface-variant">Lead Endocrinologist</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-background min-h-screen"><div class="flex flex-col w-full px-margin-mobile pb-8 space-y-space-md">
+<!-- Room Status & Quick Connect Action Bar -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_20px_-2px_rgba(46,41,36,0.04)]">
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0"></span>
+<div class="truncate">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Clinical Telemetry Line</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Room 04 • Encrypted HD</h2>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold shrink-0">
+<span class="material-symbols-outlined text-[14px]">lock</span> 256-bit WebRTC
+      </span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="flex items-center justify-center gap-1.5 h-12 bg-primary hover:bg-on-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[18px]">video_call</span>
+<span>Instant Visit</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 h-12 bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-lg transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">sync</span>
+<span>Sync EHR</span>
+</button>
+</div>
+</section>
+<!-- 2x2 Telehealth Day Metrics -->
+<section class="grid grid-cols-2 gap-space-sm">
+<!-- Metric 1 -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-[0_2px_12px_rgba(46,41,36,0.03)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Consultations</span>
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_month</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">5 Scheduled</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>2 Done • 3 Upcoming</span>
+</div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-[0_2px_12px_rgba(46,41,36,0.03)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Avg Duration</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">timer</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">24 mins</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">
+          Target 30m standard
+        </div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-[0_2px_12px_rgba(46,41,36,0.03)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Pending SOAPs</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">history_edu</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">2 Drafts</div>
+<div class="font-label-sm text-label-sm text-tertiary font-semibold truncate mt-1">
+          Miller, Sanchez
+        </div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-[0_2px_12px_rgba(46,41,36,0.03)] flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Next in Queue</span>
+<span class="inline-flex w-2 h-2 rounded-full bg-primary animate-ping"></span>
+</div>
+<div>
+<div class="font-title-sm text-title-sm text-on-surface leading-tight truncate">Elena Rostova</div>
+<div class="font-label-sm text-label-sm text-primary font-semibold mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">alarm</span> in 12 mins
+        </div>
+</div>
+</div>
+</section>
+<!-- Live Patient Waiting in Lobby Hero Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_12px_32px_-4px_rgba(46,41,36,0.07)] relative overflow-hidden">
+<!-- Subtle Ambient Accent -->
+<div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-secondary-fixed/30 blur-2xl pointer-events-none"></div>
+<!-- Waiting Banner -->
+<div class="flex items-center justify-between gap-space-xs pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold tracking-tight">Patient Ready in Virtual Lobby</span>
+</div>
+<div class="text-right">
+<span class="inline-block px-2 py-0.5 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant font-semibold">
+          Wait: 4m 18s
+        </span>
+</div>
+</div>
+<!-- Patient Identity Strip -->
+<div class="flex items-start gap-space-sm mb-space-md">
+<div class="relative shrink-0">
+<img class="w-14 h-14 rounded-full object-cover shadow-sm" data-alt="Warm studio clinical portrait of Elena Rostova, a 48-year-old female patient with serene expression, soft morning natural lighting, neutral cream background, high-resolution aesthetic photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLM1XJnhcfQRpU_z5Q79PbyyzWITJ9HwEPlWzDoA9N184CXSrrazszYMbyC63iN22Jl19QdZSmbH9VNo8pqGoZBWMj5wLhtH8Aef-GcMAsmmfKxObjTFTx30Gj3wfJGv2Q2S3Ky6Y5TJ1vUo8Ul4FmPuYuGM5ho73aaptg2qodAg1kXd7LyqaijA_gHp_vWIQEcnRMivqx4n-aDjJD7x-xcbikvP1_Fb7g7voef79z"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-primary"></span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center justify-between gap-1">
+<h3 class="font-title-md text-title-md text-on-surface truncate">Elena Rostova</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">#992-04</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          48 yrs • MRN #MC-8042 • Late Perimenopause (STRAW -1)
+        </p>
+</div>
+</div>
+<!-- Urgent Clinical Titration Reason Pill -->
+<div class="bg-error-container/40 rounded-lg p-space-sm mb-space-md flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-[18px] shrink-0 mt-0.5">warning</span>
+<div class="min-w-0">
+<span class="block font-label-sm text-label-sm uppercase tracking-wider text-error font-semibold">Clinical Priority Trigger</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-snug">
+          Urgent Titration: 35% surge in nocturnal flushes disrupting delta-wave sleep.
+        </span>
+</div>
+</div>
+<!-- Key Vitals Quick Strip (4-cell horizontal metrics) -->
+<div class="grid grid-cols-4 gap-1.5 p-space-sm rounded-lg bg-surface-container-low mb-space-md text-center">
+<div class="p-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">30d Adh.</span>
+<span class="font-title-sm text-title-sm text-primary font-bold">94.2%</span>
+</div>
+<div class="p-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">VMS Idx</span>
+<span class="font-title-sm text-title-sm text-error font-bold">7.8<span class="text-[10px] font-normal text-on-surface-variant">/10</span></span>
+</div>
+<div class="p-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Rest BP</span>
+<span class="font-title-sm text-title-sm text-on-surface font-bold">118/74</span>
+</div>
+<div class="p-1">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Serum E2</span>
+<span class="font-title-sm text-title-sm text-secondary font-bold">42<span class="text-[10px] font-normal text-on-surface-variant"> pg</span></span>
+</div>
+</div>
+<!-- Interactive Launch CTAs -->
+<div class="space-y-space-sm">
+<button class="w-full h-12 bg-primary hover:bg-on-primary-container text-on-primary font-label-lg text-label-lg rounded-lg flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99]" id="launchTelehealthBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+<span>Launch Live Telehealth &amp; EHR Workspace</span>
+</button>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-10 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">assignment</span>
+<span>Pre-Brief Summary</span>
+</button>
+<button class="h-10 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">share</span>
+<span>Share Room PIN</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Clinical Pre-Consult Intelligence Card -->
+<section class="bg-surface-container-low rounded-xl p-space-md shadow-[0_2px_12px_rgba(46,41,36,0.03)] space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">psychology_alt</span>
+<h4 class="font-title-sm text-title-sm text-on-surface">STRAW+10 Decision Support</h4>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold bg-secondary-fixed/50 px-2 py-0.5 rounded-full">AI Protocol V3.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+      Symptom flare pattern aligns with follicular phase estrogen trough. Recommendation: Consider upward titration to <span class="font-semibold text-primary">0.075mg transdermal estradiol patch</span> twice weekly paired with <span class="font-semibold text-primary">200mg micronized progesterone</span> oral bedtime.
+    </p>
+<!-- In-Call SOAP Draft Quick Snippet -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Pre-Populated SOAP Snippet</span>
+<button class="text-secondary font-label-sm text-label-sm font-semibold flex items-center gap-0.5 hover:underline" type="button">
+<span class="material-symbols-outlined text-[14px]">edit_note</span> Edit
+        </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic line-clamp-2">
+        "Patient presents via encrypted telehealth reporting marked nocturnal vasomotor symptoms (VMS 7.8/10) over prior 14 days. Current 0.05mg transdermal dose inadequate during late perimenopausal transition."
+      </p>
+<div class="mt-2 flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span> Ready for signature
+        </span>
+<button class="px-2.5 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold rounded hover:bg-surface-container-high transition-colors" type="button">
+          Commit to EHR (HL7)
+        </button>
+</div>
+</div>
+</section>
+<!-- Clinical Schedule for Today -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Today's Schedule</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">5 telehealth sessions logged</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span> Filter
+      </button>
+</div>
+<!-- Interactive Schedule Stack -->
+<div class="space-y-2.5">
+<!-- Item 1: Sarah Miller (Completed) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(46,41,36,0.02)] flex items-center justify-between gap-space-sm opacity-80">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="text-center w-12 shrink-0">
+<span class="block font-title-sm text-title-sm text-on-surface-variant font-mono">09:00</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">AM</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Sarah Miller</span>
+<span class="px-2 py-0.2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Completed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Post-Menopause Annual Follow-up</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-medium hover:bg-surface-container-high shrink-0 transition-colors" type="button">
+          View SOAP
+        </button>
+</div>
+<!-- Item 2: Elena Rostova (Ready in Lobby - Active Highlight) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_16px_rgba(46,41,36,0.06)] bg-gradient-to-r from-secondary-container/20 to-transparent flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="text-center w-12 shrink-0">
+<span class="block font-title-sm text-title-sm text-secondary font-mono font-bold">10:30</span>
+<span class="block font-label-sm text-label-sm text-secondary font-semibold">AM</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-on-surface font-bold truncate">Elena Rostova</span>
+<span class="px-2 py-0.2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold animate-pulse">Lobby</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">HRT Titration / Vasomotor Review</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-on-primary-container shrink-0 transition-all shadow-sm" type="button">
+          Connect
+        </button>
+</div>
+<!-- Item 3: Priya Kapoor -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(46,41,36,0.02)] flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="text-center w-12 shrink-0">
+<span class="block font-title-sm text-title-sm text-on-surface font-mono">11:15</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">AM</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Priya Kapoor</span>
+<span class="px-2 py-0.2 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant font-label-sm text-label-sm">Confirmed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Perimenopause Onboarding Assessment</p>
+</div>
+</div>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<!-- Item 4: Linda Thompson -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(46,41,36,0.02)] flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="text-center w-12 shrink-0">
+<span class="block font-title-sm text-title-sm text-on-surface font-mono">14:00</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">PM</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Linda Thompson</span>
+<span class="px-2 py-0.2 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant font-label-sm text-label-sm">Confirmed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Bone Density DEXA &amp; Micronutrients</p>
+</div>
+</div>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<!-- Item 5: Anita Williams -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(46,41,36,0.02)] flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="text-center w-12 shrink-0">
+<span class="block font-title-sm text-title-sm text-on-surface font-mono">15:30</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">PM</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-on-surface truncate">Anita Williams</span>
+<span class="px-2 py-0.2 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant font-label-sm text-label-sm">Confirmed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Cognitive Fog &amp; Sleep Arch Titration</p>
+</div>
+</div>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Telehealth Peripherals & Audio/Video Check Drawer -->
+<section class="bg-surface-container rounded-xl p-space-md shadow-[0_2px_12px_rgba(46,41,36,0.02)]">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Clinician AV Diagnostics</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Optimal 60 FPS</span>
+</div>
+<div class="flex items-center justify-between gap-2 text-center">
+<div class="flex-1 bg-surface-container-lowest p-2 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-secondary">mic</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mt-0.5">AirPods Pro</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest p-2 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-secondary">videocam</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mt-0.5">4K Facetime</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest p-2 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-secondary">wifi</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mt-0.5">340 Mbps</span>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Simple micro-interaction for Telehealth Room launch feedback
+  document.getElementById('launchTelehealthBtn')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Initializing Secure Media Stream...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Encrypted Line Active (Connected)</span>';
+      this.classList.remove('bg-primary');
+      this.classList.add('bg-secondary');
+    }, 900);
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(46,41,36,0.06)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="patient-cohort" href="#"><span class="material-symbols-outlined text-[22px]">groups</span><span class="font-label-sm text-label-sm">Patients</span></a><a aria-current="page" class="relative flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 transition-colors duration-200 text-primary font-semibold" data-path="telehealth-consults" href="#"><span class="relative"><span class="material-symbols-outlined text-[22px]">videocam</span><span class="absolute -top-1 -right-2 px-1 py-0.2 bg-primary text-on-primary font-label-sm text-[10px] leading-tight rounded-full">3</span></span><span class="font-label-sm text-label-sm">Telehealth</span></a><a class="relative flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="clinical-messages" href="#"><span class="relative"><span class="material-symbols-outlined text-[22px]">chat_bubble</span><span class="absolute -top-1 -right-2 px-1 py-0.2 bg-secondary text-on-secondary font-label-sm text-[10px] leading-tight rounded-full">5</span></span><span class="font-label-sm text-label-sm">Messages</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="treatment-protocols" href="#"><span class="material-symbols-outlined text-[22px]">menu_book</span><span class="font-label-sm text-label-sm">Protocols</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant transition-colors duration-200" data-path="labs-diagnostics" href="#"><span class="material-symbols-outlined text-[22px]">science</span><span class="font-label-sm text-label-sm">Labs</span></a></div></nav></body></html>

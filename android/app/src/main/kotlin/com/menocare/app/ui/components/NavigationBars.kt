@@ -65,25 +65,38 @@ fun PatientBottomNavBar(
         )
 
         // 3. Center FAB: Daily Check-In
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight(),
-            contentAlignment = Alignment.Center
-        ) {
-            FloatingActionButton(
-                onClick = onOpenCheckIn,
-                shape = CircleShape,
-                containerColor = SageDark,
-                contentColor = Cream,
-                elevation = FloatingActionButtonDefaults.elevation(4.dp),
-                modifier = Modifier
-                    .size(48.dp)
-                    .offset(y = (-6).dp)
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Start Check-in", modifier = Modifier.size(24.dp))
-            }
-        }
+        NavigationBarItem(
+            selected = false,
+            onClick = onOpenCheckIn,
+            icon = {
+                Surface(
+                    shape = CircleShape,
+                    color = SageDark,
+                    shadowElevation = 4.dp,
+                    modifier = Modifier.size(42.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            Icons.Default.Add,
+                            contentDescription = "Start Check-in",
+                            tint = Cream,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
+            },
+            label = {
+                Text(
+                    "Check-In",
+                    fontSize = 10.sp,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+                )
+            },
+            colors = NavigationBarItemDefaults.colors(
+                indicatorColor = Color.Transparent,
+                unselectedTextColor = CharcoalMuted
+            )
+        )
 
         // 4. Care (Medications)
         NavigationBarItem(
